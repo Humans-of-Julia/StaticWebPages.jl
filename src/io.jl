@@ -1,13 +1,17 @@
-function export_site(d::Dict{AbstractString, AbstractString})
-    content_info = Dict()
-    content = Dict()
+local dummy_info = OrderedDict{AbstractString,AbstractString}()
+local dummy_content = OrderedDict{AbstractString,Any}()
 
-
+function export_site(
+    d::Dict{AbstractString, AbstractString};
+    content_info::OrderedDict{AbstractString,AbstractString} = dummy_info,
+    content::OrderedDict{AbstractString,Any} = dummy_content
+    )
     temppath = pwd()
     cd(d["content"])
     include(pwd() * "/content.jl")
 
-    println("include done")
+    println(content_info)
+    println(content)
 
     for p in keys(content)
         f = open("$(d["site"])/$p.html", "w")
