@@ -137,7 +137,7 @@ function to_html(publications::Vector{Bibliography.Publication})
     str = ""
     for p in publications
         bib = "files/" * p.id * ".bib"
-        f = open("site/$bib", "w")
+        f = open(pwd() * "/site/$bib", "w")
         write(f, p.cite)
         close(f)
         str *= 
@@ -187,17 +187,9 @@ end
 
 struct Bibtex
     source::AbstractString
-
-    # function BibTeX(source::AbstractString)
-    #     new(pwd() * "/" * source)
-    # end
-end
-
-function BibTeX(source::AbstractString)
-    BibTeX(pwd() * "/" * source)
+    Bibtex(source::AbstractString) = new(joinpath(local_info["content"], source))
 end
 
 function to_html(bib::Bibtex)
-    println("bib: $(bib.source)")
     to_html(Bibliography.bibtex_to_web(bib.source))
 end

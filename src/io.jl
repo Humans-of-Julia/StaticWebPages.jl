@@ -1,36 +1,38 @@
-local dummy_info = OrderedDict{AbstractString,AbstractString}()
-local dummy_content = OrderedDict{AbstractString,Any}()
+function export_site(d::Dict{AbstractString, AbstractString}; rm_dir::Bool = false)
+    if rm_dir
+        rm(d["site"], recursive=true, force=true)
+        mkpath(d["site"])
+    end
+    for p in [joinpath(d["site"],"files"), joinpath(d["site"],"img"), joinpath(d["site"],"js"), joinpath(d["site"],"css")]
+        isdir(p) ? () : mkpath(p)
+    end
 
-function export_site(
-    d::Dict{AbstractString, AbstractString};
-    content_info::OrderedDict{AbstractString,AbstractString} = dummy_info,
-    content::OrderedDict{AbstractString,Any} = dummy_content
-    )
-    temppath = pwd()
-    cd(d["content"])
-    include(pwd() * "/content.jl")
+    assets = joinpath(dirname(dirname(pathof(StaticWebPages))), "assets")
+    for p in ["js", "css"]
+        cp(joinpath(assets, p), joinpath(d["site"],p); force=true)
+    end
 
-    println(content_info)
-    println(content)
+    for p in ["files", "img"]
+        cp(joinpath(d["content"],p), joinpath(d["site"],p); force=true)
+    end
 
+    include(joinpath(d["content"],"content.jl"))
     for p in keys(content)
-        f = open("$(d["site"])/$p.html", "w")
-        write(f, page(content_info, content, p))
+        f = open(joinpath(d["site"], "$p.html"), "w")
+        write(f, page(info, content, p))
         close(f)
     end
-    cd(temppath)
 end
 
-function upload_site(path::AbstractString)
-    protocole = "ftp"
-    user = "cuvdeeu"
-    password = "i5IKuG0YBNh0bjZ1"
-    server = "ftp.cluster028.hosting.ovh.net/www"
-    folder = "perso"
+function upload_site(d::Dict{AbstractString, AbstractString})
+    protocole = d["protocole"]
+    user = d["user"]
+    password = d["password"]
+    server = d["server"]
 
     ftp = FTP("$protocole://$user:$password@$server")
     temppath = pwd()
-    cd(path)
+    cd(d["site"])
     for (root, dirs, files) in walkdir(".")
         for file in files
             println("root:$root, joinpath:$(joinpath(root, file)), file:$file")
@@ -39,5 +41,4 @@ function upload_site(path::AbstractString)
     end
     cd(temppath)
     close(ftp)
-
 end

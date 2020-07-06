@@ -1,5 +1,5 @@
 function page(
-    info::OrderedDict{AbstractString, AbstractString},
+    info::Dict{AbstractString, AbstractString},
     content::OrderedDict{AbstractString, Any},
     page::AbstractString
     )

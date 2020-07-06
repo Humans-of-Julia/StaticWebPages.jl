@@ -514,6 +514,10 @@ article-title {
     background-color: #e6194B;
 }
 
+.black-text{
+    color: #000000;
+}
+
 .label-green { /* 2 */
     background-color: #3cb44b;
 }

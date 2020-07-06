@@ -1,5 +1,5 @@
 function head(
-    info::OrderedDict{AbstractString,AbstractString},
+    info::Dict{AbstractString,AbstractString},
     page::AbstractString
     )
     subtitle = page == "index" ? "homepage" : page
@@ -19,7 +19,7 @@ function head(
 end
 
 function nav(
-    info::OrderedDict{AbstractString,AbstractString},
+    info::Dict{AbstractString,AbstractString},
     content::OrderedDict{AbstractString,Any},
     page::AbstractString
     )
@@ -51,7 +51,7 @@ function nav(
 
     str *=
     """
-        <li><a href="files/cv.pdf">C.V.</a></li>
+        <li><a href="files/cv.pdf">C.V. (download)</a></li>
         <li><a href="#">Icon: RG etc</a></li>
       </ul>
     </div>

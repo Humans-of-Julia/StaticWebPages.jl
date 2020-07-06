@@ -1,18 +1,11 @@
-const dummy_info = OrderedDict{AbstractString,AbstractString}([
+const info = Dict{AbstractString,AbstractString}([
     "title" => "title",
     "avatar" => "pic.jpg",
     "name" => "name",
     "lang" => "en"
 ])
-const dummy_content = OrderedDict{AbstractString,Any}([
-    "index" => [],
-    "publications" => [],
-    "research" => [],
-    "teachings" => [],
-    "softwares" => [],
-    "contact" => [],
-    "cv" => [],
-])
+const content = OrderedDict{AbstractString,Any}()
+const local_info = Dict{AbstractString,AbstractString}()
 
 @enum ColorLabel begin
     red
