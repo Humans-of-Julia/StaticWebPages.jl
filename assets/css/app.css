@@ -385,6 +385,23 @@ article-title {
     font-size: 18px;
 }
 
+.icon-menu {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    letter-spacing: 0px;
+    font: inherit;
+    font-family: inherit;
+    -webkit-font-smoothing: inherit;
+    line-height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: 0;
+    color:rgb(3, 122, 187);
+    padding: 5px 15px ;
+    float: left;
+    font-size: 30px;
+}
+
 .fa-external-link {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     letter-spacing: 0px;
@@ -423,7 +440,7 @@ article-title {
     letter-spacing: 0px;
     margin: 0;
     padding: 0 0 15px 0;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 400;
 }
 

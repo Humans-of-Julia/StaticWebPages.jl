@@ -12,8 +12,9 @@ function head(
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>$(info["title"]): $(subtitle)</title>
       <link rel="stylesheet" href="css/foundation.min.css">
-      <link rel="stylesheet" href="css/app.css">
+      <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
       <script src="https://kit.fontawesome.com/06a987762e.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="css/app.css">
     </head>
     """
 end
@@ -49,10 +50,35 @@ function nav(
         end
     end
 
+    str *= "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" : ""
+    acc = 1
+    for i in keys(academicons)
+      if i ∈ keys(info)
+        if mod(acc, 3) == 1
+          if acc > 1
+            str *=
+            """
+                </li>
+            """
+          end
+          str *=
+          """
+              <li>
+          """
+        end
+        str *=
+        """
+              <a href="$(info[i])" class="icon-menu" title="" target="_blank" data-original-title="Cite">
+                <i class="$(academicons[i])"></i>
+              </a>
+        """
+        acc +=1
+      end
+    end
+    str *= acc > 1 ? "\n<li>\n" : ""
+
     str *=
     """
-        <li><a href="files/cv.pdf">C.V. (download)</a></li>
-        <li><a href="#">Icon: RG etc</a></li>
       </ul>
     </div>
     """

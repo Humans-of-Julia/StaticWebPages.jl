@@ -158,7 +158,7 @@ function to_html(publications::Vector{Bibliography.Publication})
             """
                     <a href="$(p.file)"
                         class="tooltips" title="" target="_blank" data-original-title="Download">
-                        <i class="fas fa-scroll"></i>
+                        <i class="fas fa-download"></i>
                     </a>
             """
         end

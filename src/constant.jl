@@ -57,3 +57,12 @@ const color_to_label = Dict{ColorLabel,AbstractString}([
     white       => "label-white black-text",
     black       => "label-black"
 ])
+
+const academicons = Dict{AbstractString, AbstractString}([
+    "researchgate"  => "ai ai-researchgate-square",
+    "googlescholar" => "ai ai-google-scholar-square",
+    "orcid"         => "ai ai-orcid-square",
+    "dblp"          => "ai ai-dblp-square",
+    "github"        => "fa fa-github-square",
+    "linkedin"      => "fab fa-linkedin",
+])
