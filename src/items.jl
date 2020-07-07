@@ -136,27 +136,46 @@ publication_labels = OrderedDict{AbstractString, ColorLabel}()
 function to_html(publications::Vector{Bibliography.Publication})
     str = ""
     for p in publications
-        bib = "files/" * p.id * ".bib"
-        f = open(pwd() * "/site/$bib", "w")
-        write(f, p.cite)
-        close(f)
         str *= 
         """
         <div class="publication cell">
             <div class="pub-contents">
                 <div class="pubassets">
+        """
+
+        if p.link != ""
+            str *=
+            """
+
                     <a href="$(p.link)" class="tooltips"
                         title="" target="_blank" data-original-title="External link">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
+            """
+        end
+        println(joinpath(local_info["content"],p.file))
+        if isfile(joinpath(local_info["content"],p.file))
+            str *=
+            """
                     <a href="$(p.file)"
                         class="tooltips" title="" target="_blank" data-original-title="Download">
                         <i class="fas fa-scroll"></i>
                     </a>
-                    <a href="$bib"
-                        class="tooltips" title="" target="_blank" data-original-title="Cite">
-                        <i class="fas fa-quote-left"></i>
-                    </a>
+            """
+        end
+        str *=
+        """
+                    <button type="button" data-open="$(p.id)-modal">
+                            <a class="tooltips" title="" target="_blank" data-original-title="Cite">
+                                <i class="fas fa-quote-left"></i>
+                            </a>
+                    </button>
+                    <div class="large reveal" id="$(p.id)-modal" data-reveal>                            
+        <code class="code-block">$(p.cite)</code>
+                            <button class="close-button" data-close aria-label="Close bib" type="button">
+                                <span class="black-text" aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                 </div>
                 <h4 class="pubtitle">$(p.title)</h4>
                 <div class="pubcontents">
