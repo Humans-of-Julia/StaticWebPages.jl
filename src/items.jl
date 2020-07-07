@@ -153,7 +153,6 @@ function to_html(publications::Vector{Bibliography.Publication})
                     </a>
             """
         end
-        println(joinpath(local_info["content"],p.file))
         if isfile(joinpath(local_info["content"],p.file))
             str *=
             """
