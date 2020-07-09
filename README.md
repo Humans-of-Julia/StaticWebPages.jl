@@ -17,6 +17,33 @@ The beta only uses text files and command lines, but the first stable release wi
 
 The user provides the content (text, images, files) and select in which `Items` will display it. As simple as that. A full working example is provided here (or in the example folder). The result is available as http://baffier.fr
 
+### Installation
+The only requirement is to install Julia and this package (preferably through the package interface of Julia).
+
+In the Julia REPL (that you can launch as a standalone or call within a console), please enter Pkg REPL. To quote the package manager documentation:
+> Pkg comes with a REPL. Enter the Pkg REPL by pressing ] from the Julia REPL. To get back to the Julia REPL, press backspace or ^C.
+ 
+The following code snippet update the general registry of Julia's packages, then install the `StaticWebPages.jl` package.
+
+```
+(@v1.5) pkg> up
+(@v1.5) pkg> add StaticWebPages
+```
+
+You can check that the installation is complete and trigger a precompilation of the package (usually take a few minutes) by using the following command.
+
+```julia
+import StaticWebPages
+```
+
+Please note that precompilation occurs before at first use after installation and updates. The somewhat long compilation is related to the BibTeX parser and should occur rarely.
+
+The package can be use from the REPL, but we recommend it to be used through a script file as the `run.jl` presented below. Running the script should be as simple as writing the following command line.
+
+```julia
+julia run.jl
+```
+
 ### Files organization
 
 The two first following files are the only requirement. However, most users will prefer to provide some images/pictures and additional files such as a cv, a bibliography, and some downloadable content.
