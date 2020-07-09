@@ -211,3 +211,19 @@ end
 function to_html(bib::Bibtex)
     to_html(Bibliography.bibtex_to_web(bib.source))
 end
+
+struct Git
+    name::AbstractString
+    url::AbstractString
+    language::AbstractString
+    description::AbstractString
+    size::Int
+end
+
+struct GitHub
+    url::AbstractString
+end
+
+function to_html(repos::Vector{GitHub})
+
+end
