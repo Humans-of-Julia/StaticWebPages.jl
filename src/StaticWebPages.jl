@@ -1,6 +1,6 @@
 module StaticWebPages
 
-using FTPClient, DataStructures
+using FTPClient, DataStructures, GitHub
 
 import Bibliography
 import Bibliography: bibtex_to_web, Publication

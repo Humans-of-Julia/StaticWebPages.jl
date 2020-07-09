@@ -131,14 +131,14 @@ function to_html(timelines::Vector{TimeLine})
     """
 end
 
-publication_labels = OrderedDict{AbstractString, ColorLabel}()
+publication_labels = OrderedDict{AbstractString,ColorLabel}()
 
 function to_html(publications::Vector{Bibliography.Publication})
     str = ""
     for p in publications
         str *= 
         """
-        <div class="publication cell">
+        <div class="publication cell small-12 medium-6">
             <div class="pub-contents">
                 <div class="pubassets">
         """
@@ -153,7 +153,7 @@ function to_html(publications::Vector{Bibliography.Publication})
                     </a>
             """
         end
-        if isfile(joinpath(local_info["content"],p.file))
+        if isfile(joinpath(local_info["content"], p.file))
             str *=
             """
                     <a href="$(p.file)"
@@ -212,18 +212,103 @@ function to_html(bib::Bibtex)
     to_html(Bibliography.bibtex_to_web(bib.source))
 end
 
+struct GitRepo
+    fullnames::Vector{AbstractString}
+end
+
 struct Git
     name::AbstractString
     url::AbstractString
     language::AbstractString
     description::AbstractString
     size::Int
+    contributors::AbstractString
 end
 
-struct GitHub
-    url::AbstractString
+function to_name(user::AbstractString)
+    str = get(user_to_name, lowercase(user), "")
+    return str == "" ? user : "$str ($user)"
 end
 
-function to_html(repos::Vector{GitHub})
+function Git(gh::AbstractString)
+    r = GitHub.repo(gh)
+    contributors = GitHub.contributors(gh)
 
+    str = to_name(contributors[1][1]["contributor"].login)
+    if length(contributors[1]) > 1
+        for c in contributors[1][2:end]
+            str *= ", " * to_name(c["contributor"].login)
+        end
+    end
+
+    g = Git(
+        r.name,
+        r.html_url.uri,
+        r.language,
+        r.description,
+        r.size,
+        lowercase(str)
+    )
+    return g
+end
+
+function to_html(repos::GitRepo)
+    str = ""
+    for r in repos.fullnames
+        g = Git(r)
+        str *= 
+        """
+        <div class="publication cell small-12 medium-6">
+            <div class="pub-contents">
+                <div class="pubassets">
+        """
+
+        if g.url != ""
+            str *=
+            """
+                    <a href="$(g.url)" class="tooltips"
+                        title="" target="_blank" data-original-title="External link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+            """
+        end
+        str *=
+        # """
+        #             <button type="button" data-open="$(g.name)-modal">
+        #                     <a class="tooltips" title="" target="_blank" data-original-title="Cite">
+        #                         <i class="fas fa-quote-left"></i>
+        #                     </a>
+        #             </button>
+        #             <div class="large reveal" id="$(g.name)-modal" data-reveal>                            
+        # <code class="code-block">$(g.cite)</code>
+        #                     <button class="close-button" data-close aria-label="Close bib" type="button">
+        #                         <span class="black-text" aria-hidden="true">&times;</span>
+        #                     </button>
+        #                 </div>
+        """
+                </div>
+                <h4 class="pubtitle">$(g.name)</h4>
+                <div class="pubcontents">
+        """
+        label = g.language
+        if label ∉ keys(publication_labels)
+            push!(publication_labels, label => ColorLabel(length(publication_labels)))
+        end
+        color = color_to_label[publication_labels[label]]
+        str *=
+        """
+                    <span class="label $color">$(uppercasefirst(label))</span>
+        """
+
+        str *=
+        """
+                    <div class="pubauthor">$(g.contributors)</div>
+                    <div class="pubcite">$(g.description)</div>
+                    <div class="pubyear">Size: $(g.size) KB</div>
+                </div>
+            </div>
+        </div>
+        """
+    end
+    return str
 end

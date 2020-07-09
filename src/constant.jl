@@ -6,6 +6,7 @@ const info = Dict{AbstractString,AbstractString}([
 ])
 const content = OrderedDict{AbstractString,Any}()
 const local_info = Dict{AbstractString,AbstractString}()
+const user_to_name = Dict{AbstractString,AbstractString}()
 
 @enum ColorLabel begin
     red
