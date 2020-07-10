@@ -396,8 +396,8 @@ article-title {
     box-sizing: border-box;
     text-decoration: none;
     outline: 0;
-    color:rgb(3, 122, 187);
-    padding: 5px 15px ;
+    color: rgb(3, 122, 187);
+    padding: 5px 15px;
     float: left;
     font-size: 30px;
 }
@@ -527,94 +527,134 @@ article-title {
     font-size: 12px;
 }
 
-.label-red { /* 1 */
+.label-red {
+    /* 1 */
     background-color: #e6194B;
 }
 
-.black-text{
+.black-text {
     color: #000000;
 }
 
-.label-green { /* 2 */
+.label-green {
+    /* 2 */
     background-color: #3cb44b;
 }
 
-.label-yellow{ /* 3 */
+.label-yellow {
+    /* 3 */
     background-color: #ffe119;
 }
 
-.label-blue{ /* 4 */
+.label-blue {
+    /* 4 */
     background-color: #4363d8
 }
 
-.label-orange{ /* 5 */
+.label-orange {
+    /* 5 */
     background-color: #f58231;
 }
 
-.label-purple{ /* 6 */
+.label-purple {
+    /* 6 */
     background-color: #911eb4;
 }
 
-.label-cyan{ /* 7 */
+.label-cyan {
+    /* 7 */
     background-color: #42d4f4;
 }
 
-.label-magenta{ /* 8 */
+.label-magenta {
+    /* 8 */
     background-color: #f032e6;
 }
 
-.label-lime{ /* 9 */
+.label-lime {
+    /* 9 */
     background-color: #bfef45;
 }
 
-.label-pink{ /* 10 */
+.label-pink {
+    /* 10 */
     background-color: #fabed4;
 }
 
-.label-teal{ /* 11 */
+.label-teal {
+    /* 11 */
     background-color: #469990;
 }
 
-.label-lavender{ /* 12 */
+.label-lavender {
+    /* 12 */
     background-color: #dcbeff;
 }
 
-.label-brown{ /* 13 */
+.label-brown {
+    /* 13 */
     background-color: #9A6324;
 }
 
-.label-beige{ /* 14 */
+.label-beige {
+    /* 14 */
     background-color: #fffac8;
 }
 
-.label-maroon{ /* 15 */
+.label-maroon {
+    /* 15 */
     background-color: #800000;
 }
 
-.label-mint{ /* 16 */
+.label-mint {
+    /* 16 */
     background-color: #aaffc3;
 }
 
-.label-olive{ /* 17 */
+.label-olive {
+    /* 17 */
     background-color: #808000;
 }
 
-.label-apricot{ /* 18 */
+.label-apricot {
+    /* 18 */
     background-color: #ffd8b1;
 }
 
-.label-navy{ /* 19 */
+.label-navy {
+    /* 19 */
     background-color: #000075;
 }
 
-.label-grey{ /* 20 */
+.label-grey {
+    /* 20 */
     background-color: #a9a9a9;
 }
 
-.label-white{ /* 21 */
+.label-white {
+    /* 21 */
     background-color: #ffffff;
 }
 
-.label-black{ /* 22 */
+.label-black {
+    /* 22 */
     background-color: #000000;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.obfuscate {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.nota {
+    padding: .7rem 1rem;
+    color: #dddddd;
 }

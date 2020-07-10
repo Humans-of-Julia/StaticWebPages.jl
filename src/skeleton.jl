@@ -51,6 +51,12 @@ function nav(
     end
 
     str *= "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" : ""
+
+    str *=
+    """
+    <li><span class="obfuscate unselectable nota">rf.reiffab@fj</span></li>
+    """
+
     acc = 1
     for i in keys(academicons)
       if i ∈ keys(info)
