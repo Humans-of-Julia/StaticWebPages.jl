@@ -66,9 +66,9 @@ local_info["user"] = "user"
 local_info["password"] = "password"
 local_info["server"] = "server_address"
 
-## export site to local folder
-# `rm_dir = true` will clean up the site folder before generating it again
-StaticWebPages.export_site(local_info; rm_dir = true)
+# `rm_dir = true` will clean up the site folder before generating it again. Default to false.
+# `opt_in = true` will add a link to this generator website in the side menu. Default to false.
+StaticWebPages.export_site(local_info; rm_dir = true, opt_in = true)
 
 ## upload website (comment/delete if not needed)
 # unfortunately does not work yet on windows system, please sync manually for the moment
@@ -94,6 +94,11 @@ info["cv"] = "cv.pdf"
 info["lang"] = "en"
 info["name"] = "Jean-François BAFFIER"
 info["title"] = "Baffier"
+
+# The email is obfuscated using a reverse email writing. The email appear normally (re-reverse) through CSS.
+# Although this is an effective technique against bots, it probably won't eventually.
+# The user is free to add additional security such as replacing '@' by 'at'.
+info["email"] = "jf@baffier.fr"
 
 ## icons to social networks in the side menu
 # comment/delete the unwanted entries
@@ -145,6 +150,22 @@ Bibtex("publications.bib")
         "RIKEN Center for Advanced Intelligence (AIP)"
     )
 ] # End of the list
+```
+
+##### (list of) `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
+
+```julia
+GitRepo([ # currently work only with GitHub
+    "Azzaare/CompressedStacks.cpp",
+    "Azzaare/StaticWebPages.jl",
+    "Azzaare/Bibliography.jl",
+    "Azzaare/BibParser.jl",
+    "Azzaare/BibInternal.jl",
+    "JuliaGraphs/LightGraphs.jl",
+    "JuliaGraphs/LightGraphsExtras.jl",
+    "JuliaGraphs/SNAPDatasets.jl",
+    "Azzaare/PackageStream.jl"
+])
 ```
 
 ##### `TextSection` : paragraphs with optional images on the side

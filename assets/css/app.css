@@ -658,3 +658,8 @@ article-title {
     padding: .7rem 1rem;
     color: #dddddd;
 }
+
+.opt-in {
+    margin-top: 20px;
+    text-align: left;
+}

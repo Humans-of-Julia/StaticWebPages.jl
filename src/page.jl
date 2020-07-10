@@ -1,7 +1,8 @@
 function page(
     info::Dict{AbstractString, AbstractString},
     content::OrderedDict{AbstractString, Any},
-    page::AbstractString
+    page::AbstractString,
+    opt_in::Bool
     )
     str =
     """
@@ -15,7 +16,7 @@ function page(
             <div class="title-bar-title">Menu</div>
         </div>
         <div class="off-canvas position-left reveal-for-medium" id="offCanvas" data-off-canvas>
-            $(nav(info, content, page))
+            $(nav(info, content, page, opt_in))
         </div>
 
         <div class="off-canvas-content" data-off-canvas-content>

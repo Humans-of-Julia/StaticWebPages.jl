@@ -22,7 +22,8 @@ end
 function nav(
     info::Dict{AbstractString,AbstractString},
     content::OrderedDict{AbstractString,Any},
-    page::AbstractString
+    page::AbstractString,
+    opt_in::Bool
     )
     str =
     """
@@ -52,41 +53,43 @@ function nav(
 
     str *= "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" : ""
 
-    str *=
-    """
-    <li><span class="obfuscate unselectable nota">rf.reiffab@fj</span></li>
-    """
+    str *= "email" ∈ keys(info) ? """\n<li><span class="obfuscate unselectable nota">$(reverse(info["email"]))</span></li>\n""" : ""
 
     acc = 1
     for i in keys(academicons)
-      if i ∈ keys(info)
-        if mod(acc, 3) == 1
-          if acc > 1
-            str *=
+        if i ∈ keys(info)
+            if mod(acc, 3) == 1
+                if acc > 1
+                    str *=
             """
                 </li>
             """
-          end
-          str *=
+                end
+                str *=
           """
               <li>
           """
-        end
-        str *=
+            end
+            str *=
         """
               <a href="$(info[i])" class="icon-menu" title="" target="_blank" data-original-title="Cite">
                 <i class="$(academicons[i])"></i>
               </a>
         """
-        acc +=1
-      end
+            acc += 1
+        end
     end
     str *= acc > 1 ? "\n<li>\n" : ""
 
+    aux = # only if users opt-in in the export_site function
+    """
+          <li class="opt-in">This site was generated using <a href="https://github.com/Azzaare/StaticWebPages.jl">StaticWebPages.jl</a></li>
+    """
     str *=
     """
-      </ul>
-    </div>
+          $(opt_in ? aux : "")
+        </ul>
+      </div>
     """
     return str
 end
