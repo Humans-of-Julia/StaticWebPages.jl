@@ -7,6 +7,7 @@ function page(
     str =
     """
     <!doctype html>
+    <!-- This code was generated using the StaticWebPages.jl site generator that is under the GPLv2 license. More info at https://github.com/Azzaare/StaticWebPages.jl -->
     <html class="no-js" lang="$(info["lang"])">
     $(head(info, page))
 

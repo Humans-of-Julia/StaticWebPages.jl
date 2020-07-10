@@ -1,6 +1,6 @@
 # StaticWebPages.jl
 
-A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (MIT licence)!
+A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (GPLv2 licence)!
 
 Although this generator originally targets academicians, it works out well for personnal webpage and any static usage (front-end only).
 
@@ -18,7 +18,7 @@ The beta only uses text files and command lines, but the first stable release wi
 The user provides the content (text, images, files) and select in which `Items` will display it. As simple as that. A full working example is provided here (or in the example folder). The result is available as http://baffier.fr
 
 ### Installation
-The only requirement is to install Julia and this package (preferably through the package interface of Julia).
+The only requirement is to install Julia and this package (preferably through the package interface of Julia). Please install the last stable release of [Julia](https://julialang.org/downloads/) on the official download page.
 
 In the Julia REPL (that you can launch as a standalone or call within a console), please enter Pkg REPL. To quote the package manager documentation:
 > Pkg comes with a REPL. Enter the Pkg REPL by pressing ] from the Julia REPL. To get back to the Julia REPL, press backspace or ^C.
@@ -42,6 +42,12 @@ The package can be use from the REPL, but we recommend it to be used through a s
 
 ```julia
 julia run.jl
+```
+
+or in the REPL
+
+```julia
+include("run.jl")
 ```
 
 ### Files organization
