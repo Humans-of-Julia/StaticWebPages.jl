@@ -138,7 +138,7 @@ function to_html(publications::Vector{Bibliography.Publication})
     for p in publications
         str *= 
         """
-        <div class="publication cell small-12 medium-6">
+        <div class="publication cell small-12 large-6">
             <div class="pub-contents">
                 <div class="pubassets">
         """
@@ -234,12 +234,24 @@ function Git(gh::AbstractString)
     r = GitHub.repo(gh)
     contributors = GitHub.contributors(gh)
 
-    str = to_name(contributors[1][1]["contributor"].login)
-    if length(contributors[1]) > 1
-        for c in contributors[1][2:end]
-            str *= ", " * to_name(c["contributor"].login)
+    is_github = "github" ∈ keys(info)
+    this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
+    bound = min(10, length(contributors[1]))
+    user_in_bound = false
+    for u in contributors[1][1:bound]
+        user_in_bound = this_user == lowercase(u["contributor"].login)
+        if user_in_bound
+            break
         end
     end
+    max_users = user_in_bound ? 10 : 9
+
+    str = to_name(contributors[1][1]["contributor"].login)
+    for c in contributors[1][2:min(max_users, bound)]
+        str *= ", " * to_name(c["contributor"].login)
+    end
+    str *= user_in_bound ? "" : ", " * to_name(this_user)
+    str *= bound < length(contributors[1]) ? ", et al." : ""
 
     g = Git(
         r.name,
@@ -258,7 +270,7 @@ function to_html(repos::GitRepo)
         g = Git(r)
         str *= 
         """
-        <div class="publication cell small-12 medium-6">
+        <div class="publication cell small-12 large-6">
             <div class="pub-contents">
                 <div class="pubassets">
         """
@@ -273,18 +285,6 @@ function to_html(repos::GitRepo)
             """
         end
         str *=
-        # """
-        #             <button type="button" data-open="$(g.name)-modal">
-        #                     <a class="tooltips" title="" target="_blank" data-original-title="Cite">
-        #                         <i class="fas fa-quote-left"></i>
-        #                     </a>
-        #             </button>
-        #             <div class="large reveal" id="$(g.name)-modal" data-reveal>                            
-        # <code class="code-block">$(g.cite)</code>
-        #                     <button class="close-button" data-close aria-label="Close bib" type="button">
-        #                         <span class="black-text" aria-hidden="true">&times;</span>
-        #                     </button>
-        #                 </div>
         """
                 </div>
                 <h4 class="pubtitle">$(g.name)</h4>
