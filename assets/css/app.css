@@ -660,6 +660,12 @@ article-title {
 }
 
 .opt-in {
-    margin-top: 20px;
-    text-align: left;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 8px;
+    padding: 0px;
+}
+
+.opt-in a {
+    font-size: 15px;
 }
