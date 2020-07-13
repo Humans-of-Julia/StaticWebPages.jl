@@ -29,12 +29,12 @@ function export_site(
 end
 
 function upload_site(d::Dict{AbstractString,AbstractString})
-    protocole = d["protocole"]
+    protocol = d["protocol"]
     user = d["user"]
     password = d["password"]
     server = d["server"]
 
-    ftp = FTP("$protocole://$user:$password@$server")
+    ftp = FTP("$protocol://$user:$password@$server")
     temppath = pwd()
     cd(d["site"])
     for (root, dirs, files) in walkdir(".")
