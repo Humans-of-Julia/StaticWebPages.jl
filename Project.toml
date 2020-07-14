@@ -10,7 +10,7 @@ FTPClient = "01fcc997-4f28-56b8-8a06-30002c134abb"
 GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
 
 [compat]
-Bibliography = "^0.1.2"
+Bibliography = "^0.2.0"
 DataStructures = "^0.17.19"
 FTPClient = "^1.2.1"
 GitHub = "^5.1.6"
