@@ -53,7 +53,15 @@ function nav(
 
     str *= "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" : ""
 
-    str *= "email" ∈ keys(info) ? """\n<li><span class="obfuscate unselectable nota">$(reverse(info["email"]))</span></li>\n""" : ""
+    if "email" ∈ keys(info)
+        if length(info["email"]) > 20
+            aux = split(info["email"], "@")
+            str *= """\n<li><span class="obfuscate unselectable nota">$(reverse(aux[1]))</span></li>\n"""
+            str *= """\n<li><span class="obfuscate unselectable nota">$(reverse(aux[2]))@</span></li>\n"""
+        else
+            str *= """\n<li><span class="obfuscate unselectable nota">$(reverse(info["email"]))</span></li>\n"""
+        end
+    end
 
     acc = 1
     for i in keys(academicons)

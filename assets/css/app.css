@@ -1,7 +1,9 @@
 .avatar {
     border-radius: 50%;
     align-self: center;
-    text-align: center
+    text-align: center;
+    width: 200px;
+    height: 200px;
 }
 
 .top-bar {
