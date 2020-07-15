@@ -41,7 +41,7 @@ function to_html(section::TextSection)
     for p in section.paragraphs
         str *=
         """
-                    <p class="p-justify">$p</p>
+                    <p class="p-justify literal">$p</p>
         """
     end
 
@@ -87,7 +87,7 @@ function to_html(cards::Vector{Card})
             </div>
             <div class="description">
                 <p class="cardtitle">$(c.title)</p>
-                <p class="cardcontent">$(c.content)</p>
+                <p class="cardcontent literal">$(c.content)</p>
             </div>
         </li>
         """
@@ -119,7 +119,7 @@ function to_html(timelines::Vector{TimeLine})
             <div class="circle"></div>
             <div class="tldata">
                 <div class="tlcontent">$(tl.content)</div>
-                <div class="tltext">$(tl.text)</div>
+                <div class="tltext literal">$(tl.text)</div>
             </div>
         </li>
         """
