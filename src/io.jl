@@ -1,5 +1,5 @@
-function export_site(
-    d::Dict{AbstractString,AbstractString};
+function export_site(;
+    d::Dict{AbstractString,AbstractString} = local_info,
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
@@ -22,9 +22,11 @@ function export_site(
 
     include(joinpath(d["content"], "content.jl"))
     for p in keys(content)
-        f = open(joinpath(d["site"], "$p.html"), "w")
-        write(f, page(info, content, p, opt_in))
-        close(f)
+        if !content[p].hide
+            f = open(joinpath(d["site"], "$p.html"), "w")
+            write(f, to_html(content[p], opt_in))
+            close(f)
+        end
     end
 end
 

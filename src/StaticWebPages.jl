@@ -5,8 +5,16 @@ using FTPClient, DataStructures, GitHub
 import Bibliography
 import Bibliography: bibtex_to_web, Publication
 
-export export_site, upload_site,
-       AbstractItem, TextSection, Card, TimeLine
+export  export_site,
+        upload_site,
+        paragraphs,
+        images,
+        sections
+export  AbstractItem,
+        Block,
+        Card,
+        TimeLine,
+        GitRepo
 
 include("constant.jl")
 include("items.jl")

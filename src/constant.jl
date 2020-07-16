@@ -1,12 +1,18 @@
-const info = Dict{AbstractString,AbstractString}([
-    "title" => "title",
-    "avatar" => "pic.jpg",
-    "name" => "name",
-    "lang" => "en"
-])
-const content = OrderedDict{AbstractString,Any}()
-const local_info = Dict{AbstractString,AbstractString}()
-const user_to_name = Dict{AbstractString,AbstractString}()
+@enum FieldSort begin
+    unsorted
+    required
+    lexicographic
+end
+
+@enum Parser begin
+    bibtex
+end
+
+@enum BackgroundColor begin
+    bg_none
+    bg_white
+    bg_grey
+end
 
 @enum ColorLabel begin
     red
@@ -67,3 +73,14 @@ const academicons = Dict{AbstractString, AbstractString}([
     "github"        => "fa fa-github-square",
     "linkedin"      => "fab fa-linkedin",
 ])
+
+const info = Dict{AbstractString,AbstractString}([
+    "title" => "title",
+    "avatar" => "pic.jpg",
+    "name" => "name",
+    "lang" => "en"
+])
+const content = OrderedDict{AbstractString,Any}()
+const local_info = Dict{AbstractString,AbstractString}()
+const user_to_name = Dict{AbstractString,AbstractString}()
+const publication_labels = OrderedDict{AbstractString,ColorLabel}()
