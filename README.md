@@ -2,7 +2,7 @@
 
 A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (GPLv2 licence)!
 
-Although this generator originally targets academicians, it works out well for personal webpage and any static usage (front-end only). For a full-stack web framework, please look at the great [Genie.jl](https://www.genieframework.com/).
+Although this generator originally targets academicians, it works out well for personal webpage and any static usage (front-end only) A more advanced static framework in Julia is available (cf [Franklin.jl](https://github.com/tlienart/Franklin.jl)). For a full-stack web framework, please look at the great [Genie.jl](https://www.genieframework.com/).
 
 This generator is for you if
 - you want something simple to update and manage
@@ -12,6 +12,8 @@ This generator is for you if
 - new item/gadget access with a simple update in the julia command line
 
 The beta only uses text files and command lines, but the first stable release will also integrate a graphical user interface (GUI).
+
+I deeply apologize for those that tested the versions `v0.1.x`, as, from `v0.2.0`, the syntax has changed a lot. The reason is to add options to most components. It should not change drastically from now on.
 
 ## How does it work
 
@@ -115,13 +117,20 @@ info["orcid"] = "https://orcid.org/0000-0002-8800-6356"
 info["dblp"] = "https://dblp.org/pid/139/8142"
 info["linkedin"] = "https://www.linkedin.com/in/jeanfrancoisbaffier/"
 info["github"] = "https://github.com/Azzaare"
+info["twitter"] = "https://twitter.com/bioazzaare"
 
 ######################################
-# publications.html (simple page example)
+# publications.html
 ######################################
-content["publications"] = [
-    "Publications" => Bibtex("publications.bib")
-] # end of publications.html
+page(
+    title="publications",
+    sections=[
+        Section(
+            title="Publications",
+            items=Publications("publications.bib")
+        )
+    ]
+)
 ```
 
 ### Themes
@@ -132,12 +141,12 @@ The only available theme for the moment is using Zurb foundation responsive fron
 
 Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too). 
 
-##### `Bibtex` : a bibliography based on a BibTeX file (use [Bibliography.jl]((https://github.com/Azzaare/Bibliography.jl)))
+##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl]((https://github.com/Azzaare/Bibliography.jl)))
 
 ```julia
 # Simply provide a BibTeX file (usually .bib)
 # Path is based on the root of the content folder
-Bibtex("publications.bib")
+Publications("publications.bib")
 ```
 
 To add labels to the publications entries, please add a `labels` field to your entries. For instance,
@@ -157,10 +166,10 @@ To add labels to the publications entries, please add a `labels` field to your e
 
 The attribution of colors is done automatically (within the limit of 22 labels, please issue a request if you need more ...)
 
-##### (list of) `Card`s : a list of ordered and clearly separate cards
+##### `Deck` of `Card`s : a list of ordered and clearly separate cards
 
 ```julia
-[ # Start of the list
+Deck( # Start of the list
     Card( # generic
         "Left",
         "Right",
@@ -173,13 +182,13 @@ The attribution of colors is done automatically (within the limit of 22 labels, 
         "Postdoctoral Researcher",
         "RIKEN Center for Advanced Intelligence (AIP)"
     )
-] # End of the list
+ ) # End of the list
 ```
 
-##### (list of) `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
+##### `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
 
 ```julia
-GitRepo([ # currently work only with GitHub
+gitrepo = GitRepo( # currently work only with GitHub
     "Azzaare/CompressedStacks.cpp",
     "Azzaare/StaticWebPages.jl",
     "Azzaare/Bibliography.jl",
@@ -189,81 +198,99 @@ GitRepo([ # currently work only with GitHub
     "JuliaGraphs/LightGraphsExtras.jl",
     "JuliaGraphs/SNAPDatasets.jl",
     "Azzaare/PackageStream.jl"
-])
+)
 ```
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
 An easy workaround is to log in before doing the request. This feature will be added soon. 
 
-##### `TextSection` : paragraphs with optional images on the side
+##### `Block` : Block of paragraphs with optional images on the side
 ```julia
 # Examples with and without images
-TextSection( # Start biography section
-    [ # Start text paragraphs
+biography = Block(
+    paragraphs(
     """
-    Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and software.
+   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
     """,
     """
-    Paragraph 2
+    paragraph 2
     """,
     """
-    Paragraph 3
+    paragraph 3
     """,
     """
-    Jean-François implemented the ModernAcademics.jl package that was used to generate this website using a simple content file.
+    Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email("dummy@example.purpose"))
     """
-    ], # End text paragraphs
-    [ # Start images list (displayed in order)
-        "cs.png" => "Compressed Stack",
-        "knowledge.png" => "Flow of Knowledge"
-    ] # end images list
+    ),
+    images(
+        Image("cs.png", "Compressed Stack"),
+        Image("knowledge.png", "Flow of Knowledge")
+    )
 )
 
-TextSection(
-        [ # list of paragraphs
-            """
-            Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
-            """,
-            """
-            All of this research is supported by Open-Source Software and published as peer-review academic papers. 
-            """
-        ],
-        [
-            # empty list of images
-        ]
-    )
-
+research = Block(
+    paragraphs(
+        """
+        Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
+        """,
+        """
+        All of this research is supported by Open-Source Softwares and published as peer-review academic papers. 
+        """
+    ),
+    images()
+)
 ```
 
-##### (list of) `TimeLine`s : a list of continuous items
+##### `TimeLine`s : a list of continuous items
 ```julia
-[ 
-    TimeLine( # generic
+grants = TimeLine(
+    Dot(
         "Top",
         "Title",
         "Content"
     ),
-    TimeLine( # real example
+    Dot(
         "2012-2015",
         "MEXT Scholarship",
         "The Monbukagakusho Scholarship is an academic scholarship offered by the Japanese Ministry of Education, Culture, Sports, Science and Technology (MEXT)."
     )
-]
+)
+```
+
+##### `Nest`! A container to list several items within the same section
+
+```julia
+# Nest will take a tuple of any Items (except itself)
+positions_grants = Double(
+    Section(
+        title="Positions and grants",
+        items=Nest(work_cards, grants)
+    ),
+    Section(title="Research Topics", items=research)
+)
 ```
 
 ### Pages
 
 A page is composed of a name and a list of sections which can each be either single or double column. Each section is either a single `Item` or a pair of `Item`s.
 
-##### A publication page with only one single column section
+##### A publication page with only one single column section (by default, publications spread over two columns on large screens)
 
 ```julia
 ######################################
-# publications.html (simple page example)
+# publications.html
+#   option 1: background for the page is set to start with white to emphasize the bibliographic items
 ######################################
-content["publications"] = [
-    "Publications" => Bibtex("publications.bib")
-] # end of publications.html
+page(
+    title="publications",
+    background=bg_white,
+    sections=[
+        Section(
+            title="Publications",
+            items=Publications("publications.bib")
+        )
+    ]
+)
 ```
 
 ##### An index page with a TextSection and a double column (Card, TimeLine)
@@ -274,57 +301,59 @@ content["publications"] = [
 # biography
 # academic positions | honors, awards, and grants
 ######################################
-content["index"] = [
 
-"Biography" => TextSection( # Start biography section
-    [ # Start text paragraphs
-    """
-    Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and software.
-    """,
-    """
-    paragraph 2
-    """,
-    """
-    paragraph 3 
-    """,
-    """
-    Jean-François implemented the ModernAcademics.jl package that was used to generate this website using a simple content file.
-    """
-    ], # End text paragraphs
-    [ # Start images list
-        "cs.png" => "Compressed Stack",
-        "knowledge.png" => "Flow of Knowledge"
-    ] # end images list
-), # end biography section
+# using previously defined items, we can define sections
+section_biography = Section(title="Biography", items=biography)
+positions_grants = Double(
+    Section(title="Positions", items=work_cards),
+    Section(title="Grants", items=grants)
+)
 
-# Start double column content
-("Academic positions" => [ # Start column #1
-    Card(
-        "2020",
-        "current",
-        "Consultant",
-        "Data Science and Optimization"
-    ),
-    Card(
-        "2019",
-        "current",
-        "Postdoctoral Researcher",
-        "RIKEN Center for Advanced Intelligence (AIP)"
+# the next line will add the index page to the generated content
+page(
+    title="index",
+    sections=[section_biography, positions_grants]
+)
+```
+
+##### The `hide` option for `page` and `Section`
+
+```julia
+# Both page() and Section() can take the hide option
+# If a page is hidden, it will not be generated, but it will still appear in the side menu
+# If a section is hidden, it will just not appear (and the content will not be generated, including request to external API, such as GitHub)
+
+page(
+    title="software",
+    background=bg_white,
+    sections=[
+        Section(
+            title="Software",
+            hide=true, # default to false
+            items=github,
+        )
+    ]
+)
+```
+
+### Inline components
+Some components can be inserted within the content of usual `Item`s, such as `Block`, `Card`, `Dot`. Currently, only `link` and `email` are supported.
+
+##### Email can obfuscated (default), or not ...
+
+```julia
+email("dummy@example.purpose") # obfuscated
+email(
+    "dummy@example.purpose";
+    content = "content that appears as the email link", # ignored if obfuscated
+    obfuscated = false
     )
-],
-"Honors, awards, and grants" => [ 
-    TimeLine(
-        "2017-2019",
-        "JSPS-CNRS fellowship",
-        "Competitive fellowship with an associated grant (KAKENHI 17F17727 ) for international researchers in Japan."
-    ),
-    TimeLine(
-        "2012-2015",
-        "MEXT Scholarship",
-        "The Monbukagakusho Scholarship is an academic scholarship offered by the Japanese Ministry of Education, Culture, Sports, Science and Technology (MEXT)."
-    )
-]) # end of double column content
-] # end of index.html
+```
+
+##### Link can be an internal or an external link
+```julia
+link("research project", "research.hmtl") # inner link
+link("StaticWebPages.jl", "https://github.com/Azzaare/StaticWebPages.jl")
 ```
 
 ### License
