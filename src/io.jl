@@ -30,7 +30,7 @@ function export_site(;
     end
 end
 
-function upload_site(d::Dict{AbstractString,AbstractString})
+function upload_site(d::Dict{AbstractString,AbstractString} = local_info)
     protocol = d["protocol"]
     user = d["user"]
     password = d["password"]
