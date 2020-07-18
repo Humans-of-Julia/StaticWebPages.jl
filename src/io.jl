@@ -3,6 +3,7 @@ function export_site(;
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
+    println("\nStaticWebPages.jl's generator is starting ...\n") 
     if rm_dir
         rm(d["site"], recursive=true, force=true)
         mkpath(d["site"])
@@ -23,11 +24,14 @@ function export_site(;
     include(joinpath(d["content"], "content.jl"))
     for p in keys(content)
         if !content[p].hide
+            print("Generating $p.html")
             f = open(joinpath(d["site"], "$p.html"), "w")
             write(f, to_html(content[p], opt_in))
             close(f)
+            println(" - done!\n")
         end
     end
+    println("The website has been generated in $(d["site"])\n")
 end
 
 function upload_site(d::Dict{AbstractString,AbstractString} = local_info)
