@@ -149,7 +149,7 @@ Items are guaranteed to be compatible with the main theme (and hopefully new one
 Publications("publications.bib")
 ```
 
-To add labels to the publications entries, please add a `labels` field to your entries. For instance,
+To add labels to the publications entries, please add a `swp-labels` field to your entries. A `labels` field is also accepted, but will also appear in the bibTeX citation generated for that article. For instance,
 
 ```latex
 @inproceedings{parmentier2019introducing,
@@ -160,7 +160,7 @@ To add labels to the publications entries, please add a `labels` field to your e
     year={2019},
     organization={Springer},
     doi = {10.1007/978-3-030-36683-4_55},
-    labels = {conference, preprint, software} # that line
+    swp-labels = {conference, preprint, software}
 }
 ```
 
