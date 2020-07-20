@@ -40,7 +40,7 @@ end
 end
 
 # default is white text. Color will be picked in order.
-const color_to_label = Dict{ColorLabel,AbstractString}([
+const color_to_label = Dict{ColorLabel,String}([
     red         => "label-red",
     green       => "label-green",
     yellow      => "label-yellow black-text",
@@ -65,7 +65,35 @@ const color_to_label = Dict{ColorLabel,AbstractString}([
     black       => "label-black"
 ])
 
-const academicons = Dict{AbstractString, AbstractString}([
+@enum CardColor begin
+    card_blue
+    card_green
+    card_red
+    card_orange
+end
+
+const color_to_card = Dict{CardColor, Tuple{String, String}}([
+    card_blue   => ("blue-first", "blue-second"),
+    card_green  => ("green-first", "green-second"),
+    card_red    => ("red-first", "red-second"),
+    card_orange => ("orange-first", "orange-second")
+])
+
+@enum TimeLineColor begin
+    tl_blue
+    tl_green
+    tl_red
+    tl_orange
+end
+
+const color_to_timeline = Dict{TimeLineColor, Tuple{String, String}}([
+    tl_blue   => ("tl-blue-bg", "tl-blue-border")
+    tl_green  => ("tl-green-bg", "tl-green-border")
+    tl_red    => ("tl-red-bg", "tl-red-border")
+    tl_orange => ("tl-orange-bg", "tl-orange-border")
+])
+
+const academicons = Dict{String, String}([
     "researchgate"  => "ai ai-researchgate-square",
     "googlescholar" => "ai ai-google-scholar-square",
     "orcid"         => "ai ai-orcid-square",
@@ -75,13 +103,13 @@ const academicons = Dict{AbstractString, AbstractString}([
     "twitter"       => "fa fa-twitter-square"
 ])
 
-const info = Dict{AbstractString,AbstractString}([
+const info = Dict{String,String}([
     "title" => "title",
     "avatar" => "pic.jpg",
     "name" => "name",
     "lang" => "en"
 ])
-const content = OrderedDict{AbstractString,Any}()
-const local_info = Dict{AbstractString,AbstractString}()
-const user_to_name = Dict{AbstractString,AbstractString}()
-const publication_labels = OrderedDict{AbstractString,ColorLabel}()
+const content = OrderedDict{String,Any}()
+const local_info = Dict{String,String}()
+const user_to_name = Dict{String,String}()
+const publication_labels = OrderedDict{String,ColorLabel}()

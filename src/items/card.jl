@@ -7,11 +7,14 @@ end
 
 struct Deck
     cards::Vector{Card}
+    color::CardColor
 
-    Deck(args...) = new([card for card in args])
+    Deck(color::CardColor, args...) = new([card for card in args], color)
+    Deck(args...; color::CardColor = card_blue) = new([card for card in args], color)
 end
 
 function to_html(deck::Deck)
+    color = color_to_card[deck.color]
     str =
     """
     <ul class="ul-card">
@@ -22,8 +25,8 @@ function to_html(deck::Deck)
         """
         <li>
             <div class="cardx">
-                <span class="first any">$(c.first)</span>
-                <span class="second any">$(c.second)</span>
+                <span class="any $(color[1])">$(c.first)</span>
+                <span class="second any $(color[2])">$(c.second)</span>
             </div>
             <div class="description">
                 <p class="cardtitle">$(c.title)</p>

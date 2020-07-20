@@ -6,10 +6,14 @@ end
 
 struct TimeLine 
     dots::Vector{Dot}
-    TimeLine(args::Dot...) = new([dot for dot in args])
+    color::TimeLineColor
+
+    TimeLine(color::TimeLineColor, args::Dot...) = new([dot for dot in args], color)
+    TimeLine(args::Dot...; color = tl_blue) = new([dot for dot in args], color)
 end
 
 function to_html(tl::TimeLine)
+    color = color_to_timeline[tl.color]
     str =
     """
     <ul class="timeline">
@@ -19,9 +23,9 @@ function to_html(tl::TimeLine)
         str *=
         """
         <li>
-            <div class="date">$(dot.date)</div>
-            <div class="circle"></div>
-            <div class="tldata">
+            <div class="date $(color[1])">$(dot.date)</div>
+            <div class="circle $(color[1])"></div>
+            <div class="tldata $(color[2])">
                 <div class="tlcontent">$(dot.content)</div>
                 <div class="tltext literal">$(dot.text)</div>
             </div>

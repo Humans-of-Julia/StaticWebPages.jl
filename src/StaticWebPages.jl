@@ -10,13 +10,13 @@ import Bibliography: bibtex_to_web, Publication
 export  export_site,
         upload_site,
         paragraphs,
-        images,
-        sections
+        images
 export  AbstractItem,
         Block,
         Card,
         TimeLine,
         GitRepo
+export CardColor, TimeLineColor
 
 include("constant.jl")
 include("inline.jl")

@@ -1,3 +1,5 @@
+/* Navigation */
+
 .avatar {
     border-radius: 50%;
     align-self: center;
@@ -33,6 +35,9 @@
     background-color: #363636;
     color: #ffffff;
 }
+
+
+/* Page content */
 
 .content-odd {
     background-color: #f7f7f7;
@@ -83,6 +88,9 @@ h3 {
     text-align: center;
 }
 
+
+/* Items: cards/decks */
+
 ul.ul-card li {
     background-color: rgb(245, 245, 245);
     border-bottom-left-radius: 3px;
@@ -128,16 +136,41 @@ ul.ul-card li .cardx .any {
     padding-top: 7px;
 }
 
-ul.ul-card li .cardx .first {
-    /* background-color: rgb(3, 204, 133); */
+ul.ul-card li .cardx .second {
+    box-shadow: rgba(68, 68, 68, 0.5) -3px 0px 7px -3px;
+    margin-left: -5px;
+}
+
+.blue-first {
     background-color: rgb(3, 103, 204);
 }
 
-ul.ul-card li .cardx .second {
-    /* background-color: rgb(3, 187, 122); */
+.blue-second {
     background-color: rgb(3, 122, 187);
-    box-shadow: rgba(68, 68, 68, 0.5) -3px 0px 7px -3px;
-    margin-left: -5px;
+}
+
+.green-first {
+    background-color: rgb(3, 204, 133);
+}
+
+.green-second {
+    background-color: rgb(3, 187, 122);
+}
+
+.red-first {
+    background-color: firebrick;
+}
+
+.red-second {
+    background-color: rgb(202, 52, 41);
+}
+
+.orange-first {
+    background-color: rgb(249, 129, 42);
+}
+
+.orange-second {
+    background-color: rgb(253, 165, 15);
 }
 
 ul.ul-card li .description p.cardtitle {
@@ -152,6 +185,14 @@ ul.ul-card li .description p.cardcontent {
     line-height: 20px;
     margin-bottom: 0px;
 }
+
+.cardtitle,
+.cardcontent {
+    text-align: left;
+}
+
+
+/* Items: TimeLine/Dot */
 
 ul.timeline {
     border-left-color: rgb(255, 255, 255);
@@ -174,8 +215,6 @@ ul.timeline li {
 }
 
 ul.timeline li .date {
-    background-color: rgb(3, 133, 204);
-    /* background-color: rgb(3, 204, 133); */
     color: rgb(255, 255, 255);
     float: left;
     margin-left: -115px;
@@ -188,8 +227,6 @@ ul.timeline li .date {
 }
 
 ul.timeline li .circle {
-    background-color: rgb(3, 133, 204);
-    /* background-color: rgb(3, 204, 133); */
     border-bottom-color: rgb(255, 255, 255);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -217,7 +254,6 @@ ul.timeline li .circle {
 
 ul.timeline li .tldata {
     background-color: rgb(245, 245, 245);
-    border-left-color: rgb(3, 133, 204);
     /* border-left-color: rgb(3, 204, 133); */
     border-left-style: solid;
     border-left-width: 9.6px;
@@ -236,16 +272,46 @@ ul.timeline li .tldata .tlcontent {
     padding-left: 0px;
 }
 
-.cardtitle,
-.cardcontent {
-    text-align: left;
-}
-
 .tlcontent,
 .tltext {
     text-align: justify;
     justify-content: flex-start;
 }
+
+.tl-blue-bg {
+    background-color: rgb(3, 133, 204);
+}
+
+.tl-blue-border {
+    border-left-color: rgb(3, 133, 204);
+}
+
+.tl-green-bg {
+    background-color: rgb(3, 204, 133);
+}
+
+.tl-green-border {
+    border-left-color: rgb(3, 204, 133);
+}
+
+.tl-red-bg {
+    background-color: crimson;
+}
+
+.tl-red-border {
+    border-left-color: crimson;
+}
+
+.tl-orange-bg {
+    background-color: rgb(249, 129, 42);
+}
+
+.tl-red-border {
+    background-color: rgb(249, 129, 42);
+}
+
+
+/* Items: Publications/software */
 
 article-title {
     font-weight: bold;
@@ -508,6 +574,9 @@ article-title {
     /* text-align: right; */
 }
 
+
+/* Labels */
+
 .label {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     letter-spacing: 0px;
@@ -643,6 +712,9 @@ article-title {
     background-color: #000000;
 }
 
+
+/* email */
+
 .unselectable {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -661,6 +733,9 @@ article-title {
     color: #dddddd;
 }
 
+
+/* Opt-in */
+
 .opt-in {
     margin-top: 40px;
     text-align: center;
@@ -671,6 +746,9 @@ article-title {
 .opt-in a {
     font-size: 15px;
 }
+
+
+/* TextSection */
 
 .literal {
     white-space: pre-line;

@@ -1,6 +1,6 @@
 function head(
-    info::Dict{AbstractString,AbstractString},
-    page::AbstractString
+    info::Dict{String,String},
+    page::String
     )
     subtitle = page == "index" ? "homepage" : page
 
@@ -20,9 +20,9 @@ function head(
 end
 
 function nav(
-    info::Dict{AbstractString,AbstractString},
-    content::OrderedDict{AbstractString,Any},
-    page::AbstractString,
+    info::Dict{String,String},
+    content::OrderedDict{String,Any},
+    page::String,
     opt_in::Bool
     )
     str =

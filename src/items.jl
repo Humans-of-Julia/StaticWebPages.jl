@@ -28,13 +28,11 @@ SectionItems = Union{Item, Nest}
 function to_html(nest::Nest)
     str = ""
     for item in nest.list
-        # println("$item\n")
         str *= 
         """
         $(to_html(item))
         """
     end
-    # println(str)
     return str
 end
 
