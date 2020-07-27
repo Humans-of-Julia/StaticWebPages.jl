@@ -90,7 +90,7 @@ function nav(
     str *= acc > 1 ? "\n<li>\n" : ""
 
     aux = # only if users opt-in in the export_site function
-    """\n<div class="opt-in">This site was generated using <a href="https://github.com/Azzaare/StaticWebPages.jl">StaticWebPages.jl</a></div>\n"""
+    """\n<div class="opt-in">This site was generated using <a href="https://github.com/Azzaare/StaticWebPages.jl">StaticWebPages.jl</a></div></li>\n"""
     str *=
     """
           $(opt_in ? aux : "")

@@ -10,15 +10,15 @@ version = "0.8.0"
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[BibInternal]]
-path = "C:\\Users\\jeanf\\.julia\\dev\\BibInternal"
+git-tree-sha1 = "9da0b33694a90a8439f4cb8ae4d8080e18b7a453"
 uuid = "2027ae74-3657-4b95-ae00-e2f7d55c3e64"
 version = "0.2.1"
 
 [[BibParser]]
 deps = ["Automa", "BibInternal", "DataStructures"]
-path = "C:\\Users\\jeanf\\.julia\\dev\\BibParser"
+git-tree-sha1 = "51fbca397f9816c062afb211b1244f18b8878a9d"
 uuid = "13533e5b-e1c2-4e57-8cef-cac5e52f6474"
-version = "0.1.4"
+version = "0.1.6"
 
 [[Bibliography]]
 deps = ["BibInternal", "BibParser", "DataStructures"]
@@ -50,15 +50,15 @@ version = "1.2.1"
 
 [[GitHub]]
 deps = ["Base64", "Dates", "HTTP", "JSON", "MbedTLS", "Sockets"]
-git-tree-sha1 = "a1c60c4079c54486e5e1daab1f4cdaebb21f6f63"
+git-tree-sha1 = "07e94aa019727a2d05b73b14f1e3b8f130c8dbc8"
 uuid = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
-version = "5.1.6"
+version = "5.1.7"
 
 [[HTTP]]
 deps = ["Base64", "Dates", "IniFile", "MbedTLS", "Sockets"]
-git-tree-sha1 = "eca61b35cdd8cd2fcc5eec1eda766424a995b02f"
+git-tree-sha1 = "2ac03263ce44be4222342bca1c51c36ce7566161"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-version = "0.8.16"
+version = "0.8.17"
 
 [[IniFile]]
 deps = ["Test"]

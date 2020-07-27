@@ -1,7 +1,7 @@
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
 authors = ["azzaare <jf@baffier.fr>"]
-version = "0.2.2"
+version = "0.2.3"
 
 [deps]
 Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"
@@ -13,5 +13,5 @@ GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
 Bibliography = "^0.2.1"
 DataStructures = "^0.17.19"
 FTPClient = "^1.2.1"
-GitHub = "^5.1.6"
+GitHub = "^5.1.7"
 julia = "^1.4"
