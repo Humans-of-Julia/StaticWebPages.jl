@@ -32,7 +32,7 @@ function to_html(p::Page, opt_in::Bool)
     $(head(info, p.title))
 
     <body>
-        <div class="title-bar" data-hide-for="medium">
+        <div class="title-bar show-for-small-only">
             <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
             <div class="title-bar-title">Menu</div>
         </div>
