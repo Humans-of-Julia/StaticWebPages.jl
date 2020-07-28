@@ -36,7 +36,7 @@ function to_html(p::Page, opt_in::Bool)
             <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
             <div class="title-bar-title">Menu</div>
         </div>
-        <div class="off-canvas position-left reveal-for-medium" id="offCanvas" data-off-canvas>
+        <div class="off-canvas position-left reveal-for-medium" id="offCanvas" data-off-canvas data-transition="overlap">
             $(nav(info, content, p.title, opt_in))
         </div>
 
