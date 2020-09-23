@@ -27,7 +27,7 @@ function email(e::Email)
     if e.obfuscated 
         return """<span class="obfuscate unselectable">$(reverse(e.address))</span>"""
     else
-        return show(Link(e.content, "mailto:$(e.address)"))
+        return link(Link(e.content, "mailto:$(e.address)"))
     end
 end
 
