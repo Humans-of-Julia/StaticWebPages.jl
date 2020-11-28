@@ -1,3 +1,6 @@
-docs/build/
-_git2_*
+*.jl.*.cov
+*.jl.cov
+*.jl.mem
+/docs/build/
 .gitignore
+_git2_*
