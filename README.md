@@ -77,7 +77,7 @@ local_info["server"] = "server_address"
 
 # `rm_dir = true` will clean up the site folder before generating it again. Default to false.
 # `opt_in = true` will add a link to this generator website in the side menu. Default to false.
-StaticWebPages.export_site(local_info; rm_dir = true, opt_in = true)
+StaticWebPages.export_site(d=local_info, rm_dir = true, opt_in = true)
 
 ## upload website (comment/delete if not needed)
 # unfortunately does not work yet on windows system, please sync manually for the moment
