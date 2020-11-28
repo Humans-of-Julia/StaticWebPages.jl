@@ -1,5 +1,7 @@
 # StaticWebPages.jl
 
+[![Build Status](https://github.com/azzaare/StaticWebPages.jl/workflows/CI/badge.svg)](https://github.com/azzaare/StaticWebPages.jl/actions)
+
 A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (GPLv2 licence)!
 
 Although this generator originally targets academicians, it works out well for personal webpage and any static usage (front-end only) A more advanced static framework in Julia is available (cf [Franklin.jl](https://github.com/tlienart/Franklin.jl)). For a full-stack web framework, please look at the great [Genie.jl](https://www.genieframework.com/).
