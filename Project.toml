@@ -11,7 +11,7 @@ GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
 
 [compat]
 Bibliography = "0.2.5"
-DataStructures = "0.17.20"
+DataStructures = "0.17.20, 0.18"
 FTPClient = "1.2.1"
 GitHub = "5.2.0"
 julia = "1.4"
