@@ -100,7 +100,8 @@ const academicons = Dict{String, String}([
     "dblp"          => "ai ai-dblp-square",
     "github"        => "fa fa-github-square",
     "linkedin"      => "fab fa-linkedin",
-    "twitter"       => "fa fa-twitter-square"
+    "twitter"       => "fa fa-twitter-square",
+    "discord"       => "fab fa-discord",
 ])
 
 const info = Dict{String,String}([
