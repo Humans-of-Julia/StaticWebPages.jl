@@ -25,7 +25,7 @@ function nav(
     page::String,
     opt_in::Bool
     )
-    avatar = info["avatar_shape"] == "raw" ? "avatar_raw" : "avatar_round"
+    avatar = get(info, "avatar_shape", "round") == "raw" ? "avatar_raw" : "avatar_round"
     str =
     """
     <div class="top-bar">
