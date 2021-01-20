@@ -25,6 +25,7 @@ function nav(
     page::String,
     opt_in::Bool
     )
+    avatar = info["avatar_shape"] == "raw" ? "avatar_raw" : "avatar_round"
     str =
     """
     <div class="top-bar">
@@ -32,7 +33,7 @@ function nav(
         <span aria-hidden="true">&times;</span>
       </button>
       <ul class="vertical dropdown menu" id="menu" data-dropdown-menu>
-        <img src="img/$(info["avatar"])" alt="$(info["title"])" class="avatar">
+        <img src="img/$(info["avatar"])" alt="$(info["title"])" class="$avatar">
         <li class="menu-text">$(info["name"])</li>
     """
 

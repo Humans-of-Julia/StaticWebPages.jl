@@ -1,7 +1,14 @@
 /* Navigation */
 
-.avatar {
+.avatar_round {
     border-radius: 50%;
+    align-self: center;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+
+.avatar_raw {
     align-self: center;
     text-align: center;
     width: 200px;
@@ -173,6 +180,22 @@ ul.ul-card li .cardx .second {
     background-color: rgb(253, 165, 15);
 }
 
+.julia-blue {
+    background-color: #4063D8;
+}
+
+.julia-green {
+    background-color: #389826;
+}
+
+.julia-purple {
+    background-color: #9558B2;
+}
+
+.julia-red {
+    background-color: #CB3C33;
+}
+
 ul.ul-card li .description p.cardtitle {
     font-size: 16px;
     line-height: 22.85px;
@@ -252,6 +275,32 @@ ul.timeline li .circle {
     width: 20px;
 }
 
+ul.timeline li .circle-julia {
+    border-bottom-color: #389826;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-image-width: 1;
+    border-left-color: #389826;
+    border-left-style: solid;
+    border-left-width: 4px;
+    border-right-color: #389826;
+    border-right-style: solid;
+    border-right-width: 4px;
+    border-top-color: #389826;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-style: solid;
+    border-top-width: 4px;
+    float: left;
+    height: 20px;
+    margin-bottom: 20px;
+    margin-left: -14px;
+    margin-top: 20px;
+    width: 20px;
+}
+
 ul.timeline li .tldata {
     background-color: rgb(245, 245, 245);
     /* border-left-color: rgb(3, 204, 133); */
@@ -267,6 +316,13 @@ ul.timeline li .tldata {
 
 ul.timeline li .tldata .tlcontent {
     color: rgb(119, 119, 119);
+    font-size: 18px;
+    line-height: 25.7167px;
+    padding-left: 0px;
+}
+
+ul.timeline li .tldata .tlcontent-jl {
+    color: #4063D8;
     font-size: 18px;
     line-height: 25.7167px;
     padding-left: 0px;
@@ -307,9 +363,24 @@ ul.timeline li .tldata .tlcontent {
 }
 
 .tl-orange-border {
-    background-color: rgb(249, 129, 42);
+    border-left-color: rgb(249, 129, 42);
 }
 
+.julia-blue-border {
+    border-left-color: #4063D8;
+}
+
+.julia-green-border {
+    border-left-color: #389826;
+}
+
+.julia-purple-border {
+    border-left-color: #9558B2;
+}
+
+.julia-red-border {
+    border-left-color: #CB3C33;
+}
 
 /* Items: Publications/software */
 
