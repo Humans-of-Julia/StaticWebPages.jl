@@ -1,6 +1,10 @@
-# StaticWebPages.jl
+[![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://Humans-of-Julia.github.io/StaticWebPages.jl/dev)
+[![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://Humans-of-Julia.github.io/StaticWebPages.jl/stable)
+[![Build Status](https://github.com/Humans-of-Julia/StaticWebPages.jl/workflows/CI/badge.svg)](https://github.com/Humans-of-Julia/StaticWebPages.jl/actions)
+[![codecov](https://codecov.io/gh/Humans-of-Julia/StaticWebPages.jl/branch/master/graph/badge.svg?token=iiIHSFqA31)](https://codecov.io/gh/Humans-of-Julia/StaticWebPages.jl)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Build Status](https://github.com/azzaare/StaticWebPages.jl/workflows/CI/badge.svg)](https://github.com/azzaare/StaticWebPages.jl/actions)
+# StaticWebPages.jl
 
 A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (GPLv2 licence)!
 
@@ -192,10 +196,10 @@ Deck( # Start of the list
 ```julia
 gitrepo = GitRepo( # currently work only with GitHub
     "Azzaare/CompressedStacks.cpp",
-    "Azzaare/StaticWebPages.jl",
-    "Azzaare/Bibliography.jl",
-    "Azzaare/BibParser.jl",
-    "Azzaare/BibInternal.jl",
+    "Humans-of-Julia/StaticWebPages.jl",
+    "Humans-of-Julia/Bibliography.jl",
+    "Humans-of-Julia/BibParser.jl",
+    "Humans-of-Julia/BibInternal.jl",
     "JuliaGraphs/LightGraphs.jl",
     "JuliaGraphs/LightGraphsExtras.jl",
     "JuliaGraphs/SNAPDatasets.jl",
@@ -355,7 +359,7 @@ email(
 ##### Link can be an internal or an external link
 ```julia
 link("research project", "research.hmtl") # inner link
-link("StaticWebPages.jl", "https://github.com/Azzaare/StaticWebPages.jl")
+link("StaticWebPages.jl", "https://github.com/Humans-of-Julia/StaticWebPages.jl")
 ```
 
 ### License

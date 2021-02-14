@@ -3,7 +3,7 @@ function export_site(;
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
-    println("\nStaticWebPages.jl's generator is starting ...\n") 
+    @info "\nStaticWebPages.jl's generator is starting ...\n"
     if rm_dir
         rm(d["site"], recursive=true, force=true)
         mkpath(d["site"])

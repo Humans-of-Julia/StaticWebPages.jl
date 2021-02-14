@@ -4,3 +4,7 @@
 /docs/build/
 .gitignore
 _git2_*
+
+Manifest.toml
+/docs/Manifest.toml
+/test/Manifest.toml
