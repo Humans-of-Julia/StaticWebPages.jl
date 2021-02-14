@@ -70,13 +70,21 @@ const color_to_label = Dict{ColorLabel,String}([
     card_green
     card_red
     card_orange
+    card_julia_blue
+    card_julia_green    
+    card_julia_purple
+    card_julia_red
 end
 
 const color_to_card = Dict{CardColor, Tuple{String, String}}([
     card_blue   => ("blue-first", "blue-second"),
     card_green  => ("green-first", "green-second"),
     card_red    => ("red-first", "red-second"),
-    card_orange => ("orange-first", "orange-second")
+    card_orange => ("orange-first", "orange-second"),
+    card_julia_blue     => ("jl-blue", "jl-blue"),
+    card_julia_green    => ("jl-green", "jl-green"),
+    card_julia_purple   => ("jl-purple", "jl-purple"),
+    card_julia_red      => ("jl-red", "jl-red"),
 ])
 
 @enum TimeLineColor begin
@@ -84,13 +92,22 @@ const color_to_card = Dict{CardColor, Tuple{String, String}}([
     tl_green
     tl_red
     tl_orange
+    tl_julia_blue
+    tl_julia_green    
+    tl_julia_purple
+    tl_julia_red
+    tl_julia
 end
 
 const color_to_timeline = Dict{TimeLineColor, Tuple{String, String}}([
-    tl_blue   => ("tl-blue-bg", "tl-blue-border")
-    tl_green  => ("tl-green-bg", "tl-green-border")
-    tl_red    => ("tl-red-bg", "tl-red-border")
-    tl_orange => ("tl-orange-bg", "tl-orange-border")
+    tl_blue   => ("tl-blue-bg", "tl-blue-border"),
+    tl_green  => ("tl-green-bg", "tl-green-border"),
+    tl_red    => ("tl-red-bg", "tl-red-border"),
+    tl_orange => ("tl-orange-bg", "tl-orange-border"),
+    tl_julia_blue     => ("jl-blue", "jl-blue-border"),
+    tl_julia_green    => ("jl-green", "jl-green-border"),
+    tl_julia_purple   => ("jl-purple", "jl-purple-border"),
+    tl_julia_red      => ("jl-red", "jl-red-border"),
 ])
 
 const academicons = Dict{String, String}([

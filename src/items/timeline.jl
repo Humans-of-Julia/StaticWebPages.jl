@@ -9,18 +9,32 @@ struct TimeLine
     color::TimeLineColor
 
     TimeLine(color::TimeLineColor, args::Dot...) = new([dot for dot in args], color)
-    TimeLine(args::Dot...; color = tl_blue) = new([dot for dot in args], color)
+    TimeLine(args::Dot...; color=tl_blue) = new([dot for dot in args], color)
 end
 
 function to_html(tl::TimeLine)
-    color = color_to_timeline[tl.color]
     str =
     """
     <ul class="timeline">
     """
-
-    for dot in tl.dots
-        str *=
+    if tl.color == tl_julia
+        for dot in tl.dots
+            str *=
+        """
+        <li>
+            <div class="date julia-blue">$(dot.date)</div>
+            <div class="circle-julia julia-red"></div>
+            <div class="tldata julia-purple-border">
+                <div class="tlcontent">$(dot.content)</div>
+                <div class="tltext literal">$(dot.text)</div>
+            </div>
+        </li>
+        """
+        end
+    else
+        color = color_to_timeline[tl.color]
+        for dot in tl.dots
+            str *=
         """
         <li>
             <div class="date $(color[1])">$(dot.date)</div>
@@ -31,6 +45,8 @@ function to_html(tl::TimeLine)
             </div>
         </li>
         """
+        end
+
     end
 
     str *=
