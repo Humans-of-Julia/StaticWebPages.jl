@@ -25,6 +25,10 @@ export GitRepo
 export TimeLine
 export TimeLineColor
 
+function load_example()
+    include(joinpath(@__DIR__,"..","example","content.jl"))
+end
+
 include("constant.jl")
 include("inline.jl")
 include("items.jl")
