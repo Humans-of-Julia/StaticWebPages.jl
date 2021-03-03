@@ -25,6 +25,8 @@ export GitRepo
 export TimeLine
 export TimeLineColor
 
+export ui
+
 function load_example()
     include(joinpath(@__DIR__,"..","example","content.jl"))
 end
