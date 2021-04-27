@@ -89,7 +89,7 @@ function to_html(repos::GitRepo)
     str = ""
     for r in repos.fullnames
         g = Git(r)
-        str *= 
+        str *=
         """
         <div class="publication cell small-12 large-6">
             <div class="pub-contents">
