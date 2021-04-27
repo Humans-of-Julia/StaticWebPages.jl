@@ -26,7 +26,7 @@ If `r` does not have all its fields specified (*i.e.* `Nothing`), then a default
 
 Return `g::Git`
 """
-function GitBuilder(r::repo, contrib::String)
+function GitBuilder(r::Repo, contrib::String)
     if isnothing(r.name)
         r.name = "The repository has no name"
     end
