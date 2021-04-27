@@ -18,6 +18,41 @@ function to_name(user::String)
     return str == "" ? user : "$str ($user)"
 end
 
+"""
+GitBuilder(r, contributors)
+
+Generate the Git struct according to the repository `r`.
+If `r` does not have all its fields specified (*i.e.* `Nothing`), then a default value is used instead.
+
+Return `g::Git`
+"""
+function GitBuilder(r::repo, contrib::String)
+    if isnothing(r.name)
+        r.name = "The repository has no name"
+    end
+    if isnothing(r.html_url.uri)
+        r.html_url.uri = ":blank"
+    end
+    if isnothing(r.language)
+        r.language = "Language unspecified"
+    end
+    if isnothing(r.description)
+        r.description = "No description"
+    end
+    if isnothing(r.size)
+        r.size = 0
+    end
+    g = Git(
+        r.name,
+        r.html_url.uri,
+        r.language,
+        r.description,
+        r.size,
+        lowercase(contrib)
+    )
+    return g
+end
+
 function Git(gh::String)
     r = GitHub.repo(gh)
     contributors = GitHub.contributors(gh)
@@ -41,15 +76,7 @@ function Git(gh::String)
     str *= user_in_bound ? "" : ", " * to_name(this_user)
     str *= bound < length(contributors[1]) ? ", et al." : ""
 
-    g = Git(
-        r.name,
-        r.html_url.uri,
-        r.language,
-        r.description,
-        r.size,
-        lowercase(str)
-    )
-    return g
+    return GitBuilder(r, str)
 end
 
 function to_html(repos::GitRepo)
