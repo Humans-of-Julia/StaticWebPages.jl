@@ -92,7 +92,7 @@ StaticWebPages.upload_site(local_info)
 
 #### Content folder
 
-It must contain a `content.jl` file, and both an `img` and a `files` folders. Other content files, such as BibTeX bibliographic file should be put at the root of the folder (alongside `content.jl`). Please check the provided example if necessary. 
+It must contain a `content.jl` file, and both an `img` and a `files` folders. Other content files, such as BibTeX bibliographic file should be put at the root of the folder (alongside `content.jl`). Please check the provided example if necessary.
 
 ```julia
 ## content.jl
@@ -208,7 +208,15 @@ gitrepo = GitRepo( # currently work only with GitHub
 ```
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
-An easy workaround is to log in before doing the request. This feature will be added soon. 
+
+To circumvent this issue, you can edit the `github.jl` by updating your Personnal [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) **and** uncomment the line `local_info["pat4github"] = "PATH/TO/github.jl'` in `run.jl` (or add it if necessary).
+
+The content of the `github.jl` must be as follow (it is a simple variable containing your PAT):
+```julia
+github_pat = "YOUR_PERSONAL_ACCESS_TOKEN" 
+```
+
+If the token is not valid, a `401: Bad Creditential` error from GitHUb API will be returned.
 
 ##### `Block` : Block of paragraphs with optional images on the side
 ```julia
