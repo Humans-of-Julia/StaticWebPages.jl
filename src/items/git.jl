@@ -54,9 +54,16 @@ function GitBuilder(r::Repo, contrib::String)
 end
 
 function Git(gh::String)
-    r = GitHub.repo(gh)
-    contributors = GitHub.contributors(gh)
-
+    if @isdefined(github_pat)
+        myauth = GitHub.authenticate(github_pat)
+    else
+        println("Loading anon")
+        myauth = GitHub.AnonymousAuth()
+    end
+    
+    r = GitHub.repo(gh;auth = myauth)
+    contributors = GitHub.contributors(gh;auth = myauth)
+    
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
     bound = min(10, length(contributors[1]))
