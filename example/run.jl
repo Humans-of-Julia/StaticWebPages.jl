@@ -7,6 +7,9 @@ import StaticWebPages: local_info
 local_info["content"] = "/home/azzaare/website"
 local_info["site"] = "/home/azzaare/website/site"
 
+## Private Access Token (PAT) for GitHub as a github.jl file ; It is optional and can be commented/decommented using #
+# local_info["pat4github"] = "/home/azzaare/website"
+
 # necessary only if using the upload_site function
 local_info["protocol"] = "ftp"
 local_info["user"] = "user"
