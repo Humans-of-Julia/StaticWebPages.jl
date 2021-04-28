@@ -3,6 +3,12 @@ function export_site(;
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
+    
+    # Loading github pat ; optional if no file is provided ; github_pat variable existence is check in git.jl
+    if haskey(d, "pat4github")
+        include(joinpath(d["pat4github"], "github.jl"))
+    end
+    
     @info "\nStaticWebPages.jl's generator is starting ...\n"
     if rm_dir
         rm(d["site"], recursive=true, force=true)
