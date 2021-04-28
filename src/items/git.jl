@@ -57,7 +57,6 @@ function Git(gh::String)
     if @isdefined(github_pat)
         myauth = GitHub.authenticate(github_pat)
     else
-        println("Loading anon")
         myauth = GitHub.AnonymousAuth()
     end
     
