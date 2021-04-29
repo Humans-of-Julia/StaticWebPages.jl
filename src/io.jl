@@ -5,8 +5,8 @@ function export_site(;
     )
     
     # Loading github pat ; optional if no file is provided ; github_pat variable existence is check in git.jl
-    if haskey(d, "pat4github")
-        include(joinpath(d["pat4github"], "github.jl"))
+    if haskey(d, "auth_tokens")
+        include(joinpath(d["auth_tokens"], "token.jl"))
     end
     
     @info "\nStaticWebPages.jl's generator is starting ...\n"
