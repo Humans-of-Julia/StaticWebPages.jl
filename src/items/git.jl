@@ -54,9 +54,15 @@ function GitBuilder(r::Repo, contrib::String)
 end
 
 function Git(gh::String)
-    r = GitHub.repo(gh)
-    contributors = GitHub.contributors(gh)
-
+    if @isdefined(github_pat)
+        myauth = GitHub.authenticate(github_pat)
+    else
+        myauth = GitHub.AnonymousAuth()
+    end
+    
+    r = GitHub.repo(gh;auth = myauth)
+    contributors = GitHub.contributors(gh;auth = myauth)
+    
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
     bound = min(10, length(contributors[1]))
@@ -83,7 +89,7 @@ function to_html(repos::GitRepo)
     str = ""
     for r in repos.fullnames
         g = Git(r)
-        str *= 
+        str *=
         """
         <div class="publication cell small-12 large-6">
             <div class="pub-contents">

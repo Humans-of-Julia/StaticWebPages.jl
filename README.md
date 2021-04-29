@@ -92,7 +92,7 @@ StaticWebPages.upload_site(local_info)
 
 #### Content folder
 
-It must contain a `content.jl` file, and both an `img` and a `files` folders. Other content files, such as BibTeX bibliographic file should be put at the root of the folder (alongside `content.jl`). Please check the provided example if necessary. 
+It must contain a `content.jl` file, and both an `img` and a `files` folders. Other content files, such as BibTeX bibliographic file should be put at the root of the folder (alongside `content.jl`). Please check the provided example if necessary.
 
 ```julia
 ## content.jl
@@ -208,7 +208,21 @@ gitrepo = GitRepo( # currently work only with GitHub
 ```
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
-An easy workaround is to log in before doing the request. This feature will be added soon. 
+
+To circumvent this issue, you can uncomment the line `local_info["auth_tokens"] = "PATH/TO/token.jl'` in `run.jl` (or add it if necessary) **and** edit the `token.jl` by updating your Personnal [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+
+`token.jl` aims to store all authentication tokens (for now, just GitHub). It content must be as follow (it is a simple variable containing your PAT):
+```julia
+# WARNING!
+# YOUR TOKENS SHOULD NEVER BE SHARED! IF YOU USE GIT, DON'T FORGET TO ADD `token.jl` TO YOUR `.gitignore` FILE!
+# YOU CAN ALSO STORE `token.jl` OUTSIDE OF THE STATICWEBPAGES FOLDER!
+
+github_pat = "YOUR_PERSONAL_ACCESS_TOKEN" 
+```
+
+If the token is not valid, a `401: Bad Creditential` error from GitHUb API will be returned.
+
+As the comment states, take care not to push your token to your git repo! A good practice could be to store `token.jl` outside of your git project.
 
 ##### `Block` : Block of paragraphs with optional images on the side
 ```julia
