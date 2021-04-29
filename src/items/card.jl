@@ -26,7 +26,15 @@ function to_html(deck::Deck)
         <li>
             <div class="cardx">
                 <span class="any $(color[1])">$(c.first)</span>
+        """
+        if !isempty(c.second)
+            str *=
+            """
                 <span class="second any $(color[2])">$(c.second)</span>
+            """
+        end
+        str *=
+        """
             </div>
             <div class="description">
                 <p class="cardtitle">$(c.title)</p>
