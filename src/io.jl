@@ -3,12 +3,12 @@ function export_site(;
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
-    
+
     # Loading github pat ; optional if no file is provided ; github_pat variable existence is check in git.jl
     if haskey(d, "auth_tokens")
         include(joinpath(d["auth_tokens"], "token.jl"))
     end
-    
+
     @info "\nStaticWebPages.jl's generator is starting ...\n"
     if rm_dir
         rm(d["site"], recursive=true, force=true)
@@ -51,8 +51,9 @@ function upload_site(d::Dict{String,String} = local_info)
     cd(d["site"])
     for (root, dirs, files) in walkdir(".")
         for file in files
-            println("root:$root, joinpath:$(joinpath(root, file)), file:$file")
-            upload(ftp, joinpath(root, file), joinpath(root, file))
+            str = replace(joinpath(root, file), "\\" => "/")
+            println("root:$root, joinpath:$str, file:$file")
+            upload(ftp, str, str)
         end
     end
     cd(temppath)
