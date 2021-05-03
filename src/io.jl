@@ -24,7 +24,8 @@ function export_site(;
     end
 
     for p in ["files", "img"]
-        isdir(p) && cp(joinpath(d["content"], p), joinpath(d["site"], p); force=true)
+        str = joinpath(d["content"], p)
+        isdir(str) && cp(str, joinpath(d["site"], p); force=true)
     end
 
     include(joinpath(d["content"], "content.jl"))
