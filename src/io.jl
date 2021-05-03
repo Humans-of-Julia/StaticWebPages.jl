@@ -15,7 +15,7 @@ function export_site(;
         mkpath(d["site"])
     end
     for p in [joinpath(d["site"], "files"), joinpath(d["site"], "img"), joinpath(d["site"], "js"), joinpath(d["site"], "css")]
-        isdir(p) ? () : mkpath(p)
+        !isdir(p) && mkpath(p)
     end
 
     assets = joinpath(dirname(dirname(pathof(StaticWebPages))), "assets")
@@ -24,7 +24,7 @@ function export_site(;
     end
 
     for p in ["files", "img"]
-        cp(joinpath(d["content"], p), joinpath(d["site"], p); force=true)
+        isdir(p) && cp(joinpath(d["content"], p), joinpath(d["site"], p); force=true)
     end
 
     include(joinpath(d["content"], "content.jl"))
