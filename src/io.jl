@@ -48,9 +48,13 @@ function upload_site(d::Dict{String,String} = local_info)
     server = d["server"]
 
     ftp = FTP("$protocol://$user:$password@$server")
+
     temppath = pwd()
     cd(d["site"])
     for (root, dirs, files) in walkdir(".")
+        for dir in dirs
+            try mkdir(ftp, replace(joinpath(root, dir), "\\" => "/")) catch e end
+        end
         for file in files
             str = replace(joinpath(root, file), "\\" => "/")
             println("root:$root, joinpath:$str, file:$file")
