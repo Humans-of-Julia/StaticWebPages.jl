@@ -170,6 +170,8 @@ To add labels to the publications entries, please add a `swp-labels` field to yo
 }
 ```
 
+![Image of a Publication Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/publication.png)
+
 The attribution of colors is done automatically (within the limit of 22 labels, please issue a request if you need more ...)
 
 ##### `Deck` of `Card`s : a list of ordered and clearly separate cards
@@ -191,6 +193,8 @@ Deck( # Start of the list
  ) # End of the list
 ```
 
+![Image of Card Items](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/card.png)
+
 ##### `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
 
 ```julia
@@ -206,6 +210,8 @@ gitrepo = GitRepo( # currently work only with GitHub
     "Azzaare/PackageStream.jl"
 )
 ```
+
+![Image of a Git Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/git.png)
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
 
@@ -261,6 +267,8 @@ research = Block(
 )
 ```
 
+![Image of a Block Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/paragraph.png)
+
 ##### `TimeLine`s : a list of continuous items
 ```julia
 grants = TimeLine(
@@ -276,6 +284,8 @@ grants = TimeLine(
     )
 )
 ```
+
+![Image of a TimeLine Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/timeline.png)
 
 ##### `Nest`! A container to list several items within the same section
 
