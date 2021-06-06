@@ -7,8 +7,8 @@ import Base.show
 import Bibliography
 import Bibliography: bibtex_to_web, Publication
 
-export  export_site, upload_site, paragraphs, images
-export  AbstractItem, Block, Card, TimeLine, GitRepo
+export export_site, upload_site, paragraphs, images
+export AbstractItem, Block, Card, TimeLine, GitRepo
 export CardColor, TimeLineColor
 
 include("constant.jl")

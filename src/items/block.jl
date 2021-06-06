@@ -8,11 +8,11 @@ struct Block <: AbstractItem
 end
 
 function to_html(section::Block)
-    str = 
+    str =
     """
     <div class="cell medium-8 large-9">
     """
-    
+
     for p in section.paragraphs
         str *=
         """

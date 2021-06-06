@@ -4,7 +4,7 @@ struct Dot <: AbstractItem
     text::AbstractString
 end
 
-struct TimeLine 
+struct TimeLine
     dots::Vector{Dot}
     color::TimeLineColor
 

@@ -13,7 +13,7 @@ struct Email
     address::String
     content::String
     obfuscated::Bool
-    
+
     function Email(
         address::String,
         content::String,
@@ -24,7 +24,7 @@ struct Email
 end
 
 function email(e::Email)
-    if e.obfuscated 
+    if e.obfuscated
         return """<span class="obfuscate unselectable">$(reverse(e.address))</span>"""
     else
         return link(Link(e.content, "mailto:$(e.address)"))
@@ -33,8 +33,8 @@ end
 
 function email(
     address::String;
-    content::String = "contact",
-    obfuscated::Bool = true
+    content::String="contact",
+    obfuscated::Bool=true
     )
     email(Email(address, content, obfuscated))
 end

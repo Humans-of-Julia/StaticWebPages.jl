@@ -5,8 +5,8 @@ struct Publications
 
     function Publications(
         source::String;
-        parser::Parser = bibtex,
-        sort::FieldSort = required,
+        parser::Parser=bibtex,
+        sort::FieldSort=required,
         )
         new(parser, sort, joinpath(local_info["content"], source))
     end
@@ -15,7 +15,7 @@ end
 function to_html(publications::Vector{Bibliography.Publication})
     str = ""
     for p in publications
-        str *= 
+        str *=
         """
         <div class="publication cell small-12 large-6">
             <div class="pub-contents">
@@ -48,7 +48,7 @@ function to_html(publications::Vector{Bibliography.Publication})
                                 <i class="fas fa-quote-left"></i>
                             </a>
                     </button>
-                    <div class="large reveal" id="$(p.id)-modal" data-reveal>                            
+                    <div class="large reveal" id="$(p.id)-modal" data-reveal>
         <code class="code-block">$(p.cite)</code>
                             <button class="close-button" data-close aria-label="Close bib" type="button">
                                 <span class="black-text" aria-hidden="true">&times;</span>

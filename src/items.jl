@@ -9,13 +9,7 @@ include("items/publications.jl")
 include("items/block.jl")
 include("items/timeline.jl")
 
-Item = Union{
-    Deck,
-    GitRepo,
-    Publications,
-    Block,
-    TimeLine
-}
+Item = Union{Deck,GitRepo,Publications,Block,TimeLine}
 
 # Nest(ed) items
 struct Nest
@@ -23,12 +17,12 @@ struct Nest
     Nest(args...) = new([ item for item in args])
 end
 
-SectionItems = Union{Item, Nest}
+SectionItems = Union{Item,Nest}
 
 function to_html(nest::Nest)
     str = ""
     for item in nest.list
-        str *= 
+        str *=
         """
         $(to_html(item))
         """
@@ -45,24 +39,24 @@ struct Section <: AbstractSection
     title_size::Int # 0 means inherited
 
     function Section(;
-        bgcolor::BackgroundColor = bg_none,
-        hide::Bool = false,
-        items::SectionItems = Nest(),
-        title::String = "",
-        title_size = 0
+        bgcolor::BackgroundColor=bg_none,
+        hide::Bool=false,
+        items::SectionItems=Nest(),
+        title::String="",
+        title_size=0
     )
-    new(bgcolor, hide, items, title, title_size)
-        
+        new(bgcolor, hide, items, title, title_size)
+
     end
 end
 
-function to_html(s::Section, x::Int) 
-   str =  
+function to_html(s::Section, x::Int)
+    str =
    """
    <h$x class="hx cell">$(s.title)</h$x>
    $(to_html(s.items))
    """
-   return str
+    return str
 end
 
 # Double column
@@ -76,7 +70,7 @@ struct Double <: AbstractSection
         s::Section
         )
         h = f.hide && s.hide
-        new(f,s,h)
+        new(f, s, h)
     end
 end
 

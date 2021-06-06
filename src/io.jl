@@ -1,5 +1,5 @@
 function export_site(;
-    d::Dict{String,String} = local_info,
+    d::Dict{String,String}=local_info,
     rm_dir::Bool=false,
     opt_in::Bool=false
     )
@@ -41,7 +41,7 @@ function export_site(;
     println("The website has been generated in $(d["site"])\n")
 end
 
-function upload_site(d::Dict{String,String} = local_info)
+function upload_site(d::Dict{String,String}=local_info)
     protocol = d["protocol"]
     user = d["user"]
     password = d["password"]

@@ -64,7 +64,7 @@ function nav(
         end
     end
 
-    acc = 1
+            acc = 1
     for i in keys(academicons)
         if i ∈ keys(info)
             if mod(acc, 3) == 1
