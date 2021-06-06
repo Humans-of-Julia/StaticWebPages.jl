@@ -10,7 +10,7 @@ struct Deck
     color::CardColor
 
     Deck(color::CardColor, args...) = new([card for card in args], color)
-    Deck(args...; color::CardColor = card_blue) = new([card for card in args], color)
+    Deck(args...; color::CardColor=card_blue) = new([card for card in args], color)
 end
 
 function to_html(deck::Deck)

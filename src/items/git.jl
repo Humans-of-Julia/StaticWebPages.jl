@@ -59,17 +59,17 @@ function Git(gh::String)
     else
         myauth = GitHub.AnonymousAuth()
     end
-    
+
     r = GitHub.repo(gh;auth = myauth)
     contributors = GitHub.contributors(gh;auth = myauth)
-    
+
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
     bound = min(10, length(contributors[1]))
-    user_in_bound = false
-    for u in contributors[1][1:bound]
-        user_in_bound = this_user == lowercase(u["contributor"].login)
-        if user_in_bound
+    user_in_bound = true
+    for (i, u) in enumerate(contributors[1])
+        if this_user == lowercase(u["contributor"].login)
+            user_in_bound = i ≤ bound
             break
         end
     end
