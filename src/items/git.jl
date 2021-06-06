@@ -1,7 +1,10 @@
 struct GitRepo <: AbstractItem
-    fullnames::Vector{String}
+    fullnames::Vector{Union{String, Pair{String, Vector{String}}}}
+    filter::Vector{String}
 
-    GitRepo(args::String...) = new([r for r in args])
+    function GitRepo(args::String...; filter = ["github-actions[bot]"])
+        return new([r for r in args], filter)
+    end
 end
 
 struct Git
@@ -53,7 +56,7 @@ function GitBuilder(r::Repo, contrib::String)
     return g
 end
 
-function Git(gh::String)
+function Git(gh::String, git_filter)
     if @isdefined(github_pat)
         myauth = GitHub.authenticate(github_pat)
     else
@@ -61,13 +64,13 @@ function Git(gh::String)
     end
 
     r = GitHub.repo(gh;auth = myauth)
-    contributors = GitHub.contributors(gh;auth = myauth)
+    contributors = filter(c -> c ∉ git_filter, GitHub.contributors(gh;auth = myauth)[1])
 
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
-    bound = min(10, length(contributors[1]))
+    bound = min(10, length(contributors))
     user_in_bound = true
-    for (i, u) in enumerate(contributors[1])
+    for (i, u) in enumerate(contributors)
         if this_user == lowercase(u["contributor"].login)
             user_in_bound = i ≤ bound
             break
@@ -75,12 +78,12 @@ function Git(gh::String)
     end
     max_users = user_in_bound ? 10 : 9
 
-    str = to_name(contributors[1][1]["contributor"].login)
-    for c in contributors[1][2:min(max_users, bound)]
+    str = to_name(contributors[1]["contributor"].login)
+    for c in contributors[2:(min(max_users, bound))]
         str *= ", " * to_name(c["contributor"].login)
     end
     str *= user_in_bound ? "" : ", " * to_name(this_user)
-    str *= bound < length(contributors[1]) ? ", et al." : ""
+    str *= bound < length(contributors) ? ", et al." : ""
 
     return GitBuilder(r, str)
 end
@@ -88,7 +91,7 @@ end
 function to_html(repos::GitRepo)
     str = ""
     for r in repos.fullnames
-        g = Git(r)
+        g = Git(r, repos.filter)
         str *=
         """
         <div class="publication cell small-12 large-6">
@@ -111,15 +114,19 @@ function to_html(repos::GitRepo)
                 <h4 class="pubtitle">$(g.name)</h4>
                 <div class="pubcontents">
         """
-        label = g.language
-        if label ∉ keys(publication_labels)
-            push!(publication_labels, label => ColorLabel(length(publication_labels)))
+        labels = Set(g.language)
+        typeof(r) <: Pair && union!(labels, map(lowercase, r.second))
+        for label in labels
+            if label ∉ keys(publication_labels)
+                push!(publication_labels, label => ColorLabel(length(publication_labels)))
+            end
+            color = color_to_label[publication_labels[label]]
+
+            str *=
+            """
+                        <span class="label $color">$(uppercasefirst(label))</span>
+            """
         end
-        color = color_to_label[publication_labels[label]]
-        str *=
-        """
-                    <span class="label $color">$(uppercasefirst(label))</span>
-        """
 
         str *=
         """
