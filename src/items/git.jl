@@ -1,8 +1,10 @@
+const RepoLabels = Union{String, Pair{String, Vector{String}}}
+
 struct GitRepo <: AbstractItem
-    fullnames::Vector{Union{String, Pair{String, Vector{String}}}}
+    fullnames::Vector{RepoLabels}
     filter::Vector{String}
 
-    function GitRepo(args::String...; filter = ["github-actions[bot]"])
+    function GitRepo(args::RepoLabels...; filter = ["github-actions[bot]"])
         return new([r for r in args], filter)
     end
 end
@@ -56,12 +58,15 @@ function GitBuilder(r::Repo, contrib::String)
     return g
 end
 
-function Git(gh::String, git_filter)
+# TODO: make it a multiple dispatched function
+function Git(gh_rl::RepoLabels, git_filter)
     if @isdefined(github_pat)
         myauth = GitHub.authenticate(github_pat)
     else
         myauth = GitHub.AnonymousAuth()
     end
+
+    gh = isa(gh_rl, Pair) ? gh_rl.first : gh_rl
 
     r = GitHub.repo(gh;auth = myauth)
     contributors = filter(c -> c ∉ git_filter, GitHub.contributors(gh;auth = myauth)[1])
@@ -114,8 +119,9 @@ function to_html(repos::GitRepo)
                 <h4 class="pubtitle">$(g.name)</h4>
                 <div class="pubcontents">
         """
-        labels = Set(g.language)
+        labels = Set([g.language])
         typeof(r) <: Pair && union!(labels, map(lowercase, r.second))
+        @warn labels
         for label in labels
             if label ∉ keys(publication_labels)
                 push!(publication_labels, label => ColorLabel(length(publication_labels)))
