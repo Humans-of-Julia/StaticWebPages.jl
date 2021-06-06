@@ -120,8 +120,7 @@ function to_html(repos::GitRepo)
                 <div class="pubcontents">
         """
         labels = Set([g.language])
-        typeof(r) <: Pair && union!(labels, map(lowercase, r.second))
-        @warn labels
+        typeof(r) <: Pair && union!(labels, r.second)
         for label in labels
             if label ∉ keys(publication_labels)
                 push!(publication_labels, label => ColorLabel(length(publication_labels)))

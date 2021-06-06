@@ -170,7 +170,7 @@ To add labels to the publications entries, please add a `swp-labels` field to yo
 }
 ```
 
-![Image of a Publication Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/publication.png)
+![Image of a Publication Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/publication.png)
 
 The attribution of colors is done automatically (within the limit of 22 labels, please issue a request if you need more ...)
 
@@ -193,7 +193,7 @@ Deck( # Start of the list
  ) # End of the list
 ```
 
-![Image of Card Items](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/card.png)
+![Image of Card Items](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/card.png)
 
 ##### `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
 
@@ -211,7 +211,7 @@ gitrepo = GitRepo( # currently work only with GitHub
 )
 ```
 
-![Image of a Git Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/git.png)
+![Image of a Git Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/git.png)
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
 
@@ -267,7 +267,7 @@ research = Block(
 )
 ```
 
-![Image of a Block Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/paragraph.png)
+![Image of a Block Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/paragraph.png)
 
 ##### `TimeLine`s : a list of continuous items
 ```julia
@@ -285,7 +285,7 @@ grants = TimeLine(
 )
 ```
 
-![Image of a TimeLine Item](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/captures/captures/timeline.png)
+![Image of a TimeLine Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/timeline.png)
 
 ##### `Nest`! A container to list several items within the same section
 
