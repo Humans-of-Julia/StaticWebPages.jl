@@ -830,6 +830,8 @@ article-title {
 
 /* Discord widget */
 .discord-widget{
-    width:100%;
+    /* width:200px; */
     height:400px;
+    align-self: center;
+    text-align: center;
 }
