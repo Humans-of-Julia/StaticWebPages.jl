@@ -7,7 +7,7 @@ import Base.show
 import Bibliography
 import Bibliography: bibtex_to_web, Publication
 
-export export_site, upload_site, paragraphs, images
+export export_site, upload_site, paragraphs, images, iframe
 export AbstractItem, Block, Card, TimeLine, GitRepo
 export CardColor, TimeLineColor
 
