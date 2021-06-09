@@ -2,6 +2,7 @@ using StaticWebPages
 using Test
 
 @testset "StaticWebPages.jl" begin
+rm("build"; recursive = true, force = true)
 mkdir("build")
 include("run.jl")
 
