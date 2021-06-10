@@ -1,7 +1,7 @@
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
 authors = ["azzaare <jf@baffier.fr>"]
-version = "0.2.13"
+version = "0.2.14"
 
 [deps]
 Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"

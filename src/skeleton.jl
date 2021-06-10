@@ -67,7 +67,7 @@ function nav(
             acc = 1
     for i in keys(academicons)
         if i ∈ keys(info)
-            if mod(acc, 3) == 1
+            if mod(acc, 4) == 1
                 if acc > 1
                     str *=
             """
