@@ -60,7 +60,7 @@ function to_html(publications::Vector{Bibliography.Publication})
         """
         for label in p.labels
             if label ∉ keys(publication_labels)
-                push!(publication_labels, label => ColorLabel(mod(length(publication_labels), 22))
+                push!(publication_labels, label => ColorLabel(mod(length(publication_labels), 22)))
             end
             color = color_to_label[publication_labels[label]]
             str *=
