@@ -13,20 +13,19 @@ Block(paragraphs, images) = Block(paragraphs, images, "")
 Block(paragraphs, iframe::String) = Block(paragraphs, Vector{Image}(), iframe)
 
 function to_html(section::Block)
-    full = eltype(section.images) <: Union && isempty(section.iframe) ? "" :  "medium-8 large-9"
+    full =
+        eltype(section.images) <: Union && isempty(section.iframe) ? "" : "medium-8 large-9"
     str = """<div class="cell $full">\n"""
 
     for p in section.paragraphs
-        str *=
-        """
-        <p class="p-justify literal">$p</p>
-        """
+        str *= """
+               <p class="p-justify literal">$p</p>
+               """
     end
 
-    str *=
-    """
-    </div>
-    """
+    str *= """
+           </div>
+           """
 
     if eltype(section.images) <: Pair || !isempty(section.iframe)
         str *= """
@@ -34,10 +33,9 @@ function to_html(section::Block)
         """
 
         for img in section.images
-            str *=
-            """
-            <img class="thumbnail image hide-for-small-only" src="img/$(img.first)" alt="$(img.second)">
-            """
+            str *= """
+                   <img class="thumbnail image hide-for-small-only" src="img/$(img.first)" alt="$(img.second)">
+                   """
         end
 
         if !isempty(section.iframe)
@@ -49,6 +47,6 @@ function to_html(section::Block)
             """
         end
 
-    str *= """</div>\n"""
+        str *= """</div>\n"""
     end
 end

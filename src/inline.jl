@@ -14,12 +14,8 @@ struct Email
     content::String
     obfuscated::Bool
 
-    function Email(
-        address::String,
-        content::String,
-        obfuscated::Bool
-        )
-        new(address, content, obfuscated)
+    function Email(address::String, content::String, obfuscated::Bool)
+        return new(address, content, obfuscated)
     end
 end
 
@@ -31,10 +27,6 @@ function email(e::Email)
     end
 end
 
-function email(
-    address::String;
-    content::String="contact",
-    obfuscated::Bool=true
-    )
-    email(Email(address, content, obfuscated))
+function email(address::String; content::String="contact", obfuscated::Bool=true)
+    return email(Email(address, content, obfuscated))
 end

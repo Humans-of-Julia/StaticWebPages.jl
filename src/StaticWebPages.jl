@@ -1,15 +1,27 @@
 module StaticWebPages
 
-using FTPClient, DataStructures, GitHub
+using DataStructures
+using FTPClient
+using GitHub
 
 import Base.show
 
 import Bibliography
 import Bibliography: bibtex_to_web, Publication
 
-export export_site, upload_site, paragraphs, images, iframe
-export AbstractItem, Block, Card, TimeLine, GitRepo
-export CardColor, TimeLineColor
+export export_site
+export iframe
+export images
+export paragraphs
+export upload_site
+
+export AbstractItem
+export Block
+export Card
+export CardColor
+export GitRepo
+export TimeLine
+export TimeLineColor
 
 include("constant.jl")
 include("inline.jl")

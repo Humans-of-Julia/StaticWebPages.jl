@@ -41,28 +41,28 @@ end
 
 # default is white text. Color will be picked in order.
 const color_to_label = Dict{ColorLabel,String}([
-    red         => "label-red",
-    green       => "label-green",
-    yellow      => "label-yellow black-text",
-    blue        => "label-blue",
-    orange      => "label-orange",
-    purple      => "label-purple",
-    cyan        => "label-cyan black-text",
-    magenta     => "label-magenta",
-    lime        => "label-lime black-text",
-    pink        => "label-pink black-text",
-    teal        => "label-teal",
-    lavender    => "label-lavender black-text",
-    brown       => "label-brown",
-    beige       => "label-beige black-text",
-    maroon      => "label-maroon",
-    mint        => "label-mint black-text",
-    olive       => "label-olive",
-    apricot     => "label-apricot black-text",
-    navy        => "label-navy",
-    grey        => "label-grey",
-    white       => "label-white black-text",
-    black       => "label-black"
+    red => "label-red",
+    green => "label-green",
+    yellow => "label-yellow black-text",
+    blue => "label-blue",
+    orange => "label-orange",
+    purple => "label-purple",
+    cyan => "label-cyan black-text",
+    magenta => "label-magenta",
+    lime => "label-lime black-text",
+    pink => "label-pink black-text",
+    teal => "label-teal",
+    lavender => "label-lavender black-text",
+    brown => "label-brown",
+    beige => "label-beige black-text",
+    maroon => "label-maroon",
+    mint => "label-mint black-text",
+    olive => "label-olive",
+    apricot => "label-apricot black-text",
+    navy => "label-navy",
+    grey => "label-grey",
+    white => "label-white black-text",
+    black => "label-black",
 ])
 
 @enum CardColor begin
@@ -77,14 +77,14 @@ const color_to_label = Dict{ColorLabel,String}([
 end
 
 const color_to_card = Dict{CardColor,Tuple{String,String}}([
-    card_blue   => ("blue-first", "blue-second"),
-    card_green  => ("green-first", "green-second"),
-    card_red    => ("red-first", "red-second"),
+    card_blue => ("blue-first", "blue-second"),
+    card_green => ("green-first", "green-second"),
+    card_red => ("red-first", "red-second"),
     card_orange => ("orange-first", "orange-second"),
-    card_julia_blue     => ("jl-blue", "jl-blue"),
-    card_julia_green    => ("jl-green", "jl-green"),
-    card_julia_purple   => ("jl-purple", "jl-purple"),
-    card_julia_red      => ("jl-red", "jl-red"),
+    card_julia_blue => ("jl-blue", "jl-blue"),
+    card_julia_green => ("jl-green", "jl-green"),
+    card_julia_purple => ("jl-purple", "jl-purple"),
+    card_julia_red => ("jl-red", "jl-red"),
 ])
 
 @enum TimeLineColor begin
@@ -100,32 +100,29 @@ const color_to_card = Dict{CardColor,Tuple{String,String}}([
 end
 
 const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
-    tl_blue   => ("tl-blue-bg", "tl-blue-border"),
-    tl_green  => ("tl-green-bg", "tl-green-border"),
-    tl_red    => ("tl-red-bg", "tl-red-border"),
+    tl_blue => ("tl-blue-bg", "tl-blue-border"),
+    tl_green => ("tl-green-bg", "tl-green-border"),
+    tl_red => ("tl-red-bg", "tl-red-border"),
     tl_orange => ("tl-orange-bg", "tl-orange-border"),
-    tl_julia_blue     => ("jl-blue", "jl-blue-border"),
-    tl_julia_green    => ("jl-green", "jl-green-border"),
-    tl_julia_purple   => ("jl-purple", "jl-purple-border"),
-    tl_julia_red      => ("jl-red", "jl-red-border"),
+    tl_julia_blue => ("jl-blue", "jl-blue-border"),
+    tl_julia_green => ("jl-green", "jl-green-border"),
+    tl_julia_purple => ("jl-purple", "jl-purple-border"),
+    tl_julia_red => ("jl-red", "jl-red-border"),
 ])
 
 const academicons = Dict{String,String}([
-    "researchgate"  => "ai ai-researchgate-square",
+    "researchgate" => "ai ai-researchgate-square",
     "googlescholar" => "ai ai-google-scholar-square",
-    "orcid"         => "ai ai-orcid-square",
-    "dblp"          => "ai ai-dblp-square",
-    "github"        => "fa fa-github-square",
-    "linkedin"      => "fab fa-linkedin",
-    "twitter"       => "fa fa-twitter-square",
+    "orcid" => "ai ai-orcid-square",
+    "dblp" => "ai ai-dblp-square",
+    "github" => "fa fa-github-square",
+    "linkedin" => "fab fa-linkedin",
+    "twitter" => "fa fa-twitter-square",
     # "discord"       => "fab fa-discord",
 ])
 
 const info = Dict{String,String}([
-    "title" => "title",
-    "avatar" => "pic.jpg",
-    "name" => "name",
-    "lang" => "en"
+    "title" => "title", "avatar" => "pic.jpg", "name" => "name", "lang" => "en"
 ])
 const content = OrderedDict{String,Any}()
 const local_info = Dict{String,String}()
