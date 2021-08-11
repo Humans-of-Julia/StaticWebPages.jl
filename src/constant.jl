@@ -81,10 +81,10 @@ const color_to_card = Dict{CardColor,Tuple{String,String}}([
     card_green => ("green-first", "green-second"),
     card_red => ("red-first", "red-second"),
     card_orange => ("orange-first", "orange-second"),
-    card_julia_blue => ("jl-blue", "jl-blue"),
-    card_julia_green => ("jl-green", "jl-green"),
-    card_julia_purple => ("jl-purple", "jl-purple"),
-    card_julia_red => ("jl-red", "jl-red"),
+    card_julia_blue => ("julia-blue", "julia-blue"),
+    card_julia_green => ("julia-green", "julia-green"),
+    card_julia_purple => ("julia-purple", "julia-purple"),
+    card_julia_red => ("julia-red", "julia-red"),
 ])
 
 @enum TimeLineColor begin
@@ -104,10 +104,10 @@ const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
     tl_green => ("tl-green-bg", "tl-green-border"),
     tl_red => ("tl-red-bg", "tl-red-border"),
     tl_orange => ("tl-orange-bg", "tl-orange-border"),
-    tl_julia_blue => ("jl-blue", "jl-blue-border"),
-    tl_julia_green => ("jl-green", "jl-green-border"),
-    tl_julia_purple => ("jl-purple", "jl-purple-border"),
-    tl_julia_red => ("jl-red", "jl-red-border"),
+    tl_julia_blue => ("julia-blue", "julia-blue-border"),
+    tl_julia_green => ("julia-green", "julia-green-border"),
+    tl_julia_purple => ("julia-purple", "julia-purple-border"),
+    tl_julia_red => ("julia-red", "julia-red-border"),
 ])
 
 const academicons = Dict{String,String}([
