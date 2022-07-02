@@ -1,5 +1,6 @@
 """
     FieldSort
+
 An enumeration of the different sorting rules for a bibliography item.
 - unsorted
 - required
@@ -13,6 +14,7 @@ end
 
 """
     Parser
+
 An enumeration of the different parsers for a bibliography item.
 - bibtex
 """
@@ -22,6 +24,7 @@ end
 
 """
     FieldSort
+
 An enumeration of the different background colors available. It will need to be adjusted for `Theme` and `SubTheme`.
 - bg_none
 - bg_white
@@ -35,6 +38,7 @@ end
 
 """
     ColorLabel
+
 An enumeration of the different colors available for labels.
 - red
 - green
@@ -88,6 +92,7 @@ end
 
 """
     color_to_label
+
 A dictionary to translate the enumeration in ColorLabel to actual HTML/CSS labels. An optional `black-text` color for text is given (it defaults to white-text).
 """
 const color_to_label = Dict{ColorLabel,String}([
@@ -115,6 +120,20 @@ const color_to_label = Dict{ColorLabel,String}([
     black => "label-black",
 ])
 
+
+"""
+    CardColor
+
+An enumeration of the different background colors available. It will need to be adjusted for `Theme` and `SubTheme`.
+- card_blue
+- card_green
+- card_red
+- card_orange
+- card_julia_blue
+- card_julia_green
+- card_julia_purple
+- card_julia_red
+"""
 @enum CardColor begin
     card_blue
     card_green
@@ -126,6 +145,11 @@ const color_to_label = Dict{ColorLabel,String}([
     card_julia_red
 end
 
+"""
+    color_to_card
+
+A dictionary to translate the enumeration in CardColor to actual HTML/CSS attributes. A card can be composed of either one or two colors.
+"""
 const color_to_card = Dict{CardColor,Tuple{String,String}}([
     card_blue => ("blue-first", "blue-second"),
     card_green => ("green-first", "green-second"),
@@ -137,6 +161,20 @@ const color_to_card = Dict{CardColor,Tuple{String,String}}([
     card_julia_red => ("julia-red", "julia-red"),
 ])
 
+"""
+    TimeLineColor
+
+An enumeration of the different `TimeLine`` colors available. It will need to be adjusted for `Theme` and `SubTheme`.
+- tl_blue
+- tl_green
+- tl_red
+- tl_orange
+- tl_julia_blue
+- tl_julia_green
+- tl_julia_purple
+- tl_julia_red
+- tl_julia
+"""
 @enum TimeLineColor begin
     tl_blue
     tl_green
@@ -149,6 +187,11 @@ const color_to_card = Dict{CardColor,Tuple{String,String}}([
     tl_julia
 end
 
+"""
+    color_to_timeline
+
+A dictionary to translate the enumeration in `TimeLineColor` to actual HTML/CSS attributes.
+"""
 const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
     tl_blue => ("tl-blue-bg", "tl-blue-border"),
     tl_green => ("tl-green-bg", "tl-green-border"),
@@ -160,6 +203,11 @@ const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
     tl_julia_red => ("julia-red", "julia-red-border"),
 ])
 
+"""
+    academicons
+
+A dictionary that tracks the HTML/CSS attributes for icons from font-awesome.
+"""
 const academicons = Dict{String,String}([
     "researchgate" => "ai ai-researchgate-square",
     "googlescholar" => "ai ai-google-scholar-square",
@@ -171,10 +219,41 @@ const academicons = Dict{String,String}([
     # "discord"       => "fab fa-discord",
 ])
 
+"""
+    info
+
+A dictionary, with default values, used to customize personal information.
+"""
 const info = Dict{String,String}([
     "title" => "title", "avatar" => "pic.jpg", "name" => "name", "lang" => "en"
 ])
+
+"""
+    content
+
+An ordered dictionary to store the different web pages.
+"""
 const content = OrderedDict{String,Any}()
+
+"""
+    local_info
+
+A dictionary that stores local information required to build and export the website.
+"""
 const local_info = Dict{String,String}()
+
+"""
+    user_to_name
+
+A dictionary to translate user id (such as GitHub id) to real name. Normal use is that if an entry is found, then the id will be replaced by the appropriate name. Otherwise, the id is kept in use.
+
+When a list of id is too long, priority is given to the id with an associated name.
+"""
 const user_to_name = Dict{String,String}()
+
+"""
+    publication_labels
+
+An ordered dictionary to store the attributions of labels to keywords in a `Publications`.
+"""
 const publication_labels = OrderedDict{String,ColorLabel}()
