@@ -1,19 +1,66 @@
+"""
+    FieldSort
+An enumeration of the different sorting rules for a bibliography item.
+- unsorted
+- required
+- lexicographic
+"""
 @enum FieldSort begin
     unsorted
     required
     lexicographic
 end
 
+"""
+    Parser
+An enumeration of the different parsers for a bibliography item.
+- bibtex
+"""
 @enum Parser begin
     bibtex
 end
 
+"""
+    FieldSort
+An enumeration of the different background colors available. It will need to be adjusted for `Theme` and `SubTheme`.
+- bg_none
+- bg_white
+- bg_grey
+"""
 @enum BackgroundColor begin
     bg_none
     bg_white
     bg_grey
 end
 
+"""
+    ColorLabel
+An enumeration of the different colors available for labels.
+- red
+- green
+- yellow
+- blue
+- orange
+- purple
+- cyan
+- magenta
+- lime
+- pink
+- teal
+- lavender
+- brown
+- beige
+- maroon
+- mint
+- olive
+- apricot
+- navy
+- grey
+- white
+- black
+
+Currently, label colors cycle once the limit has been reached. Creation of cycles with different varieties of colors is welcomed.
+"""
 @enum ColorLabel begin
     red
     green
@@ -39,7 +86,10 @@ end
     black
 end
 
-# default is white text. Color will be picked in order.
+"""
+    color_to_label
+A dictionary to translate the enumeration in ColorLabel to actual HTML/CSS labels. An optional `black-text` color for text is given (it defaults to white-text).
+"""
 const color_to_label = Dict{ColorLabel,String}([
     red => "label-red",
     green => "label-green",
