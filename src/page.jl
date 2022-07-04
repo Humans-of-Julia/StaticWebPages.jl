@@ -1,3 +1,8 @@
+"""
+    Page
+
+A structure to store a page information.
+"""
 struct Page
     background::BackgroundColor
     hide::Bool
@@ -14,11 +19,20 @@ struct Page
     end
 end
 
+"""
+    page(; keyargs...)
+
+Constructor for `Page`.
+- `background::BackgroundColor=bg_grey`: by default, the first section of a page has a grey background.
+- `hide::Bool=false`: an hidden page is not generated. However, it will appear in the navigation menu.
+- `sections::Vector{<:AbstractSection}=Vector{<:AbstractSection}()`: list of sections that composes this page.
+- `title::String=""`: Page's title, can be left empty.
+"""
 function page(;
     background::BackgroundColor=bg_grey,
     hide::Bool=false,
     sections::Vector{<:AbstractSection}=Vector{<:AbstractSection}(),
-    title::String="",
+    title::String=""
 )
     return content[title] = Page(background, hide, sections, title)
 end

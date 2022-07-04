@@ -1,3 +1,8 @@
+"""
+    head(info::Dict{String,String}, page::String)
+
+Generate the head section for a `page` given the global `info`.
+"""
 function head(info::Dict{String,String}, page::String)
     subtitle = page == "index" ? "homepage" : page
 
@@ -15,6 +20,11 @@ function head(info::Dict{String,String}, page::String)
                  """
 end
 
+"""
+    nav(info::Dict{String,String}, content::OrderedDict{String,Any}, page::String, opt_in::Bool)
+
+Generate the navigation menu for a `page` given its `content`, and the global `info`. Please set `opt_in` to `true` to promote `StaticWebPages`.
+"""
 function nav(
     info::Dict{String,String}, content::OrderedDict{String,Any}, page::String, opt_in::Bool
 )
@@ -103,7 +113,7 @@ function nav(
     end
     str *= acc > 1 ? "\n<li>\n" : ""
 
-    aux = """\n<div class="opt-in">This site was generated using <a href="https://github.com/Azzaare/StaticWebPages.jl">StaticWebPages.jl</a></div></li>\n"""
+    aux = """\n<div class="opt-in">This site was generated using <a href="https://github.com/Humans-of-Julia/StaticWebPages.jl">StaticWebPages.jl</a></div></li>\n"""
     str *= """
                  $(opt_in ? aux : "")
                </ul>
