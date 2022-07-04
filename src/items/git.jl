@@ -1,14 +1,28 @@
 const RepoLabels = Union{String,Pair{String,Vector{String}}}
 
+"""
+    GitRepo
+
+A structure to store the URLs of git repositories and an associated filter for possible bot filtering.
+"""
 struct GitRepo <: AbstractItem
     fullnames::Vector{RepoLabels}
     filter::Vector{String}
-
-    function GitRepo(args::RepoLabels...; filter=["github-actions[bot]"])
-        return new([r for r in args], filter)
-    end
 end
 
+"""
+    GitRepo(args::RepoLabels...; filter=["github-actions[bot]"])
+
+Stores the URLs of git repositories and an associated filter. By default filters `"github-actions[bot]"`.
+"""
+function GitRepo(args::RepoLabels...; filter=["github-actions[bot]"])
+    return GitRepo([r for r in args], filter)
+end
+
+"""
+    Git
+A structure to store the data of a git repository.
+"""
 struct Git
     name::String
     url::String
@@ -18,6 +32,11 @@ struct Git
     contributors::String
 end
 
+"""
+    to_name(user::String)
+
+Transform a `user` name as a repository collaborator to `name (user)`. The `name` is taken from the global `user_to_name` dictionary.
+"""
 function to_name(user::String)
     str = get(user_to_name, lowercase(user), "")
     return str == "" ? user : "$str ($user)"
@@ -51,7 +70,11 @@ function GitBuilder(r::Repo, contrib::String)
     return g
 end
 
-# TODO: make it a multiple dispatched function
+"""
+    Git(gh_rl::RepoLabels, git_filter)
+
+Create a `Git` element with the elements found at `gh_rl` and filtered with `git_filter`.
+"""
 function Git(gh_rl::RepoLabels, git_filter)
     if @isdefined(github_pat)
         myauth = GitHub.authenticate(github_pat)

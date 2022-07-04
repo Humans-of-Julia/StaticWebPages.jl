@@ -1,3 +1,8 @@
+"""
+    Card
+
+A `Card` structure to fill a `Deck` item.
+"""
 struct Card <: AbstractItem
     first::AbstractString
     second::AbstractString
@@ -5,13 +10,24 @@ struct Card <: AbstractItem
     content::AbstractString
 end
 
+"""
+    Deck
+
+A `Deck` item, composed of cards.
+"""
 struct Deck
     cards::Vector{Card}
     color::CardColor
-
-    Deck(color::CardColor, args...) = new([card for card in args], color)
-    Deck(args...; color::CardColor=card_blue) = new([card for card in args], color)
 end
+
+"""
+    Deck(color::CardColor, args...)
+    Deck(args...; color::CardColor=card_blue)
+
+Construct a `Deck` with the cards in `args`. The `Deck` color can be set to: `card_blue`, `card_green`, `card_red`, `card_orange`, `card_julia_blue`, `card_julia_green`, `card_julia_purple`, `card_julia_red`.
+"""
+Deck(color::CardColor, args...) = Deck([card for card in args], color)
+Deck(args...; color::CardColor=card_blue) = Deck([card for card in args], color)
 
 function to_html(deck::Deck)
     color = color_to_card[deck.color]

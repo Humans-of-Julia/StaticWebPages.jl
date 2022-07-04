@@ -1,11 +1,21 @@
+"""
+    Publications
+
+A structure that store all the informations required to build and export a bibloigraphy.
+"""
 struct Publications
     parser::Parser
     sort::FieldSort
     source::String
+end
 
-    function Publications(source::String; parser::Parser=bibtex, sort::FieldSort=required)
-        return new(parser, sort, joinpath(local_info["content"], source))
-    end
+"""
+    Publications(source::String; parser::Parser=bibtex, sort::FieldSort=required)
+
+Import a bibliography from `source` using `parser`. Some sorting options can be given through `sort`. Please check the `Bibliography.jl` package.
+"""
+function Publications(source::String; parser::Parser=bibtex, sort::FieldSort=required)
+    return Publications(parser, sort, joinpath(local_info["content"], source))
 end
 
 function to_html(publications::Vector{Bibliography.Publication})
