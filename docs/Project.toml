@@ -1,3 +1,4 @@
 [deps]
+Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 StaticWebPages = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
