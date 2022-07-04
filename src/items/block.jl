@@ -1,15 +1,48 @@
 Image = Pair{AbstractString,AbstractString}
+
+"""
+    paragraphs(args::String...)
+
+Construct an ordered sequence of paragraphs (text entries) for a `Block` item.
+"""
 paragraphs(args::String...) = [p for p in args]
+
+"""
+    images(args::Image...)
+
+Construct an ordered sequence of images for a `Block` item. An `Image` should be given as a `Pair` of strings.
+"""
 images(args::Image...) = [img for img in args]
+
+"""
+    iframe(url)
+Construct an iframe from `url`.
+"""
 iframe(url) = url
 
+"""
+    Block
+
+An item to construct a sequence of paragraphs with a (possibly empty) sequence of images on the side. Instead of images, an iframe's url can be given.
+"""
 struct Block <: AbstractItem
     paragraphs::Vector{AbstractString}
     images::Vector{Image}
     iframe::String
 end
 
+"""
+    Block(paragraphs, images)
+
+Construct a `Block` with paragraphs and images.
+"""
 Block(paragraphs, images) = Block(paragraphs, images, "")
+
+"""
+    Block(paragraphs, iframe::String)
+
+Construct a `Block` with paragraphs and an iframe.
+"""
 Block(paragraphs, iframe::String) = Block(paragraphs, Vector{Image}(), iframe)
 
 function to_html(section::Block)
