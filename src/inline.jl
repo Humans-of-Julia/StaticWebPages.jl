@@ -1,14 +1,30 @@
+"""
+    Link
+
+Structure to handle html links within an `<: AbstractItem`. Behaviour is similar to the `<a>` html markup.
+"""
 struct Link
     content::String
     href::String
 end
 
+"""
+    link(content::String, href::String)
+    link(l::Link)
+
+Construct an html link within an `<: AbstractItem`. Behaviour is similar to the `<a>` html markup.
+"""
 function link(l::Link)
     str = """<a href="$(l.href)">$(l.content)</a>"""
     return str
 end
 link(content::String, href::String) = link(Link(content, href))
 
+"""
+    Email
+
+Email inline `Item`. Can be obfuscated.
+"""
 struct Email
     address::String
     content::String
@@ -19,6 +35,12 @@ struct Email
     end
 end
 
+"""
+    email(address::String; content::String="contact", obfuscated::Bool=true)
+    email(e::Email)
+
+Construct an email link. Can be obfuscated (default) to avoid bots spams.
+"""
 function email(e::Email)
     if e.obfuscated
         return """<span class="obfuscate unselectable">$(reverse(e.address))</span>"""
