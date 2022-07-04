@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Items · StaticWebPages.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link rel="canonical" href="https://Humans-of-Julia.github.io/StaticWebPages.jl/items/"/><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.044/juliamono.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><script src="../assets/github_buttons.js"></script><link href="../assets/custom.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">StaticWebPages.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Components</span><ul><li><a class="tocitem" href="../themes/">Theming</a></li><li class="is-active"><a class="tocitem" href>Items</a></li><li><a class="tocitem" href="../pages/">Pages</a></li></ul></li><li><span class="tocitem">Dependencies</span><ul><li><a class="tocitem" href="../bibliography/">Bibliography.jl</a></li></ul></li><li><span class="tocitem">Library</span><ul><li><a class="tocitem" href="../public/">Public</a></li><li><a class="tocitem" href="../internal/">Internals</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Components</a></li><li class="is-active"><a href>Items</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Items</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/Humans-of-Julia/StaticWebPages.jl/blob/master/docs/src/items.md#L" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Items"><a class="docs-heading-anchor" href="#Items">Items</a><a id="Items-1"></a><a class="docs-heading-anchor-permalink" href="#Items" title="Permalink"></a></h1><p>Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too). </p><h5 id="Publications-:-a-bibliography-based-on-a-bibliography-file-(uses-[Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))"><a class="docs-heading-anchor" href="#Publications-:-a-bibliography-based-on-a-bibliography-file-(uses-[Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))"><code>Publications</code> : a bibliography based on a bibliography file (uses <a href="(https:/github.com/Humans-of-Julia/Bibliography.jl)">Bibliography.jl</a>)</a><a id="Publications-:-a-bibliography-based-on-a-bibliography-file-(uses-[Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))-1"></a><a class="docs-heading-anchor-permalink" href="#Publications-:-a-bibliography-based-on-a-bibliography-file-(uses-[Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))" title="Permalink"></a></h5><pre><code class="language-julia hljs"># Simply provide a BibTeX file (usually .bib)
+# Path is based on the root of the content folder
+Publications(&quot;publications.bib&quot;)</code></pre><p>To add labels to the publications entries, please add a <code>swp-labels</code> field to your entries. A <code>labels</code> field is also accepted, but will also appear in the bibTeX citation generated for that article. For instance,</p><pre><code class="language-latex hljs">@inproceedings{parmentier2019introducing,
+    title={Introducing multilayer stream graphs and layer centralities},
+    author={Parmentier, Pimprenelle and Viard, Tiphaine and Renoust, Benjamin and Baffier, Jean-Francois},
+    booktitle={International Conference on Complex Networks and Their Applications},
+    pages={684--696},
+    year={2019},
+    organization={Springer},
+    doi = {10.1007/978-3-030-36683-4_55},
+    swp-labels = {conference, preprint, software, python, modern academics}
+}</code></pre><p><img src="https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/publication.png" alt="Image of a Publication Item"/></p><p>The attribution of colors is done automatically (within the limit of 22 labels, please issue a request if you need more ...)</p><h5 id="Deck-of-Cards-:-a-list-of-ordered-and-clearly-separate-cards"><a class="docs-heading-anchor" href="#Deck-of-Cards-:-a-list-of-ordered-and-clearly-separate-cards"><code>Deck</code> of <code>Card</code>s : a list of ordered and clearly separate cards</a><a id="Deck-of-Cards-:-a-list-of-ordered-and-clearly-separate-cards-1"></a><a class="docs-heading-anchor-permalink" href="#Deck-of-Cards-:-a-list-of-ordered-and-clearly-separate-cards" title="Permalink"></a></h5><pre><code class="language-julia hljs">Deck( # Start of the list
+    Card( # generic
+        &quot;Left&quot;,
+        &quot;Right&quot;,
+        &quot;Title&quot;,
+        &quot;Content&quot;
+    ),
+    Card( # example
+        &quot;2019&quot;,
+        &quot;current&quot;,
+        &quot;Postdoctoral Researcher&quot;,
+        &quot;RIKEN Center for Advanced Intelligence (AIP)&quot;
+    )
+ ) # End of the list</code></pre><p><img src="https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/card.png" alt="Image of Card Items"/></p><h5 id="GitRepo-:-a-list-of-GitHub-repository-displayed-similarly-to-BibTeX-entries"><a class="docs-heading-anchor" href="#GitRepo-:-a-list-of-GitHub-repository-displayed-similarly-to-BibTeX-entries"><code>GitRepo</code> : a list of GitHub repository displayed similarly to BibTeX entries</a><a id="GitRepo-:-a-list-of-GitHub-repository-displayed-similarly-to-BibTeX-entries-1"></a><a class="docs-heading-anchor-permalink" href="#GitRepo-:-a-list-of-GitHub-repository-displayed-similarly-to-BibTeX-entries" title="Permalink"></a></h5><pre><code class="language-julia hljs">gitrepo = GitRepo( # currently work only with GitHub
+    &quot;Azzaare/CompressedStacks.cpp&quot;,
+    &quot;Humans-of-Julia/StaticWebPages.jl&quot;,
+    &quot;Humans-of-Julia/Bibliography.jl&quot;,
+    &quot;Humans-of-Julia/BibParser.jl&quot;,
+    &quot;Humans-of-Julia/BibInternal.jl&quot;,
+    &quot;JuliaGraphs/LightGraphs.jl&quot;,
+    &quot;JuliaGraphs/LightGraphsExtras.jl&quot;,
+    &quot;JuliaGraphs/SNAPDatasets.jl&quot;,
+    &quot;Azzaare/PackageStream.jl&quot;
+)</code></pre><p><img src="https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/git.png" alt="Image of a Git Item"/></p><p>Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don&#39;t know the value). If it happens, a message error from GitHub API will be returned.</p><p>To circumvent this issue, you can uncomment the line <code>local_info[&quot;auth_tokens&quot;] = &quot;PATH/TO/token.jl&#39;</code> in <code>run.jl</code> (or add it if necessary) <strong>and</strong> edit the <code>token.jl</code> by updating your Personnal <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">Access Token</a>.</p><p><code>token.jl</code> aims to store all authentication tokens (for now, just GitHub). It content must be as follow (it is a simple variable containing your PAT):</p><pre><code class="language-julia hljs"># WARNING!
+# YOUR TOKENS SHOULD NEVER BE SHARED! IF YOU USE GIT, DON&#39;T FORGET TO ADD `token.jl` TO YOUR `.gitignore` FILE!
+# YOU CAN ALSO STORE `token.jl` OUTSIDE OF THE STATICWEBPAGES FOLDER!
+
+github_pat = &quot;YOUR_PERSONAL_ACCESS_TOKEN&quot; </code></pre><p>If the token is not valid, a <code>401: Bad Creditential</code> error from GitHUb API will be returned.</p><p>As the comment states, take care not to push your token to your git repo! A good practice could be to store <code>token.jl</code> outside of your git project.</p><h5 id="Block-:-Block-of-paragraphs-with-optional-images-on-the-side"><a class="docs-heading-anchor" href="#Block-:-Block-of-paragraphs-with-optional-images-on-the-side"><code>Block</code> : Block of paragraphs with optional images on the side</a><a id="Block-:-Block-of-paragraphs-with-optional-images-on-the-side-1"></a><a class="docs-heading-anchor-permalink" href="#Block-:-Block-of-paragraphs-with-optional-images-on-the-side" title="Permalink"></a></h5><pre><code class="language-julia hljs"># Examples with and without images
+biography = Block(
+    paragraphs(
+    &quot;&quot;&quot;
+   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
+    &quot;&quot;&quot;,
+    &quot;&quot;&quot;
+    paragraph 2
+    &quot;&quot;&quot;,
+    &quot;&quot;&quot;
+    paragraph 3
+    &quot;&quot;&quot;,
+    &quot;&quot;&quot;
+    Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email(&quot;dummy@example.purpose&quot;))
+    &quot;&quot;&quot;
+    ),
+    images(
+        Image(&quot;cs.png&quot;, &quot;Compressed Stack&quot;),
+        Image(&quot;knowledge.png&quot;, &quot;Flow of Knowledge&quot;)
+    )
+)
+
+research = Block(
+    paragraphs(
+        &quot;&quot;&quot;
+        Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
+        &quot;&quot;&quot;,
+        &quot;&quot;&quot;
+        All of this research is supported by Open-Source Softwares and published as peer-review academic papers. 
+        &quot;&quot;&quot;
+    ),
+    images()
+)</code></pre><p><img src="https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/paragraph.png" alt="Image of a Block Item"/></p><h5 id="TimeLines-:-a-list-of-continuous-items"><a class="docs-heading-anchor" href="#TimeLines-:-a-list-of-continuous-items"><code>TimeLine</code>s : a list of continuous items</a><a id="TimeLines-:-a-list-of-continuous-items-1"></a><a class="docs-heading-anchor-permalink" href="#TimeLines-:-a-list-of-continuous-items" title="Permalink"></a></h5><pre><code class="language-julia hljs">grants = TimeLine(
+    Dot(
+        &quot;Top&quot;,
+        &quot;Title&quot;,
+        &quot;Content&quot;
+    ),
+    Dot(
+        &quot;2012-2015&quot;,
+        &quot;MEXT Scholarship&quot;,
+        &quot;The Monbukagakusho Scholarship is an academic scholarship offered by the Japanese Ministry of Education, Culture, Sports, Science and Technology (MEXT).&quot;
+    )
+)</code></pre><p><img src="https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/timeline.png" alt="Image of a TimeLine Item"/></p><h5 id="Nest!-A-container-to-list-several-items-within-the-same-section"><a class="docs-heading-anchor" href="#Nest!-A-container-to-list-several-items-within-the-same-section"><code>Nest</code>! A container to list several items within the same section</a><a id="Nest!-A-container-to-list-several-items-within-the-same-section-1"></a><a class="docs-heading-anchor-permalink" href="#Nest!-A-container-to-list-several-items-within-the-same-section" title="Permalink"></a></h5><pre><code class="language-julia hljs"># Nest will take a tuple of any Items (except itself)
+positions_grants = Double(
+    Section(
+        title=&quot;Positions and grants&quot;,
+        items=Nest(work_cards, grants)
+    ),
+    Section(title=&quot;Research Topics&quot;, items=research)
+)</code></pre><h3 id="Inline-components"><a class="docs-heading-anchor" href="#Inline-components">Inline components</a><a id="Inline-components-1"></a><a class="docs-heading-anchor-permalink" href="#Inline-components" title="Permalink"></a></h3><p>Some components can be inserted within the content of usual <code>Item</code>s, such as <code>Block</code>, <code>Card</code>, <code>Dot</code>. Currently, only <code>link</code> and <code>email</code> are supported.</p><h5 id="Email-can-obfuscated-(default),-or-not-..."><a class="docs-heading-anchor" href="#Email-can-obfuscated-(default),-or-not-...">Email can obfuscated (default), or not ...</a><a id="Email-can-obfuscated-(default),-or-not-...-1"></a><a class="docs-heading-anchor-permalink" href="#Email-can-obfuscated-(default),-or-not-..." title="Permalink"></a></h5><pre><code class="language-julia hljs">email(&quot;dummy@example.purpose&quot;) # obfuscated
+email(
+    &quot;dummy@example.purpose&quot;;
+    content = &quot;content that appears as the email link&quot;, # ignored if obfuscated
+    obfuscated = false
+    )</code></pre><h5 id="Link-can-be-an-internal-or-an-external-link"><a class="docs-heading-anchor" href="#Link-can-be-an-internal-or-an-external-link">Link can be an internal or an external link</a><a id="Link-can-be-an-internal-or-an-external-link-1"></a><a class="docs-heading-anchor-permalink" href="#Link-can-be-an-internal-or-an-external-link" title="Permalink"></a></h5><pre><code class="language-julia hljs">link(&quot;research project&quot;, &quot;research.hmtl&quot;) # inner link
+link(&quot;StaticWebPages.jl&quot;, &quot;https://github.com/Humans-of-Julia/StaticWebPages.jl&quot;)</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../themes/">« Theming</a><a class="docs-footer-nextpage" href="../pages/">Pages »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Monday 4 July 2022 08:56">Monday 4 July 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
