@@ -216,7 +216,6 @@ const academicons = Dict{String,String}([
     "github" => "fa fa-github-square",
     "linkedin" => "fab fa-linkedin",
     "twitter" => "fa fa-twitter-square",
-    # "discord"       => "fab fa-discord",
 ])
 
 """
