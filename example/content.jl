@@ -8,6 +8,7 @@ info["lang"] = "en"
 info["name"] = "Jean-François BAFFIER"
 info["title"] = "Baffier"
 info["email"] = "jf@baffier.fr"
+info["nav_width"] = "350"
 
 ## Social Networks (comment/delete lines to unwanted social network, input your personal info for the others)
 info["researchgate"] = "https://www.researchgate.net/profile/Jean_Francois_Baffier"
@@ -194,7 +195,7 @@ topics = Block(
         Principal Research Projects: Network Interdiction, Compressed Data Sructures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
         """,
         """
-        All of this research is supported by Open-Source Softwares and published as peer-review academic papers. 
+        All of this research is supported by Open-Source Softwares and published as peer-review academic papers.
         """
     ),
     images()
@@ -206,7 +207,7 @@ interdiction = Block(
         A situation when a network flow is attacked can be modeled by a game between two players: an attacker who wants to remove a set of links that minimizes the flow value and a defender that wants to maximize the flow value. When the attacker (resp. defender) plays first, the problem is called network interdiction (resp. network adaptive flow). Most of those interdiction problems are intractable.
         """,
         """
-        We provide a general framework to solve or approximate interdiction problems in polynomial time, along with Bilevel Mixed-Integer Programs with high accuracy to improve the approximated instances. 
+        We provide a general framework to solve or approximate interdiction problems in polynomial time, along with Bilevel Mixed-Integer Programs with high accuracy to improve the approximated instances.
         """
     ),
     images(

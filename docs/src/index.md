@@ -125,6 +125,9 @@ info["linkedin"] = "https://www.linkedin.com/in/jeanfrancoisbaffier/"
 info["github"] = "https://github.com/Azzaare"
 info["twitter"] = "https://twitter.com/bioazzaare"
 
+# The navigation side-bard default to 250px. If the content above doesn't fit, it be set to another length (in px)
+info["nav_width"] = "300"
+
 ######################################
 # publications.html
 ######################################
