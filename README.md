@@ -46,7 +46,7 @@ You can check that the installation is complete and trigger a precompilation of 
 import StaticWebPages
 ```
 
-Please note that precompilation occurs at first use after installation and updates. The somewhat long compilation is related to the BibTeX parser and should occur rarely.
+Please note that precompilation occurs at first use after installation and updates.
 
 The package can be use from the REPL, but we recommend it to be used through a script file as the `run.jl` presented below. Running the script should be as simple as writing the following command line.
 
@@ -61,6 +61,8 @@ include("run.jl")
 ```
 
 ### Files organization
+
+A compressed template can be found in the `example/` folder as either [template.tar](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.tar) or [template.zip](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.zip).
 
 The two first following files are the only requirement. However, most users will prefer to provide some images/pictures and additional files such as a cv, a bibliography, and some downloadable content.
 
@@ -148,7 +150,7 @@ The only available theme for the moment is using Zurb foundation responsive fron
 
 Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too). 
 
-##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl]((https://github.com/Azzaare/Bibliography.jl)))
+##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))
 
 ```julia
 # Simply provide a BibTeX file (usually .bib)

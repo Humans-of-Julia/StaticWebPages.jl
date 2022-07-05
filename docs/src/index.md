@@ -59,6 +59,8 @@ include("run.jl")
 
 ### Files organization
 
+A compressed template can be found in the `example/` folder as either [template.tar](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.tar) or [template.zip](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.zip).
+
 The two first following files are the only requirement. However, most users will prefer to provide some images/pictures and additional files such as a cv, a bibliography, and some downloadable content.
 
 #### Local script file: `run.jl`
