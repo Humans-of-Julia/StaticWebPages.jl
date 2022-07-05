@@ -38,6 +38,7 @@ function page(;
 end
 
 function to_html(p::Page, opt_in::Bool)
+    nav_width = get!(info, "nav_width", "250")
     str = """
           <!doctype html>
           <!-- This code was generated using the StaticWebPages.jl site generator that is under the GPLv2 license. More info at https://github.com/Azzaare/StaticWebPages.jl -->
@@ -49,7 +50,7 @@ function to_html(p::Page, opt_in::Bool)
                   <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
                   <div class="title-bar-title">Menu</div>
               </div>
-              <div class="off-canvas position-left reveal-for-medium" id="offCanvas" data-off-canvas data-transition="overlap">
+              <div class="off-canvas position-left reveal-for-medium" id="offCanvas" data-off-canvas data-transition="overlap" style="width:$(nav_width)px">
                   $(nav(info, content, p.title, opt_in))
               </div>
 
