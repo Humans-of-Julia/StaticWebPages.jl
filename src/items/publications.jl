@@ -56,6 +56,26 @@ function to_html(publications::Vector{Bibliography.Publication})
                                        <span class="black-text" aria-hidden="true">&times;</span>
                                    </button>
                                </div>
+                """
+        if !isempty(p.abstract)
+            str *= """
+                            <button type="button" data-open="$(p.id)-modal2">
+                                <a class="tooltips" title="" target="_blank" data-original-title="Cite">
+                                    <i class="fa-solid fa-paragraph"></i>
+                                </a>
+                            </button>
+                            <div class="large reveal" id="$(p.id)-modal2" data-reveal>
+                                <div class="abstract">
+                                <h5 class="pubtitle">$(p.title)</h5>
+                                <p>$(p.abstract)</p>
+                                </div>
+                                <button class="close-button" data-close aria-label="Close bib" type="button">
+                                    <span class="black-text" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                    """
+        end
+        str *= """
                        </div>
                        <h4 class="pubtitle">$(p.title)</h4>
                        <div class="pubcontents">

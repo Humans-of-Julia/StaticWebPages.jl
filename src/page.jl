@@ -41,7 +41,7 @@ function to_html(p::Page, opt_in::Bool)
     nav_width = get!(info, "nav_width", "250")
     str = """
           <!doctype html>
-          <!-- This code was generated using the StaticWebPages.jl site generator that is under the GPLv2 license. More info at https://github.com/Azzaare/StaticWebPages.jl -->
+          <!-- This code was generated using the StaticWebPages.jl site generator that is under the GPLv2 license. More info at https://github.com/Humans-of-Julia/StaticWebPages.jl -->
           <html class="no-js" lang="$(info["lang"])">
           $(head(info, p.title))
 

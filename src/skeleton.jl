@@ -15,6 +15,8 @@ function head(info::Dict{String,String}, page::String)
                    <link rel="stylesheet" href="css/foundation.min.css">
                    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
                    <script src="https://kit.fontawesome.com/06a987762e.js" crossorigin="anonymous"></script>
+                   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+                    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
                    <link rel="stylesheet" href="css/app.css">
                  </head>
                  """
