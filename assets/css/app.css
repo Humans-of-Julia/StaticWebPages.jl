@@ -443,6 +443,28 @@ article-title {
     text-align: inherit;
 }
 
+.abstract {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: #333333;
+    letter-spacing: 0px;
+    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    -webkit-font-smoothing: inherit;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    padding: 25px 25px 35px 25px;
+    min-height: 130px;
+    position: relative;
+    box-shadow: 0px 3px 3px -3px #ccc;
+    /* cursor: pointer; */
+    background-color: #f5f5f5;
+    /* margin: 20px 0px; */
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
 .pub-contents {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: #333333;
