@@ -24,7 +24,7 @@ I deeply apologize for those that tested the versions `v0.1.x`, as, from `v0.2.0
 
 ## How does it work
 
-The user provides the content (text, images, files) and select which `Items` will display it. As simple as that. A full working example is provided here (or in the example folder). The result is available as http://baffier.fr
+The user provides the content (text, images, files) and select which `Items` will display it. As simple as that. A full working example is provided here (or in the example folder). The result is available as https://baffier.ovh
 
 ### Installation
 
