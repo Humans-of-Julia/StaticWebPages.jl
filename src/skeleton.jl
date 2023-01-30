@@ -13,7 +13,7 @@ function head(info::Dict{String,String}, page::String)
                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                    <title>$(info["title"]): $(subtitle)</title>
                    <link rel="stylesheet" href="css/foundation.min.css">
-                   <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+                   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
                    <script src="https://kit.fontawesome.com/06a987762e.js" crossorigin="anonymous"></script>
                    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
                     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
