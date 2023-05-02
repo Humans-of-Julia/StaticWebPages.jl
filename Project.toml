@@ -1,18 +1,24 @@
+authors = ["azzaare <jf@baffier.fr>"]
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
-authors = ["azzaare <jf@baffier.fr>"]
-version = "0.2.21"
+version = "0.2.22"
 
 [deps]
 Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
 FTPClient = "01fcc997-4f28-56b8-8a06-30002c134abb"
 GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
+
+[weakdeps]
 Gtk4 = "9db2cae5-386f-4011-9d63-a5602296539b"
+
+[extensions]
+SWPGtkExtension = ["Gtk4"]
 
 [compat]
 Bibliography = "0.2"
 DataStructures = "0.18"
 FTPClient = "1"
 GitHub = "5"
+Gtk4 = "0.3"
 julia = "1.4"

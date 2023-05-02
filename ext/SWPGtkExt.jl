@@ -1,3 +1,5 @@
+module SWPGtkExtension
+
 function make_tree!(ts, item::Item, parent)
     str = replace(String(Symbol(typeof(item))), "StaticWebPages." => "")
     Gtk4.TreeStore.append(ts, parent, Dict(:text => str))
@@ -73,4 +75,6 @@ function ui()
     # Gtk4.show(win)
 
     # return win
+end
+
 end
