@@ -31,7 +31,7 @@ Constructor for `Page`.
 function page(;
     background::BackgroundColor=bg_grey,
     hide::Bool=false,
-    sections::Vector{<:AbstractSection}=Vector{<:AbstractSection}(),
+    sections::Vector{<:AbstractSection}=Vector{AbstractSection}(),
     title::String=""
 )
     return content[title] = Page(background, hide, sections, title)
