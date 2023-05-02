@@ -46,7 +46,7 @@ work_cards = Deck(
         "current",
         "Postdoctoral Researcher",
         "RIKEN Center for Advanced Intelligence (AIP)"
-        ),
+    ),
     Card(
         "2017",
         "2019",
@@ -127,18 +127,18 @@ grants = TimeLine(
 
 biography = Block(
     paragraphs(
-    """
-   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
-    """,
-    """
-    Jean-François graduated Master course at University Paris-Sud and got his Ph.D. from the University of Tokyo. He was a member of the ERATO Kawarabayashi Large Project in Tokyo and Sendai, and a JSPS-CNRS research fellow hosted at the Tokyo Institute of Technology (Japan). He also was a JFLI member from October 2011 to August 2018.
-    """,
-    """
-    His current $(link("research project", "research.hmtl")) involves the study of the “Analysis of information networks,” the “Smart compression for high-scalability of data structures,” and “Explainable Artificial Intelligence.” Other topic of interest covers modeling of failures and routing in Networks, Game Analysis, and AI for Games.
-    """,
-    """
-    Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email("dummy@example.purpose"))
-    """
+        """
+       Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
+        """,
+        """
+        Jean-François graduated Master course at University Paris-Sud and got his Ph.D. from the University of Tokyo. He was a member of the ERATO Kawarabayashi Large Project in Tokyo and Sendai, and a JSPS-CNRS research fellow hosted at the Tokyo Institute of Technology (Japan). He also was a JFLI member from October 2011 to August 2018.
+        """,
+        """
+        His current $(link("research project", "research.hmtl")) involves the study of the “Analysis of information networks,” the “Smart compression for high-scalability of data structures,” and “Explainable Artificial Intelligence.” Other topic of interest covers modeling of failures and routing in Networks, Game Analysis, and AI for Games.
+        """,
+        """
+        Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email("dummy@example.purpose"))
+        """
     ),
     images(
         Image("cs.png", "Compressed Stack"),
@@ -174,16 +174,16 @@ page(
 # publications.html
 #   option 1: background for the page is set to start with white to emphasize the items
 ######################################
-# page(
-#     title="publications",
-#     background=bg_white,
-#     sections=[
-#         Section(
-#             title="Publications",
-#             items=Publications("publications.bib")
-#         )
-#     ]
-# )
+page(
+    title="publications",
+    background=bg_white,
+    sections=[
+        Section(
+            title="Publications",
+            items=Publications("publications.bib")
+        )
+    ]
+)
 
 ######################################
 # research.html
@@ -280,9 +280,7 @@ page(
         Section(
             title="Explainable Artificial Intelligence",
             items=explainable
-        ),
-
-    ]
+        ),]
 )
 
 ######################################
