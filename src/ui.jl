@@ -1,6 +1,6 @@
 function make_tree!(ts, item::Item, parent)
     str = replace(String(Symbol(typeof(item))), "StaticWebPages." => "")
-    push!(ts, (str,), parent)
+    Gtk4.TreeStore.append(ts, parent, Dict(:text => str))
 end
 
 function make_tree!(ts, nest::Nest, parent)
@@ -35,34 +35,42 @@ function choose_project_folder(win)
     end
 end
 
+function populate_tree_view(content)
+    ts = Gtk4.TreeStore(String)
+    make_tree!(ts, content)
+    tree_view = Gtk4.TreeView(ts)
+
+    r1 = Gtk4.CellRendererText()
+    c1 = Gtk4.TreeViewColumn("Content", Dict(:text => r1))
+    Gtk4.TreeView.append_column(tree_view, c1)
+
+    return tree_view
+end
+
 function ui()
-    ts = GtkTreeStore(String)
-    info = push!(ts,("Informations",))
-    tv = GtkTreeView(GtkTreeModel(ts))
-    r1 = GtkCellRendererText()
-    c1 = GtkTreeViewColumn("Content", r1, Dict([("text",0)]))
-    push!(tv,c1)
+    # ts = GtkTreeStore(String)
+    # info = GtkTreeStore.append(ts, Dict(:text => "Informations"))
+    # tv = populate_tree_view(content)
 
-    uifile = joinpath(@__DIR__, "builder", "StaticWebPages.glade")
-    builder = GtkBuilder(filename=uifile)
+    # # Update the path to your Glade file
+    # uifile = joinpath(@__DIR__, "builder", "StaticWebPages.glade")
+    # builder = Gtk4.Builder(filename=uifile)
 
-    # Associates widgets from GtkBuilder
-    win = builder["window"]
-    header = builder["header"]
-    actions = builder["actions"]
-    build = builder["build"]
-    ftp = builder["ftp"]
-    push = builder["push"]
-    open_ = builder["open_project"]
-    new_ = builder["new_project"]
-    shokupan = builder["shokupan"]
-    flow = builder["flow"]
+    # # Associates widgets from GtkBuilder
+    # win = builder["window"]
+    # header = builder["header"]
+    # actions = builder["actions"]
+    # build = builder["build"]
+    # ftp = builder["ftp"]
+    # push = builder["push"]
+    # open_ = builder["open_project"]
+    # new_ = builder["new_project"]
+    # shokupan = builder["shokupan"]
+    # flow = builder["flow"]
 
-    push!(shokupan, tv)
+    # Gtk4.Box.append(shokupan, tv)
 
-    showall(win)
+    # Gtk4.show(win)
 
-    # make_tree!(ts, content)
-
-    return win
+    # return win
 end

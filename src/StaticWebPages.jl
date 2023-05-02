@@ -4,7 +4,7 @@ using DataStructures
 using FTPClient
 using GitHub
 
-using Gtk
+using Gtk4
 
 import Base.show
 
@@ -28,7 +28,7 @@ export TimeLineColor
 export ui
 
 function load_example()
-    include(joinpath(@__DIR__,"..","example","content.jl"))
+    include(joinpath(@__DIR__, "..", "example", "content.jl"))
 end
 
 include("constant.jl")

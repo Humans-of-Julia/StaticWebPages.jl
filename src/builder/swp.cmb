@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<cambalache-project version="0.10.3" target_tk="gtk-4.0">
+  <ui>
+	(1,None,"swp.ui","swp.ui",None,None,None,None,None,None)
+  </ui>
+  <object>
+	(1,1,"GtkApplicationWindow",None,None,None,None,None,None),
+	(1,5,"GtkPopoverMenu","popover_file_system",None,None,None,None,None),
+	(1,6,"GtkBox",None,5,None,None,None,None),
+	(1,7,"GtkButton","save_as",6,None,None,None,None),
+	(1,8,"GtkButton","save",6,None,None,None,1),
+	(1,9,"GtkButton","manage_project",6,None,None,None,2),
+	(1,10,"GtkButton","new_project",6,None,None,None,4),
+	(1,11,"GtkButton","open",6,None,None,None,5),
+	(1,12,"GtkSeparator",None,6,None,None,None,6),
+	(1,13,"GtkSeparator",None,6,None,None,None,7),
+	(1,14,"GtkSeparator",None,6,None,None,None,3),
+	(1,15,"GtkButton","redo",6,None,None,None,9),
+	(1,16,"GtkButton","cancel",6,None,None,None,8),
+	(1,25,"GtkBox","main",1,None,None,None,1),
+	(1,26,"GtkTreeView",None,25,None,None,None,None),
+	(1,27,"GtkBox",None,25,None,None,None,1),
+	(1,28,"GtkFrame",None,25,None,None,None,2),
+	(1,29,"GtkTextView",None,27,None,None,None,None),
+	(1,30,"GtkLabel",None,27,None,None,None,None),
+	(1,31,"GtkBox",None,28,None,None,None,None)
+  </object>
+  <object_property>
+	(1,1,"GtkWindow","title","StaticWebPages.jl",None,None,None,None,None),
+	(1,5,"GtkWidget","halign","baseline",None,None,None,None,None),
+	(1,6,"GtkAccessible","accessible-role","menu-item",None,None,None,None,None),
+	(1,11,"GtkButton","label","open",None,None,None,None,None),
+	(1,11,"GtkWidget","halign","start",None,None,None,None,None)
+  </object_property>
+</cambalache-project>

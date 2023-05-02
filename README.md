@@ -32,7 +32,7 @@ The only requirement is to install Julia and this package (preferably through th
 
 In the Julia REPL (that you can launch as a standalone or call within a console), please enter Pkg REPL. To quote the package manager documentation:
 > Pkg comes with a REPL. Enter the Pkg REPL by pressing ] from the Julia REPL. To get back to the Julia REPL, press backspace or ^C.
- 
+
 The following code snippet update the general registry of Julia's packages, then install the `StaticWebPages.jl` package.
 
 ```
