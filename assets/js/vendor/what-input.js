@@ -1,6 +1,6 @@
 /**
  * what-input - A global utility for tracking the current input method (mouse, keyboard or touch).
- * @version v5.2.10
+ * @version v5.2.12
  * @link https://github.com/ten1seven/what-input
  * @license MIT
  */
@@ -115,7 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var currentTimestamp = Date.now();
 
 	  // check for a `data-whatpersist` attribute on either the `html` or `body` elements, defaults to `true`
-	  var shouldPersist = 'false';
+	  var shouldPersist = false;
 
 	  // form input types
 	  var formInputs = ['button', 'input', 'select', 'textarea'];
@@ -195,26 +195,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // `pointermove`, `MSPointerMove`, `mousemove` and mouse wheel event binding
 	    // can only demonstrate potential, but not actual, interaction
 	    // and are treated separately
-	    var options = supportsPassive ? { passive: true } : false;
+	    var options = supportsPassive ? { passive: true, capture: true } : true;
 
-	    document.addEventListener('DOMContentLoaded', setPersist);
+	    document.addEventListener('DOMContentLoaded', setPersist, true);
 
 	    // pointer events (mouse, pen, touch)
 	    if (window.PointerEvent) {
-	      window.addEventListener('pointerdown', setInput);
-	      window.addEventListener('pointermove', setIntent);
+	      window.addEventListener('pointerdown', setInput, true);
+	      window.addEventListener('pointermove', setIntent, true);
 	    } else if (window.MSPointerEvent) {
-	      window.addEventListener('MSPointerDown', setInput);
-	      window.addEventListener('MSPointerMove', setIntent);
+	      window.addEventListener('MSPointerDown', setInput, true);
+	      window.addEventListener('MSPointerMove', setIntent, true);
 	    } else {
 	      // mouse events
-	      window.addEventListener('mousedown', setInput);
-	      window.addEventListener('mousemove', setIntent);
+	      window.addEventListener('mousedown', setInput, true);
+	      window.addEventListener('mousemove', setIntent, true);
 
 	      // touch events
 	      if ('ontouchstart' in window) {
 	        window.addEventListener('touchstart', setInput, options);
-	        window.addEventListener('touchend', setInput);
+	        window.addEventListener('touchend', setInput, true);
 	      }
 	    }
 
@@ -222,18 +222,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.addEventListener(detectWheel(), setIntent, options);
 
 	    // keyboard events
-	    window.addEventListener('keydown', setInput);
-	    window.addEventListener('keyup', setInput);
+	    window.addEventListener('keydown', setInput, true);
+	    window.addEventListener('keyup', setInput, true);
 
 	    // focus events
-	    window.addEventListener('focusin', setElement);
-	    window.addEventListener('focusout', clearElement);
+	    window.addEventListener('focusin', setElement, true);
+	    window.addEventListener('focusout', clearElement, true);
 	  };
 
 	  // checks if input persistence should happen and
 	  // get saved state from session storage if true (defaults to `false`)
 	  var setPersist = function setPersist() {
-	    shouldPersist = !(docElem.getAttribute('data-whatpersist') || document.body.getAttribute('data-whatpersist') === 'false');
+	    shouldPersist = !(docElem.getAttribute('data-whatpersist') === 'false' || document.body.getAttribute('data-whatpersist') === 'false');
 
 	    if (shouldPersist) {
 	      // check for session variables and use if available
