@@ -52,3 +52,15 @@ end
 function email(address::String; content::String="contact", obfuscated::Bool=true)
     return email(Email(address, content, obfuscated))
 end
+
+struct List
+    items::Vector{String}
+    ordered::Bool
+end
+
+function list(l::List)
+    lt = l.ordered ? "ol" : "ul"
+    return """<$lt class=inline_list>$(join(["<li><div  class=inline_list_item>$(item)</div></li>" for item in l.items]))</$lt>"""
+end
+
+list(items; ordered = false) = list(List(items, ordered))

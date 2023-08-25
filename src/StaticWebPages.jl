@@ -1,6 +1,7 @@
 module StaticWebPages
 
 using DataStructures
+using Dates
 using FTPClient
 using GitHub
 

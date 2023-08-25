@@ -857,3 +857,11 @@ article-title {
     align-self: center;
     text-align: center;
 }
+
+.inline_list {
+    margin-left: 50px;
+}
+
+.inline_list_item {
+    text-align: left;
+}

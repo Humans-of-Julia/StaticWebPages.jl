@@ -17,8 +17,9 @@ include("items/git.jl")
 include("items/publications.jl")
 include("items/block.jl")
 include("items/timeline.jl")
+include("items/blog.jl")
 
-Item = Union{Deck,GitRepo,Publications,Block,TimeLine}
+Item = Union{Deck,GitRepo,Publications,Block,TimeLine,Blog}
 
 
 """
