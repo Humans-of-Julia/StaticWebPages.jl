@@ -21,6 +21,7 @@ export Block
 export Card
 export CardColor
 export GitRepo
+export Post
 export TimeLine
 export TimeLineColor
 
@@ -35,6 +36,7 @@ include("inline.jl")
 include("items.jl")
 include("skeleton.jl")
 include("page.jl")
+include("blog.jl")
 include("io.jl")
 
 end # module StaticWebPages

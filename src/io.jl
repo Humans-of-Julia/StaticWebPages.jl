@@ -1,3 +1,11 @@
+function make_path(b::String, p::Post)
+    return "$b--$(p.page.title).html"
+end
+function make_path(b::Pair{String,String}, p::Post)
+    return "$(b.first)--$(b.second)---$(p.page.title).html"
+end
+
+
 """
     export_site(; d::Dict{String,String}=local_info, rm_dir::Bool=false, opt_in::Bool=false)
 
@@ -40,15 +48,30 @@ function export_site(;
     end
 
     include(joinpath(d["content"], "content.jl"))
-    for p in keys(content)
-        if !content[p].hide
-            print("Generating $p.html")
-            f = open(joinpath(d["site"], "$p.html"), "w")
-            write(f, to_html(content[p], opt_in))
-            close(f)
-            println(" - done!\n")
-        end
+
+    function inner_to_html(k, p::Page)
+        print("Generating $k.html")
+        f = open(joinpath(d["site"], "$k.html"), "w")
+        write(f, to_html(p, opt_in))
+        close(f)
+        println(" - done!\n")
     end
+
+    function inner_to_html(_, p::Post)
+        path = make_path(p.blog, p)
+        print("Generating $path")
+        path = joinpath(d["site"], path)
+        !isdir(path) && mkpath(dirname(path))
+        f = open(path, "w")
+        write(f, to_html(p.page, opt_in, p.date))
+        close(f)
+        println(" - done!\n")
+    end
+
+    for (k, p) in content
+        hide(content[k]) || inner_to_html(k, p)
+    end
+
     return println("The website has been generated in $(d["site"])\n")
 end
 

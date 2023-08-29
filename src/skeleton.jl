@@ -42,6 +42,7 @@ function nav(
           """
 
     for (p, c) in content
+        c isa Post && continue
         item = p == "index" ? "Home" : uppercasefirst(p)
         if page == p
             str *= """

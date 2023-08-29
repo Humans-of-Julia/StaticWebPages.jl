@@ -17,9 +17,8 @@ include("items/git.jl")
 include("items/publications.jl")
 include("items/block.jl")
 include("items/timeline.jl")
-include("items/blog.jl")
 
-Item = Union{Deck,GitRepo,Publications,Block,TimeLine,Blog}
+Item = Union{Deck,GitRepo,Publications,Block,TimeLine}
 
 
 """
@@ -85,9 +84,16 @@ function Section(;
     return Section(bgcolor, hide, items, title, title_size)
 end
 
-function to_html(s::Section, x::Int)
+function to_html(s::Section, x::Int, date = nothing)
+    date_str = ""
+    if x == 2 && date !== nothing
+        date_str = """
+        <div class="blog_date">last updated: $(date)</div>
+        """
+    end
+
     str = """
-          <h$x class="hx cell">$(s.title)</h$x>
+          <h$x class="hx cell">$(s.title) $date_str</h$x>
           $(to_html(s.items))
           """
     return str
@@ -114,7 +120,7 @@ function Double(f::Section, s::Section)
     return Double(f, s, h)
 end
 
-function to_html(d::Double, x::Int)
+function to_html(d::Double, x::Int, ::Nothing)
     str = ""
     if !d.first.hide
         str *= """

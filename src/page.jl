@@ -1,9 +1,14 @@
+abstract type AbstractPage end
+
+hide(p::AbstractPage) = true
+sections(p::AbstractPage) = Vector{AbstractSection}()
+
 """
     Page
 
 A structure to store a page information.
 """
-struct Page
+struct Page <: AbstractPage
     background::BackgroundColor
     hide::Bool
     sections::Vector{<:AbstractSection}
@@ -37,7 +42,10 @@ function page(;
     return content[title] = Page(background, hide, sections, title)
 end
 
-function to_html(p::Page, opt_in::Bool)
+hide(p::Page) = p.hide
+sections(p::Page) = p.sections
+
+function to_html(p::Page, opt_in::Bool, date = nothing)
     nav_width = get!(info, "nav_width", "250")
     str = """
           <!doctype html>
@@ -60,13 +68,13 @@ function to_html(p::Page, opt_in::Bool)
     x = 2 # <hx> title level
     odd = p.background == bg_grey # starting background color
 
-    for section in content[p.title].sections
+    for section in content[p.title] |> sections
         if !section.hide
             centered = x == 2 ? "" : " centered"
             oddness = odd ? "content-odd" : "content-even"
             str *= """
                    <div class="grid-x grid-margin-x content $centered $oddness">
-                       $(to_html(section, x))
+                        $(to_html(section, x, date))
                    </div>
                    """
         end

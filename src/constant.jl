@@ -256,3 +256,5 @@ const user_to_name = Dict{String,String}()
 An ordered dictionary to store the attributions of labels to keywords in a `Publications`.
 """
 const publication_labels = OrderedDict{String,ColorLabel}()
+
+const BLOGS = OrderedDict{Union{String, Pair{String, String}},Vector{Any}}()

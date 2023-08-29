@@ -865,3 +865,12 @@ article-title {
 .inline_list_item {
     text-align: left;
 }
+
+.blog_date {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-bottom: 0px;
+    text-align: end;
+    color: grey;
+}

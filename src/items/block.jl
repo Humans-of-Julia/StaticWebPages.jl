@@ -1,4 +1,4 @@
-Image = Pair{AbstractString,AbstractString}
+Image = Pair{String,String}
 
 """
     paragraphs(args::String...)
@@ -26,7 +26,7 @@ iframe(url) = url
 An item to construct a sequence of paragraphs with a (possibly empty) sequence of images on the side. Instead of images, an iframe's url can be given.
 """
 struct Block <: AbstractItem
-    paragraphs::Vector{AbstractString}
+    paragraphs::Vector{String}
     images::Vector{Image}
     iframe::String
 end
@@ -46,8 +46,7 @@ Construct a `Block` with paragraphs and an iframe.
 Block(paragraphs, iframe::String) = Block(paragraphs, Vector{Image}(), iframe)
 
 function to_html(section::Block)
-    full =
-        eltype(section.images) <: Union && isempty(section.iframe) ? "" : "medium-8 large-9"
+    full = isempty(section.images) && isempty(section.iframe) ? "" : "medium-8 large-9"
     str = """<div class="cell $full">\n"""
 
     for p in section.paragraphs
@@ -71,6 +70,7 @@ function to_html(section::Block)
                    """
         end
 
+        # TODO: check the iframe stuff
         if !isempty(section.iframe)
             str *= """
             <iframe src="$(section.iframe)" class="discord-widget"
