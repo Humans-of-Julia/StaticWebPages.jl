@@ -147,25 +147,25 @@ biography = Block(
 )
 
 page(
-    title="index",
-    sections=[
+    title = "index",
+    sections = [
         Section(
-            title="Biography",
-            items=biography
+            title = "Biography",
+            items = biography
         ),
         Double(
             Section(
-                title="Positions",
-                items=work_cards
+                title = "Positions",
+                items = work_cards
             ),
             Section(
-                title="Education",
-                items=education_cards
+                title = "Education",
+                items = education_cards
             )
         ),
         Section(
-            title="Grants",
-            items=grants
+            title = "Grants",
+            items = grants
         )
     ]
 )
@@ -175,13 +175,13 @@ page(
 #   option 1: background for the page is set to start with white to emphasize the items
 ######################################
 page(
-    title="publications",
-    background=bg_white,
-    sections=[
+    title = "publications",
+    background = bg_white,
+    sections = [
         Section(
-            title="Publications",
-            items=Publications("publications.bib")
-        )
+        title = "Publications",
+        items = Publications("publications.bib")
+    )
     ]
 )
 
@@ -259,28 +259,28 @@ explainable = Block(
 )
 
 page(
-    title="research",
-    sections=[
+    title = "research",
+    sections = [
         Section(
-            title="Research topics",
-            items=topics
+            title = "Research topics",
+            items = topics
         ),
         Section(
-            title="Network Interdiction",
-            items=interdiction
+            title = "Network Interdiction",
+            items = interdiction
         ),
         Section(
-            title="Compressed Data Sructures",
-            items=structure
+            title = "Compressed Data Sructures",
+            items = structure
         ),
         Section(
-            title="Modern Academics",
-            items=modernac
+            title = "Modern Academics",
+            items = modernac
         ),
         Section(
-            title="Explainable Artificial Intelligence",
-            items=explainable
-        ),]
+            title = "Explainable Artificial Intelligence",
+            items = explainable
+        )]
 )
 
 ######################################
@@ -301,14 +301,14 @@ github = GitRepo(
 )
 
 page(
-    title="software",
-    background=bg_white,
-    sections=[
+    title = "software",
+    background = bg_white,
+    sections = [
         Section(
-            title="Software",
-            hide=true,
-            items=github,
-        )
+        title = "Software",
+        hide = true,
+        items = github
+    )
     ]
 )
 

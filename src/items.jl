@@ -18,8 +18,7 @@ include("items/publications.jl")
 include("items/block.jl")
 include("items/timeline.jl")
 
-Item = Union{Deck,GitRepo,Publications,Block,TimeLine}
-
+Item = Union{Deck, GitRepo, Publications, Block, TimeLine}
 
 """
     to_html(args...)
@@ -38,7 +37,7 @@ struct Nest
     Nest(args...) = new([item for item in args])
 end
 
-SectionItems = Union{Item,Nest}
+SectionItems = Union{Item, Nest}
 
 function to_html(nest::Nest)
     str = ""
@@ -75,11 +74,11 @@ Create a new single column section.
 )
 """
 function Section(;
-    bgcolor::BackgroundColor=bg_none,
-    hide::Bool=false,
-    items::SectionItems=Nest(),
-    title::String="",
-    title_size=0
+        bgcolor::BackgroundColor = bg_none,
+        hide::Bool = false,
+        items::SectionItems = Nest(),
+        title::String = "",
+        title_size = 0
 )
     return Section(bgcolor, hide, items, title, title_size)
 end

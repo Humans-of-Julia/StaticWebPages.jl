@@ -14,7 +14,7 @@ end
 
 Import a bibliography from `source` using `parser`. Some sorting options can be given through `sort`. Please check the `Bibliography.jl` package.
 """
-function Publications(source::String; parser::Parser=bibtex, sort::FieldSort=required)
+function Publications(source::String; parser::Parser = bibtex, sort::FieldSort = required)
     return Publications(parser, sort, joinpath(local_info["content"], source))
 end
 
@@ -84,7 +84,7 @@ function to_html(publications::Vector{Bibliography.Publication})
             if label ∉ keys(publication_labels)
                 push!(
                     publication_labels,
-                    label => ColorLabel(mod(length(publication_labels), 22)),
+                    label => ColorLabel(mod(length(publication_labels), 22))
                 )
             end
             color = color_to_label[publication_labels[label]]

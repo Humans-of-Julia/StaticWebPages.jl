@@ -10,10 +10,10 @@ struct Page
     title::String
 
     function Page(
-        background::BackgroundColor,
-        hide::Bool,
-        sections::Vector{<:AbstractSection},
-        title::String,
+            background::BackgroundColor,
+            hide::Bool,
+            sections::Vector{<:AbstractSection},
+            title::String
     )
         return new(background, hide, sections, title)
     end
@@ -29,10 +29,10 @@ Constructor for `Page`.
 - `title::String=""`: Page's title, can be left empty.
 """
 function page(;
-    background::BackgroundColor=bg_grey,
-    hide::Bool=false,
-    sections::Vector{<:AbstractSection}=Vector{AbstractSection}(),
-    title::String=""
+        background::BackgroundColor = bg_grey,
+        hide::Bool = false,
+        sections::Vector{<:AbstractSection} = Vector{AbstractSection}(),
+        title::String = ""
 )
     return content[title] = Page(background, hide, sections, title)
 end

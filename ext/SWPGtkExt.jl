@@ -31,7 +31,8 @@ end
 set_subtitle!(widget, str) = set_gtk_property!(widget, :subtitle, str)
 
 function choose_project_folder(win)
-    dir = open_dialog("Select content.jl folder", win, action=GtkFileChooserAction.SELECT_FOLDER)
+    dir = open_dialog(
+        "Select content.jl folder", win, action = GtkFileChooserAction.SELECT_FOLDER)
     if isdir(dir)
         set_subtitle!(header, "$(pwd())")
     end

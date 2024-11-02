@@ -95,7 +95,7 @@ end
 
 A dictionary to translate the enumeration in ColorLabel to actual HTML/CSS labels. An optional `black-text` color for text is given (it defaults to white-text).
 """
-const color_to_label = Dict{ColorLabel,String}([
+const color_to_label = Dict{ColorLabel, String}([
     red => "label-red",
     green => "label-green",
     yellow => "label-yellow black-text",
@@ -117,9 +117,8 @@ const color_to_label = Dict{ColorLabel,String}([
     navy => "label-navy",
     grey => "label-grey",
     white => "label-white black-text",
-    black => "label-black",
+    black => "label-black"
 ])
-
 
 """
     CardColor
@@ -150,7 +149,7 @@ end
 
 A dictionary to translate the enumeration in CardColor to actual HTML/CSS attributes. A card can be composed of either one or two colors.
 """
-const color_to_card = Dict{CardColor,Tuple{String,String}}([
+const color_to_card = Dict{CardColor, Tuple{String, String}}([
     card_blue => ("blue-first", "blue-second"),
     card_green => ("green-first", "green-second"),
     card_red => ("red-first", "red-second"),
@@ -158,7 +157,7 @@ const color_to_card = Dict{CardColor,Tuple{String,String}}([
     card_julia_blue => ("julia-blue", "julia-blue"),
     card_julia_green => ("julia-green", "julia-green"),
     card_julia_purple => ("julia-purple", "julia-purple"),
-    card_julia_red => ("julia-red", "julia-red"),
+    card_julia_red => ("julia-red", "julia-red")
 ])
 
 """
@@ -192,7 +191,7 @@ end
 
 A dictionary to translate the enumeration in `TimeLineColor` to actual HTML/CSS attributes.
 """
-const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
+const color_to_timeline = Dict{TimeLineColor, Tuple{String, String}}([
     tl_blue => ("tl-blue-bg", "tl-blue-border"),
     tl_green => ("tl-green-bg", "tl-green-border"),
     tl_red => ("tl-red-bg", "tl-red-border"),
@@ -200,7 +199,7 @@ const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
     tl_julia_blue => ("julia-blue", "julia-blue-border"),
     tl_julia_green => ("julia-green", "julia-green-border"),
     tl_julia_purple => ("julia-purple", "julia-purple-border"),
-    tl_julia_red => ("julia-red", "julia-red-border"),
+    tl_julia_red => ("julia-red", "julia-red-border")
 ])
 
 """
@@ -208,14 +207,14 @@ const color_to_timeline = Dict{TimeLineColor,Tuple{String,String}}([
 
 A dictionary that tracks the HTML/CSS attributes for icons from font-awesome.
 """
-const academicons = Dict{String,String}([
+const academicons = Dict{String, String}([
     "researchgate" => "ai ai-researchgate-square",
     "googlescholar" => "ai ai-google-scholar-square",
     "orcid" => "ai ai-orcid-square",
     "dblp" => "ai ai-dblp-square",
     "github" => "fa fa-github-square",
     "linkedin" => "fab fa-linkedin",
-    "twitter" => "fa fa-twitter-square",
+    "twitter" => "fa fa-twitter-square"
 ])
 
 """
@@ -223,7 +222,7 @@ const academicons = Dict{String,String}([
 
 A dictionary, with default values, used to customize personal information.
 """
-const info = Dict{String,String}([
+const info = Dict{String, String}([
     "title" => "title", "avatar" => "pic.jpg", "name" => "name", "lang" => "en"
 ])
 
@@ -232,14 +231,14 @@ const info = Dict{String,String}([
 
 An ordered dictionary to store the different web pages.
 """
-const content = OrderedDict{String,Any}()
+const content = OrderedDict{String, Any}()
 
 """
     local_info
 
 A dictionary that stores local information required to build and export the website.
 """
-const local_info = Dict{String,String}()
+const local_info = Dict{String, String}()
 
 """
     user_to_name
@@ -248,11 +247,11 @@ A dictionary to translate user id (such as GitHub id) to real name. Normal use i
 
 When a list of id is too long, priority is given to the id with an associated name.
 """
-const user_to_name = Dict{String,String}()
+const user_to_name = Dict{String, String}()
 
 """
     publication_labels
 
 An ordered dictionary to store the attributions of labels to keywords in a `Publications`.
 """
-const publication_labels = OrderedDict{String,ColorLabel}()
+const publication_labels = OrderedDict{String, ColorLabel}()
