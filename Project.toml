@@ -1,7 +1,7 @@
 authors = ["azzaare <jf@baffier.fr>"]
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
-version = "0.2.23"
+version = "0.2.22"
 
 [deps]
 Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"
