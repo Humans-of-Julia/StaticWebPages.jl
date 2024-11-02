@@ -1,8 +1,8 @@
 # Items
 
-Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too). 
+Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too).
 
-##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))
+##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl](https://github.com/Humans-of-Julia/Bibliography.jl))
 
 ```julia
 # Simply provide a BibTeX file (usually .bib)
@@ -78,7 +78,7 @@ To circumvent this issue, you can uncomment the line `local_info["auth_tokens"] 
 # YOUR TOKENS SHOULD NEVER BE SHARED! IF YOU USE GIT, DON'T FORGET TO ADD `token.jl` TO YOUR `.gitignore` FILE!
 # YOU CAN ALSO STORE `token.jl` OUTSIDE OF THE STATICWEBPAGES FOLDER!
 
-github_pat = "YOUR_PERSONAL_ACCESS_TOKEN" 
+github_pat = "YOUR_PERSONAL_ACCESS_TOKEN"
 ```
 
 If the token is not valid, a `401: Bad Creditential` error from GitHUb API will be returned.
@@ -115,7 +115,7 @@ research = Block(
         Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
         """,
         """
-        All of this research is supported by Open-Source Softwares and published as peer-review academic papers. 
+        All of this research is supported by Open-Source Softwares and published as peer-review academic papers.
         """
     ),
     images()

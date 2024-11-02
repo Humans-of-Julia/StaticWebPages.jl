@@ -266,7 +266,7 @@ research = Block(
         Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
         """,
         """
-        All of this research is supported by Open-Source Softwares and published as peer-review academic papers.
+        All of this research is supported by Open-Source Software and published as peer-review academic papers.
         """
     ),
     images()
