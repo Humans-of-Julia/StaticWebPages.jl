@@ -4,7 +4,7 @@ extend-ignore-re = [
 ]
 
 [files]
-extend-exclude = ["*.css"]
+extend-exclude = ["*.css", "*.js"]
 
 [default.extend-words]
 annote = "annote"
