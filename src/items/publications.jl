@@ -1,7 +1,7 @@
 """
     Publications
 
-A structure that store all the informations required to build and export a bibloigraphy.
+A structure that store all the information required to build and export a bibloigraphy.
 """
 struct Publications
     parser::Parser
