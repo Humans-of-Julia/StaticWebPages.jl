@@ -1,5 +1,5 @@
 ######################################
-# General informations
+# General information
 ######################################
 
 info["avatar"] = "pic.jpg"
@@ -128,13 +128,13 @@ grants = TimeLine(
 biography = Block(
     paragraphs(
         """
-       Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
+       Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and software.
         """,
         """
         Jean-François graduated Master course at University Paris-Sud and got his Ph.D. from the University of Tokyo. He was a member of the ERATO Kawarabayashi Large Project in Tokyo and Sendai, and a JSPS-CNRS research fellow hosted at the Tokyo Institute of Technology (Japan). He also was a JFLI member from October 2011 to August 2018.
         """,
         """
-        His current $(link("research project", "research.hmtl")) involves the study of the “Analysis of information networks,” the “Smart compression for high-scalability of data structures,” and “Explainable Artificial Intelligence.” Other topic of interest covers modeling of failures and routing in Networks, Game Analysis, and AI for Games.
+        His current $(link("research project", "research.html")) involves the study of the “Analysis of information networks,” the “Smart compression for high-scalability of data structures,” and “Explainable Artificial Intelligence.” Other topic of interest covers modeling of failures and routing in Networks, Game Analysis, and AI for Games.
         """,
         """
         Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email("dummy@example.purpose"))
@@ -192,10 +192,10 @@ page(
 topics = Block(
     paragraphs(
         """
-        Principal Research Projects: Network Interdiction, Compressed Data Sructures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
+        Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
         """,
         """
-        All of this research is supported by Open-Source Softwares and published as peer-review academic papers.
+        All of this research is supported by Open-Source Software and published as peer-review academic papers.
         """
     ),
     images()
@@ -238,7 +238,7 @@ modernac = Block(
         context
         """,
         """
-        resutls
+        results
         """
     ),
     images(
@@ -252,7 +252,7 @@ explainable = Block(
         context
         """,
         """
-        resutls
+        results
         """
     ),
     images()
@@ -270,7 +270,7 @@ page(
             items = interdiction
         ),
         Section(
-            title = "Compressed Data Sructures",
+            title = "Compressed Data Structures",
             items = structure
         ),
         Section(

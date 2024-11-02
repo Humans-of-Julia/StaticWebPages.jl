@@ -52,7 +52,7 @@ end
 
 function ui()
     # ts = GtkTreeStore(String)
-    # info = GtkTreeStore.append(ts, Dict(:text => "Informations"))
+    # info = GtkTreeStore.append(ts, Dict(:text => "Information"))
     # tv = populate_tree_view(content)
 
     # # Update the path to your Glade file
