@@ -27,7 +27,7 @@ end
 Construct a `Deck` with the cards in `args`. The `Deck` color can be set to: `card_blue`, `card_green`, `card_red`, `card_orange`, `card_julia_blue`, `card_julia_green`, `card_julia_purple`, `card_julia_red`.
 """
 Deck(color::CardColor, args...) = Deck([card for card in args], color)
-Deck(args...; color::CardColor=card_blue) = Deck([card for card in args], color)
+Deck(args...; color::CardColor = card_blue) = Deck([card for card in args], color)
 
 function to_html(deck::Deck)
     color = color_to_card[deck.color]

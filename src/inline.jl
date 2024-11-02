@@ -49,6 +49,6 @@ function email(e::Email)
     end
 end
 
-function email(address::String; content::String="contact", obfuscated::Bool=true)
+function email(address::String; content::String = "contact", obfuscated::Bool = true)
     return email(Email(address, content, obfuscated))
 end

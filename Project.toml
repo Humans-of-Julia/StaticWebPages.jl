@@ -1,7 +1,7 @@
 authors = ["azzaare <jf@baffier.fr>"]
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
-version = "0.2.22"
+version = "0.2.23"
 
 [deps]
 Bibliography = "f1be7e48-bf82-45af-a471-ae754a193061"
@@ -16,9 +16,19 @@ Gtk4 = "9db2cae5-386f-4011-9d63-a5602296539b"
 SWPGtkExtension = ["Gtk4"]
 
 [compat]
-Bibliography = "0.2"
+Bibliography = "0.3"
 DataStructures = "0.18"
 FTPClient = "1"
 GitHub = "5"
 Gtk4 = "0.3"
-julia = "1.9"
+julia = "1.10"
+
+[extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+ExplicitImports = "7d51a73a-1435-4ff3-83d9-f097790105c7"
+JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+TestItemRunner = "f8b46487-2199-4994-9208-9a1283c18c0a"
+
+[targets]
+test = ["Aqua", "ExplicitImports", "JET", "Test", "TestItemRunner"]

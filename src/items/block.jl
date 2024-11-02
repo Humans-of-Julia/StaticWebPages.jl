@@ -1,4 +1,4 @@
-Image = Pair{AbstractString,AbstractString}
+Image = Pair{AbstractString, AbstractString}
 
 """
     paragraphs(args::String...)
@@ -46,8 +46,8 @@ Construct a `Block` with paragraphs and an iframe.
 Block(paragraphs, iframe::String) = Block(paragraphs, Vector{Image}(), iframe)
 
 function to_html(section::Block)
-    full =
-        eltype(section.images) <: Union && isempty(section.iframe) ? "" : "medium-8 large-9"
+    full = eltype(section.images) <: Union && isempty(section.iframe) ? "" :
+           "medium-8 large-9"
     str = """<div class="cell $full">\n"""
 
     for p in section.paragraphs

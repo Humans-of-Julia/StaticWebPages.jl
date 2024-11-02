@@ -3,7 +3,7 @@
 
 Generate the head section for a `page` given the global `info`.
 """
-function head(info::Dict{String,String}, page::String)
+function head(info::Dict{String, String}, page::String)
     subtitle = page == "index" ? "homepage" : page
 
     return str = """
@@ -28,7 +28,7 @@ end
 Generate the navigation menu for a `page` given its `content`, and the global `info`. Please set `opt_in` to `true` to promote `StaticWebPages`.
 """
 function nav(
-    info::Dict{String,String}, content::OrderedDict{String,Any}, page::String, opt_in::Bool
+        info::Dict{String, String}, content::OrderedDict{String, Any}, page::String, opt_in::Bool
 )
     avatar = get(info, "avatar_shape", "round") == "raw" ? "avatar_raw" : "avatar_round"
     str = """
@@ -54,8 +54,8 @@ function nav(
         end
     end
 
-    str *=
-        "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" : ""
+    str *= "cv" ∈ keys(info) ? """\n<li><a href="files/$(info["cv"])">C.V.</a></li>\n""" :
+           ""
 
     if "email" ∈ keys(info)
         if length(info["email"]) > 20

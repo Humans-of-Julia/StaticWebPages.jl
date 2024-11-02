@@ -1,8 +1,8 @@
 module StaticWebPages
 
-using DataStructures
-using FTPClient
-using GitHub
+import DataStructures: OrderedDict
+import FTPClient: FTP
+import GitHub: Repo
 
 import Base.show
 
@@ -22,8 +22,6 @@ export CardColor
 export GitRepo
 export TimeLine
 export TimeLineColor
-
-export ui
 
 function load_example()
     include(joinpath(@__DIR__, "..", "example", "content.jl"))

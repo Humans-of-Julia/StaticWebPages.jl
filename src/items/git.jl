@@ -1,4 +1,4 @@
-const RepoLabels = Union{String,Pair{String,Vector{String}}}
+const RepoLabels = Union{String, Pair{String, Vector{String}}}
 
 """
     GitRepo
@@ -15,7 +15,7 @@ end
 
 Stores the URLs of git repositories and an associated filter. By default filters `"github-actions[bot]"`.
 """
-function GitRepo(args::RepoLabels...; filter=["github-actions[bot]"])
+function GitRepo(args::RepoLabels...; filter = ["github-actions[bot]"])
     return GitRepo([r for r in args], filter)
 end
 
@@ -84,8 +84,8 @@ function Git(gh_rl::RepoLabels, git_filter)
 
     gh = isa(gh_rl, Pair) ? gh_rl.first : gh_rl
 
-    r = GitHub.repo(gh; auth=myauth)
-    contributors = filter(c -> c ∉ git_filter, GitHub.contributors(gh; auth=myauth)[1])
+    r = GitHub.repo(gh; auth = myauth)
+    contributors = filter(c -> c ∉ git_filter, GitHub.contributors(gh; auth = myauth)[1])
 
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
@@ -138,7 +138,7 @@ function to_html(repos::GitRepo)
             if label ∉ keys(publication_labels)
                 push!(
                     publication_labels,
-                    label => ColorLabel(mod(length(publication_labels), 22)),
+                    label => ColorLabel(mod(length(publication_labels), 22))
                 )
             end
             color = color_to_label[publication_labels[label]]
