@@ -2,7 +2,7 @@ using StaticWebPages
 using Bibliography
 using Documenter
 
-@info "Makeing documentation..."
+@info "Making documentation..."
 makedocs(;
     modules = [StaticWebPages, Bibliography],
     authors = "Jean-François Baffier",

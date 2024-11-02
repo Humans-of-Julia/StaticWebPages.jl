@@ -70,7 +70,7 @@ gitrepo = GitRepo( # currently work only with GitHub
 
 Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
 
-To circumvent this issue, you can uncomment the line `local_info["auth_tokens"] = "PATH/TO/token.jl'` in `run.jl` (or add it if necessary) **and** edit the `token.jl` by updating your Personnal [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+To circumvent this issue, you can uncomment the line `local_info["auth_tokens"] = "PATH/TO/token.jl'` in `run.jl` (or add it if necessary) **and** edit the `token.jl` by updating your Personal [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
 
 `token.jl` aims to store all authentication tokens (for now, just GitHub). It content must be as follow (it is a simple variable containing your PAT):
 ```julia
@@ -91,7 +91,7 @@ As the comment states, take care not to push your token to your git repo! A good
 biography = Block(
     paragraphs(
     """
-   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and softwares.
+   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and software.
     """,
     """
     paragraph 2
@@ -115,7 +115,7 @@ research = Block(
         Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
         """,
         """
-        All of this research is supported by Open-Source Softwares and published as peer-review academic papers.
+        All of this research is supported by Open-Source Software and published as peer-review academic papers.
         """
     ),
     images()
@@ -171,6 +171,6 @@ email(
 
 ##### Link can be an internal or an external link
 ```julia
-link("research project", "research.hmtl") # inner link
+link("research project", "research.html") # inner link
 link("StaticWebPages.jl", "https://github.com/Humans-of-Julia/StaticWebPages.jl")
 ```
