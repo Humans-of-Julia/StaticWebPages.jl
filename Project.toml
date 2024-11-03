@@ -1,6 +1,6 @@
-authors = ["azzaare <jf@baffier.fr>"]
 name = "StaticWebPages"
 uuid = "5bf9d097-888b-4aa7-96b5-1bfe21b2dbad"
+authors = ["azzaare <jf@baffier.fr>"]
 version = "0.2.22"
 
 [deps]
@@ -20,7 +20,7 @@ Bibliography = "0.3"
 DataStructures = "0.18"
 FTPClient = "1"
 GitHub = "5"
-Gtk4 = "0.3"
+Gtk4 = "0.3, 0.7"
 julia = "1.10"
 
 [extras]
