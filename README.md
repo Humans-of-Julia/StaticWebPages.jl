@@ -2,166 +2,229 @@
 [![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://Humans-of-Julia.github.io/StaticWebPages.jl/stable)
 [![Build Status](https://github.com/Humans-of-Julia/StaticWebPages.jl/workflows/CI/badge.svg)](https://github.com/Humans-of-Julia/StaticWebPages.jl/actions)
 [![codecov](https://codecov.io/gh/Humans-of-Julia/StaticWebPages.jl/branch/master/graph/badge.svg?token=iiIHSFqA31)](https://codecov.io/gh/Humans-of-Julia/StaticWebPages.jl)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Discord chat](https://img.shields.io/discord/762167454973296644.svg?logo=discord&colorB=7289DA&style=flat-square)](https://discord.gg/7KC28q98nP)
 
 # StaticWebPages.jl
 
-A user-friendly static website generator written in Julia. No programming nor webdev skills required!!! Entirely Open-Source (GPLv2 licence)!
+StaticWebPages.jl is a Julia package for building static web pages from a
+simple content folder.
 
-Although this generator originally targets academicians, it works out well for personal webpage and any static usage (front-end only) A more advanced static framework in Julia is available (cf [Franklin.jl](https://github.com/tlienart/Franklin.jl)). For a full-stack web framework, please look at the great [Genie.jl](https://www.genieframework.com/).
+It is designed for personal and academic websites, especially when you want to
+describe the site content in Julia instead of hand-writing HTML.
 
-This generator is for you if
-- you want something simple to update and manage
-- responsive design (looks good on most devices)
-- want light load on the server and/or low bandwidth use
-- have no time/interest in making your own website by "hand"
-- new item/gadget access with a simple update in the julia command line
+Typical use cases:
 
-The beta only uses text files and command lines, but the first stable release will also integrate a graphical user interface (GUI).
+- a personal homepage;
+- an academic profile page;
+- a publications page backed by BibTeX;
+- a lightweight static site with no backend.
 
-I deeply apologize for those that tested the versions `v0.1.x`, as, from `v0.2.0`, the syntax has changed a lot. The reason is to add options to most components. It should not change drastically from now on.
+The package focuses on a small, explicit workflow:
 
-## How does it work
+1. write a `content.jl` file that describes the pages;
+2. point the generator at your content folder and output folder;
+3. run `export_site`;
+4. optionally upload the generated files to your server.
 
-The user provides the content (text, images, files) and select which `Items` will display it. As simple as that. A full working example is provided here (or in the example folder). The result is available as https://baffier.ovh
+The documentation site contains the full reference for all components. This
+README is meant to be the quick start and the overview.
 
-### Installation
+## Requirements
 
-The only requirement is to install Julia and this package (preferably through the package interface of Julia). Please install the last stable release of [Julia](https://julialang.org/downloads/) on the official download page.
+- Julia
+- This package
 
-In the Julia REPL (that you can launch as a standalone or call within a console), please enter Pkg REPL. To quote the package manager documentation:
-> Pkg comes with a REPL. Enter the Pkg REPL by pressing ] from the Julia REPL. To get back to the Julia REPL, press backspace or ^C.
+Install the latest stable Julia release from
+[julialang.org](https://julialang.org/downloads/).
 
-The following code snippet update the general registry of Julia's packages, then install the `StaticWebPages.jl` package.
+Then install the package from the Julia REPL:
 
+```julia
+pkg> add StaticWebPages
 ```
-(@v1.5) pkg> up
-(@v1.5) pkg> add StaticWebPages
+
+If you are working from a checkout, you can also activate the package directly
+and load it with:
+
+```julia
+using StaticWebPages
 ```
 
-You can check that the installation is complete and trigger a precompilation of the package (usually take a few minutes) by using the following command.
+The first load may take a little while because the package also depends on the
+bibliography stack.
+
+## Quick Start
+
+The usual entry point is a small Julia script, often named `run.jl`:
 
 ```julia
 import StaticWebPages
+import StaticWebPages: local_info
+
+local_info["content"] = "path/to/content_folder"
+local_info["site"] = "path/to/site_folder"
+
+StaticWebPages.export_site(d = local_info, rm_dir = true, opt_in = true)
 ```
 
-Please note that precompilation occurs at first use after installation and updates.
-
-The package can be use from the REPL, but we recommend it to be used through a script file as the `run.jl` presented below. Running the script should be as simple as writing the following command line.
+Run it with:
 
 ```julia
 julia run.jl
 ```
 
-or in the REPL
+or from the REPL:
 
 ```julia
 include("run.jl")
 ```
 
-### Files organization
-
-A compressed template can be found in the `example/` folder as either [template.tar](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.tar) or [template.zip](https://raw.githubusercontent.com/Humans-of-Julia/StaticWebPages.jl/master/example/template.zip).
-
-The two first following files are the only requirement. However, most users will prefer to provide some images/pictures and additional files such as a cv, a bibliography, and some downloadable content.
-
-#### Local script file: `run.jl`
+If you want to upload the generated site after building it, fill the optional
+connection settings:
 
 ```julia
-# import the website generator functions
-import StaticWebPages
-import StaticWebPages: local_info
-
-## private information (local folders, connection infos, etc.)
-# content and site paths are always required
-local_info["content"] = "path/to/content_folder"
-local_info["site"] = "path/to/site_folder"
-
-# necessary only if using the upload_site function
 local_info["protocol"] = "ftp"
 local_info["user"] = "user"
 local_info["password"] = "password"
 local_info["server"] = "server_address"
 
-# `rm_dir = true` will clean up the site folder before generating it again. Default to false.
-# `opt_in = true` will add a link to this generator website in the side menu. Default to false.
-StaticWebPages.export_site(d=local_info, rm_dir = true, opt_in = true)
-
-## upload website (comment/delete if not needed)
-# unfortunately does not work yet on windows system, please sync manually for the moment
 StaticWebPages.upload_site(local_info)
 ```
 
-#### Content folder
+## Content Folder
 
-It must contain a `content.jl` file, and both an `img` and a `files` folders. Other content files, such as BibTeX bibliographic file should be put at the root of the folder (alongside `content.jl`). Please check the provided example if necessary.
+Your content folder must contain at least:
+
+- `content.jl`
+- `img/`
+- `files/`
+
+Other data files, such as `publications.bib`, can live at the root of the
+content folder next to `content.jl`.
+
+For convenience, the repository includes a ready-to-copy template in
+[`example/`](example/).
+
+### Example Layout
+
+```text
+content/
+  content.jl
+  publications.bib
+  img/
+    avatar.jpg
+  files/
+    cv.pdf
+site/
+```
+
+### Example `content.jl`
 
 ```julia
-## content.jl
-######################################
-# General information
-######################################
+using StaticWebPages
 
-# The pic.jpg file needs to be put in the img folder
-info["avatar"] = "pic.jpg"
-
-# The cv.pdf file needs to be put in the files folder
+info["avatar"] = "avatar.jpg"
 info["cv"] = "cv.pdf"
-
 info["lang"] = "en"
-info["name"] = "Jean-François BAFFIER"
+info["name"] = "Jean-Francois Baffier"
 info["title"] = "Baffier"
+info["email"] = "jf@example.org"
 
-# The email is obfuscated using a reverse email writing. The email appear normally (re-reverse) through CSS.
-# Although this is an effective technique against bots, it probably won't eventually.
-# The user is free to add additional security such as replacing '@' by 'at'.
-info["email"] = "jf@baffier.fr"
+info["github"] = "https://github.com/username"
+info["linkedin"] = "https://www.linkedin.com/in/username/"
 
-## icons to social networks in the side menu
-# comment/delete the unwanted entries
-info["researchgate"] = "https://www.researchgate.net/profile/Jean_Francois_Baffier"
-info["googlescholar"] = "https://scholar.google.fr/citations?user=zo7FgSIAAAAJ&hl=fr"
-info["orcid"] = "https://orcid.org/0000-0002-8800-6356"
-info["dblp"] = "https://dblp.org/pid/139/8142"
-info["linkedin"] = "https://www.linkedin.com/in/jeanfrancoisbaffier/"
-info["github"] = "https://github.com/Azzaare"
-info["twitter"] = "https://twitter.com/bioazzaare"
-
-# The navigation side-bard default to 250px. If the content above doesn't fit, it be set to another length (in px)
-info["nav_width"] = "300"
-
-######################################
-# publications.html
-######################################
 page(
-    title="publications",
-    sections=[
+    title = "index",
+    sections = [
         Section(
-            title="Publications",
-            items=Publications("publications.bib")
+            title = "About",
+            items = Block(
+                paragraphs(
+                    "Write a short biography here.",
+                    "Add as many paragraphs as needed."
+                ),
+                images()
+            )
+        ),
+        Section(
+            title = "Publications",
+            items = Publications("publications.bib")
         )
     ]
 )
 ```
 
-### Themes
+## Main Concepts
 
-The only available theme for the moment is using Zurb foundation responsive front-end. Customization of this theme and addition of other themes are expected in a near future (contributions/suggestions/requests are welcome).
+### Pages
+
+A page is created with `page(...)`.
+
+It has:
+
+- a `title`;
+- an optional `background`;
+- a list of `sections`;
+- an optional `hide` flag.
+
+Hidden pages are not generated, but they can still appear in the navigation.
+
+### Sections
+
+Use `Section(...)` for a single-column section.
+Use `Double(...)` to build a two-column section from two `Section`s.
+
+Sections also accept:
+
+- `title`
+- `items`
+- `bgcolor`
+- `hide`
+- `title_size`
 
 ### Items
 
-Items are guaranteed to be compatible with the main theme (and hopefully new ones will be too).
+Items are the building blocks displayed inside sections.
 
-##### `Publications` : a bibliography based on a bibliography file (uses [Bibliography.jl]((https://github.com/Humans-of-Julia/Bibliography.jl)))
+Available item types include:
+
+- `Publications`
+- `Deck` of `Card`s
+- `GitRepo`
+- `Block`
+- `TimeLine`
+
+Some helpers are also exported for composing content:
+
+- `paragraphs`
+- `images`
+- `iframe`
+- `link`
+- `email`
+
+### Inline Components
+
+Some pieces of content can be embedded directly in your text.
+
+Examples:
 
 ```julia
-# Simply provide a BibTeX file (usually .bib)
-# Path is based on the root of the content folder
+email("dummy@example.org")
+email("dummy@example.org"; content = "contact me", obfuscated = false)
+link("StaticWebPages.jl", "https://github.com/Humans-of-Julia/StaticWebPages.jl")
+```
+
+## Publications
+
+`Publications` uses the bibliography stack bundled with the Humans of Julia
+projects.
+
+```julia
 Publications("publications.bib")
 ```
 
-To add labels to the publications entries, please add a `swp-labels` field to your entries. A `labels` field is also accepted, but will also appear in the bibTeX citation generated for that article. For instance,
+You can add labels to bibliography entries with `swp-labels`.
 
 ```latex
 @inproceedings{parmentier2019introducing,
@@ -176,224 +239,47 @@ To add labels to the publications entries, please add a `swp-labels` field to yo
 }
 ```
 
-![Image of a Publication Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/publication.png)
+If a `labels` field is present, it is also used, but it will remain part of the
+generated BibTeX citation. Prefer `swp-labels` for site-specific tagging.
 
-The attribution of colors is done automatically (within the limit of 22 labels, please issue a request if you need more ...)
+## Common `local_info` Keys
 
-##### `Deck` of `Card`s : a list of ordered and clearly separate cards
+These keys are the ones most often used by `content.jl` and `run.jl`:
 
-```julia
-Deck( # Start of the list
-    Card( # generic
-        "Left",
-        "Right",
-        "Title",
-        "Content"
-    ),
-    Card( # example
-        "2019",
-        "current",
-        "Postdoctoral Researcher",
-        "RIKEN Center for Advanced Intelligence (AIP)"
-    )
- ) # End of the list
-```
+- `content`: path to the content folder
+- `site`: path to the generated site folder
+- `lang`: site language code
+- `name`: displayed name in the navigation
+- `title`: site title
+- `avatar`: avatar image file name in `img/`
+- `cv`: CV file name in `files/`
+- `email`: contact address, obfuscated in the menu
+- `nav_width`: navigation width in pixels
+- `avatar_shape`: set to `raw` to keep the original avatar shape
+- social links such as `github`, `twitter`, `linkedin`, `orcid`, `dblp`,
+  `googlescholar`, and `researchgate`
+- `protocol`, `user`, `password`, `server`: optional upload settings
 
-![Image of Card Items](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/card.png)
+## Theming
 
-##### `GitRepo` : a list of GitHub repository displayed similarly to BibTeX entries
+The current theme is based on Zurb Foundation.
 
-```julia
-gitrepo = GitRepo( # currently work only with GitHub
-    "Azzaare/CompressedStacks.cpp",
-    "Humans-of-Julia/StaticWebPages.jl",
-    "Humans-of-Julia/Bibliography.jl",
-    "Humans-of-Julia/BibParser.jl",
-    "Humans-of-Julia/BibInternal.jl",
-    "JuliaGraphs/LightGraphs.jl",
-    "JuliaGraphs/LightGraphsExtras.jl",
-    "JuliaGraphs/SNAPDatasets.jl",
-    "Azzaare/PackageStream.jl"
-)
-```
+The package is intentionally opinionated so the generated sites stay simple,
+fast, and readable. Additional themes can be added later without changing the
+content model.
 
-![Image of a Git Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/git.png)
+## Examples
 
-Please note that GitHub will restrict unidentified requests to a certain amount per IP within a time limit (that I don't know the value). If it happens, a message error from GitHub API will be returned.
+The `example/` folder includes:
 
-To circumvent this issue, you can uncomment the line `local_info["auth_tokens"] = "PATH/TO/token.jl'` in `run.jl` (or add it if necessary) **and** edit the `token.jl` by updating your Personal [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+- a complete `content.jl`;
+- a sample BibTeX bibliography;
+- asset folders;
+- downloadable template archives.
 
-`token.jl` aims to store all authentication tokens (for now, just GitHub). It content must be as follow (it is a simple variable containing your PAT):
-```julia
-# WARNING!
-# YOUR TOKENS SHOULD NEVER BE SHARED! IF YOU USE GIT, DON'T FORGET TO ADD `token.jl` TO YOUR `.gitignore` FILE!
-# YOU CAN ALSO STORE `token.jl` OUTSIDE OF THE STATICWEBPAGES FOLDER!
+## License
 
-github_pat = "YOUR_PERSONAL_ACCESS_TOKEN"
-```
+This software is distributed under the GPLv2 license.
 
-If the token is not valid, a `401: Bad Creditential` error from GitHub API will be returned.
-
-As the comment states, take care not to push your token to your git repo! A good practice could be to store `token.jl` outside of your git project.
-
-##### `Block` : Block of paragraphs with optional images on the side
-```julia
-# Examples with and without images
-biography = Block(
-    paragraphs(
-    """
-   Jean-François Baffier is an academic researcher at the RIKEN Center for Advanced Intelligence Project (AIP), and a consultant in Artificial Intelligence, Big Data Science, Data Structures, and Algorithms. As an academic, he gives back to society through fundamental research in computer science supplemented by open source libraries and software.
-    """,
-    """
-    paragraph 2
-    """,
-    """
-    paragraph 3
-    """,
-    """
-    Jean-François implemented the StaticWebPages.jl package that was used to generate this website using a simple content file. This is a dummy email: $(email("dummy@example.purpose"))
-    """
-    ),
-    images(
-        Image("cs.png", "Compressed Stack"),
-        Image("knowledge.png", "Flow of Knowledge")
-    )
-)
-
-research = Block(
-    paragraphs(
-        """
-        Principal Research Projects: Network Interdiction, Compressed Data Structures, Modern Academics, Explainable AI. Other research interest includes Graph Theory, Geometry, Optimization, and Games.
-        """,
-        """
-        All of this research is supported by Open-Source Software and published as peer-review academic papers.
-        """
-    ),
-    images()
-)
-```
-
-![Image of a Block Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/paragraph.png)
-
-##### `TimeLine`s : a list of continuous items
-```julia
-grants = TimeLine(
-    Dot(
-        "Top",
-        "Title",
-        "Content"
-    ),
-    Dot(
-        "2012-2015",
-        "MEXT Scholarship",
-        "The Monbukagakusho Scholarship is an academic scholarship offered by the Japanese Ministry of Education, Culture, Sports, Science and Technology (MEXT)."
-    )
-)
-```
-
-![Image of a TimeLine Item](https://github.com/Humans-of-Julia/StaticWebPages.jl/raw/master/captures/timeline.png)
-
-##### `Nest`! A container to list several items within the same section
-
-```julia
-# Nest will take a tuple of any Items (except itself)
-positions_grants = Double(
-    Section(
-        title="Positions and grants",
-        items=Nest(work_cards, grants)
-    ),
-    Section(title="Research Topics", items=research)
-)
-```
-
-### Pages
-
-A page is composed of a name and a list of sections which can each be either single or double column. Each section is either a single `Item` or a pair of `Item`s.
-
-##### A publication page with only one single column section (by default, publications spread over two columns on large screens)
-
-```julia
-######################################
-# publications.html
-#   option 1: background for the page is set to start with white to emphasize the bibliographic items
-######################################
-page(
-    title="publications",
-    background=bg_white,
-    sections=[
-        Section(
-            title="Publications",
-            items=Publications("publications.bib")
-        )
-    ]
-)
-```
-
-##### An index page with a TextSection and a double column (Card, TimeLine)
-
-```julia
-######################################
-# index.html
-# biography
-# academic positions | honors, awards, and grants
-######################################
-
-# using previously defined items, we can define sections
-section_biography = Section(title="Biography", items=biography)
-positions_grants = Double(
-    Section(title="Positions", items=work_cards),
-    Section(title="Grants", items=grants)
-)
-
-# the next line will add the index page to the generated content
-page(
-    title="index",
-    sections=[section_biography, positions_grants]
-)
-```
-
-##### The `hide` option for `page` and `Section`
-
-```julia
-# Both page() and Section() can take the hide option
-# If a page is hidden, it will not be generated, but it will still appear in the side menu
-# If a section is hidden, it will just not appear (and the content will not be generated, including request to external API, such as GitHub)
-
-page(
-    title="software",
-    background=bg_white,
-    sections=[
-        Section(
-            title="Software",
-            hide=true, # default to false
-            items=github,
-        )
-    ]
-)
-```
-
-### Inline components
-Some components can be inserted within the content of usual `Item`s, such as `Block`, `Card`, `Dot`. Currently, only `link` and `email` are supported.
-
-##### Email can obfuscated (default), or not ...
-
-```julia
-email("dummy@example.purpose") # obfuscated
-email(
-    "dummy@example.purpose";
-    content = "content that appears as the email link", # ignored if obfuscated
-    obfuscated = false
-    )
-```
-
-##### Link can be an internal or an external link
-```julia
-link("research project", "research.html") # inner link
-link("StaticWebPages.jl", "https://github.com/Humans-of-Julia/StaticWebPages.jl")
-```
-
-### License
-
-This software is under the GPLv2 license.
-
-The main theme, and some items (`BibTeX`, `Card`, `TimeLine`) are inspired by the Word Press Faculty template of owwwlab, also under GPLv2. All elements inspired from that template can be found in the HTML/CSS code associated with those items.
+Some items and the general theme are inspired by the WordPress Faculty template
+from owwwlab, also under GPLv2.
