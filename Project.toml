@@ -16,7 +16,7 @@ Gtk4 = "9db2cae5-386f-4011-9d63-a5602296539b"
 SWPGtkExtension = ["Gtk4"]
 
 [compat]
-Bibliography = "0.3"
+Bibliography = "0.4"
 DataStructures = "0.18, 0.19"
 FTPClient = "1"
 GitHub = "5"
