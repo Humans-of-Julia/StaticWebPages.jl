@@ -30,5 +30,49 @@
     @test isfile("build/js/vendor/jquery.js")
     @test isfile("build/js/vendor/what-input.js")
 
+    index_html = read("build/index.html", String)
+    @test occursin("class=\"avatar-item\"", index_html)
+    @test occursin("class=\"social-links\"", index_html)
+    @test occursin("class=\"generator-credit\"", index_html)
+
+    app_css = read("build/css/app.css", String)
+    @test occursin(".title-bar {\n        position: fixed;", app_css)
+    @test occursin("grid-template-columns: repeat(4", app_css)
+
     rm("build"; recursive = true)
+end
+
+@testset "GitHub repository metadata cache" begin
+    old_site = get(StaticWebPages.local_info, "site", nothing)
+    mktempdir() do directory
+        StaticWebPages.local_info["site"] = joinpath(directory, "site")
+        cached = StaticWebPages.Git(
+            "example/cached",
+            String[];
+            fetcher = (repository, filter) -> StaticWebPages.Git(
+                "cached", "https://example.com/cached", "Julia", "Cached repository", 42,
+                "Contributor"
+            )
+        )
+        @test cached.name == "cached"
+        @test isfile(StaticWebPages._github_cache_path())
+
+        fallback = StaticWebPages.Git(
+            "example/cached",
+            String[];
+            fetcher = (repository, filter) -> error("GitHub API rate limit exceeded")
+        )
+        @test fallback == cached
+
+        @test_throws ErrorException StaticWebPages.Git(
+            "example/cached",
+            String[];
+            fetcher = (repository, filter) -> error("GitHub authentication failed")
+        )
+    end
+    if isnothing(old_site)
+        delete!(StaticWebPages.local_info, "site")
+    else
+        StaticWebPages.local_info["site"] = old_site
+    end
 end

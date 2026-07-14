@@ -2,7 +2,9 @@ module StaticWebPages
 
 import DataStructures: OrderedDict
 import FTPClient: FTP
+import GitHub
 import GitHub: Repo
+import TOML
 
 import Base.show
 

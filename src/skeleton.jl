@@ -15,7 +15,6 @@ function head(info::Dict{String, String}, page::String)
                    <link rel="stylesheet" href="css/foundation.min.css">
                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
                    <script src="https://kit.fontawesome.com/06a987762e.js" crossorigin="anonymous"></script>
-                   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
                     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
                    <link rel="stylesheet" href="css/app.css">
                  </head>
@@ -37,12 +36,15 @@ function nav(
               <span aria-hidden="true">&times;</span>
             </button>
             <ul class="vertical dropdown menu" id="menu" data-dropdown-menu>
-              <img src="img/$(info["avatar"])" alt="$(info["title"])" class="$avatar">
+              <li class="avatar-item">
+                <img src="img/$(info["avatar"])" alt="$(info["title"])" class="$avatar">
+              </li>
               <li class="menu-text">$(info["name"])</li>
           """
 
     for (p, c) in content
-        item = p == "index" ? "Home" : uppercasefirst(p)
+        default_item = p == "index" ? "Home" : uppercasefirst(p)
+        item = get(info, "menu_$p", default_item)
         if page == p
             str *= """
                    <li class="is-active"><a href="$p.html">$item</a></li>
@@ -67,40 +69,19 @@ function nav(
         end
     end
 
-    acc = 1
+    social_links = ""
     for i in keys(academicons)
         if i ∈ keys(info)
-            if mod(acc, 4) == 1
-                if acc > 1
-                    str *= """
-                               </li>
-                           """
-                end
-                str *= """
-                           <li>
-                       """
-            end
-            str *= """
-                         <a href="$(info[i])" class="icon-menu" title="" target="_blank" data-original-title="Cite">
+            social_links *= """
+                         <a href="$(info[i])" class="icon-menu" title="$(uppercasefirst(i))" target="_blank" rel="noopener noreferrer">
                            <i class="$(academicons[i])"></i>
                          </a>
                    """
-            acc += 1
         end
     end
     if "discord" ∈ keys(info)
-        if mod(acc, 4) == 1
-            if acc > 1
-                str *= """
-                           </li>
-                       """
-            end
-            str *= """
-                     <li>
-                   """
-        end
-        str *= """
-                         <a href="$(info["discord"])" class="icon-menu" title="" target="_blank" data-original-title="Cite">
+        social_links *= """
+                         <a href="$(info["discord"])" class="icon-menu" title="Discord" target="_blank" rel="noopener noreferrer">
                            <svg
                                width="26.25"
                                height="26.4"
@@ -111,11 +92,20 @@ function nav(
                            </svg>
                          </a>
                """
-        acc += 1
     end
-    str *= acc > 1 ? "\n<li>\n" : ""
+    if !isempty(social_links)
+        str *= """
+                 <li class="social-links" aria-label="Social profiles">
+                   $social_links
+                 </li>
+               """
+    end
 
-    aux = """\n<div class="opt-in">This site was generated using <a href="https://github.com/Humans-of-Julia/StaticWebPages.jl">StaticWebPages.jl</a></div></li>\n"""
+    aux = """
+          <li class="generator-credit">
+            Generated with <a href="https://github.com/Humans-of-Julia/StaticWebPages.jl">StaticWebPages.jl</a>
+          </li>
+          """
     str *= """
                  $(opt_in ? aux : "")
                </ul>

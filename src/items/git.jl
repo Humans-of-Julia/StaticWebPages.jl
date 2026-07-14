@@ -32,6 +32,73 @@ struct Git
     contributors::String
 end
 
+function _github_cache_path()
+    if haskey(local_info, "github_cache")
+        return abspath(local_info["github_cache"])
+    end
+    site = get(local_info, "site", "site")
+    site_path = abspath(site)
+    return joinpath(dirname(site_path), ".$(basename(site_path))-github-cache.toml")
+end
+
+function _cached_git(gh::String)
+    path = _github_cache_path()
+    isfile(path) || return nothing
+    try
+        repositories = get(TOML.parsefile(path), "repositories", Dict{String, Any}())
+        haskey(repositories, gh) || return nothing
+        entry = repositories[gh]
+        return Git(
+            String(entry["name"]),
+            String(entry["url"]),
+            String(entry["language"]),
+            String(entry["description"]),
+            Int(entry["size"]),
+            String(entry["contributors"])
+        )
+    catch err
+        @warn "Unable to read the GitHub metadata cache" path exception =
+            (err, catch_backtrace())
+        return nothing
+    end
+end
+
+function _cache_git(gh::String, git::Git)
+    path = _github_cache_path()
+    data = if isfile(path)
+        try
+            TOML.parsefile(path)
+        catch
+            Dict{String, Any}()
+        end
+    else
+        Dict{String, Any}()
+    end
+    repositories = get!(data, "repositories", Dict{String, Any}())
+    repositories[gh] = Dict(
+        "name" => git.name,
+        "url" => git.url,
+        "language" => git.language,
+        "description" => git.description,
+        "size" => git.size,
+        "contributors" => git.contributors
+    )
+    mkpath(dirname(path))
+    temporary = path * ".tmp"
+    open(temporary, "w") do io
+        TOML.print(io, data; sorted = true)
+    end
+    mv(temporary, path; force = true)
+    return git
+end
+
+function _is_github_rate_limit_error(err)
+    message = lowercase(sprint(showerror, err))
+    return occursin("rate limit", message) || occursin("api rate", message) ||
+        occursin("quota", message) || occursin("status code: 429", message) ||
+        occursin("retry delay", message) && occursin("maximum", message)
+end
+
 """
     to_name(user::String)
 
@@ -75,17 +142,20 @@ end
 
 Create a `Git` element with the elements found at `gh_rl` and filtered with `git_filter`.
 """
-function Git(gh_rl::RepoLabels, git_filter)
+function _fetch_github_git(gh::String, git_filter)
     if @isdefined(github_pat)
         myauth = GitHub.authenticate(github_pat)
     else
         myauth = GitHub.AnonymousAuth()
     end
 
-    gh = isa(gh_rl, Pair) ? gh_rl.first : gh_rl
-
-    r = GitHub.repo(gh; auth = myauth)
-    contributors = filter(c -> c ∉ git_filter, GitHub.contributors(gh; auth = myauth)[1])
+    # Do not let GitHub.jl sleep for many minutes when the API quota is exhausted.
+    # StaticWebPages can fall back to the previous build's cached metadata immediately.
+    r = GitHub.repo(gh; auth = myauth, max_retries = 0)
+    contributors = filter(
+        c -> c ∉ git_filter,
+        GitHub.contributors(gh; auth = myauth, max_retries = 0)[1]
+    )
 
     is_github = "github" ∈ keys(info)
     this_user = is_github ? lowercase(split(info["github"], "/")[end]) : ""
@@ -99,14 +169,35 @@ function Git(gh_rl::RepoLabels, git_filter)
     end
     max_users = user_in_bound ? 10 : 9
 
-    str = to_name(contributors[1]["contributor"].login)
-    for c in contributors[2:(min(max_users, bound))]
-        str *= ", " * to_name(c["contributor"].login)
+    str = ""
+    if !isempty(contributors)
+        str = to_name(contributors[1]["contributor"].login)
+        for c in contributors[2:(min(max_users, bound))]
+            str *= ", " * to_name(c["contributor"].login)
+        end
     end
-    str *= user_in_bound ? "" : ", " * to_name(this_user)
+    separator = isempty(str) ? "" : ", "
+    str *= user_in_bound || isempty(this_user) ? "" : separator * to_name(this_user)
     str *= bound < length(contributors) ? ", et al." : ""
 
     return GitBuilder(r, str)
+end
+
+function Git(gh_rl::RepoLabels, git_filter; fetcher = _fetch_github_git)
+    gh = isa(gh_rl, Pair) ? gh_rl.first : gh_rl
+    try
+        return _cache_git(gh, fetcher(gh, git_filter))
+    catch err
+        if _is_github_rate_limit_error(err)
+            cached = _cached_git(gh)
+            if !isnothing(cached)
+                @warn "GitHub API quota reached; using cached repository metadata" repository =
+                    gh cache = _github_cache_path()
+                return cached
+            end
+        end
+        rethrow()
+    end
 end
 
 function to_html(repos::GitRepo)
